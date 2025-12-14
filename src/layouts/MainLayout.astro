@@ -5,6 +5,7 @@ import '@fontsource/inter/600.css';
 import '@fontsource/inter/900.css';
 // Importamos el Footer
 import Footer from '../components/common/Footer.astro';
+import WhatsAppSticky from '../components/common/WhatsAppSticky.astro';
 
 interface Props {
 	title: string;
@@ -75,7 +76,37 @@ const organizationSchema = JSON.stringify({
 
         <!-- Footer Global -->
         <Footer />
-        
+        <WhatsAppSticky /> <!-- <--- NUEVO: Se renderiza aquí para todas las páginas -->
+
+        <!-- Script de Animaciones de Scroll Global -->
+        <script>
+            const initScrollAnimations = () => {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.1 
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Seleccionamos elementos clave automáticamente
+                const elementsToAnimate = document.querySelectorAll('section, h1, h2, .card, article');
+                
+                elementsToAnimate.forEach(el => {
+                    el.classList.add('reveal');
+                    observer.observe(el);
+                });
+            };
+
+            document.addEventListener('DOMContentLoaded', initScrollAnimations);
+        </script>
 	</body>
 </html>
 
