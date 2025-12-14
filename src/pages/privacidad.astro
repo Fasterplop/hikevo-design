@@ -1,0 +1,85 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/common/Header.astro';
+import Container from '../components/ui/Container.astro';
+
+const title = "Política de Privacidad | Hikevo Design";
+const description = "Cómo recopilamos, usamos y protegemos tus datos personales en Hikevo Design. Transparencia total.";
+const lastUpdate = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long' });
+---
+
+<MainLayout title={title} description={description}>
+  <Header />
+
+  <main class="pt-32 pb-20">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl font-bold text-hikevo-black mb-4">Política de Privacidad</h1>
+        <p class="text-gray-500 mb-12 border-b border-gray-100 pb-8">Última actualización: {lastUpdate}</p>
+
+        <div class="space-y-12 text-hikevo-charcoal leading-relaxed">
+          
+          <section>
+            <p class="mb-4">
+              En <strong>Hikevo Design</strong> ("nosotros", "nuestro"), la transparencia es uno de nuestros pilares. Esta Política de Privacidad explica cómo tratamos tu información personal cuando visitas nuestro sitio web o utilizas nuestros servicios.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">1. Responsable del Tratamiento</h2>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+              <li><strong>Titular:</strong> Hikevo Design</li>
+              <li><strong>Ubicación:</strong> Maturín, Monagas, Venezuela (Servicio Global)</li>
+              <li><strong>Contacto:</strong> hola@hikevodesign.com</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">2. Qué información recopilamos</h2>
+            <p class="mb-4 text-gray-600">Actualmente, recopilamos la mínima información necesaria para operar:</p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+              <li><strong>Datos de Contacto:</strong> Tu dirección de correo electrónico (cuando la introduces en nuestro formulario de registro o contacto).</li>
+              <li><strong>Datos de Navegación:</strong> Información técnica como tu dirección IP, tipo de navegador y comportamiento en el sitio (a través de cookies técnicas o analíticas) para mejorar el rendimiento.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">3. Finalidad del Tratamiento</h2>
+            <p class="mb-4 text-gray-600">Usamos tus datos para:</p>
+            <ol class="list-decimal pl-5 space-y-2 text-gray-600">
+              <li><strong>Responder a tus solicitudes:</strong> Enviarte la información de servicios que solicitaste al dejar tu email.</li>
+              <li><strong>Prestación del servicio:</strong> Gestionar el desarrollo web o la creación de contenido contratada.</li>
+              <li><strong>Mejora técnica:</strong> Monitorizar la velocidad y seguridad del sitio.</li>
+            </ol>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">4. Terceros y Stack Tecnológico</h2>
+            <p class="mb-4 text-gray-600">Para prestar nuestros servicios, utilizamos proveedores tecnológicos de confianza que pueden procesar datos en nuestro nombre:</p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+              <li><strong>Hosting e Infraestructura:</strong> Cloudflare Inc. (Seguridad y entrega de contenido).</li>
+              <li><strong>Email Transaccional:</strong> Resend (Para el envío de correos automáticos).</li>
+              <li><strong>Analítica:</strong> Cloudflare Web Analytics (Privada y sin cookies invasivas).</li>
+            </ul>
+            <p class="mt-4 text-gray-600 italic">No vendemos ni alquilamos tus datos a terceros con fines comerciales. Nunca.</p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">5. Tus Derechos</h2>
+            <p class="text-gray-600">
+              Como usuario, tienes derecho a acceder, rectificar o solicitar la eliminación de tus datos ("Derecho al olvido") en cualquier momento. Solo tienes que escribirnos a <strong>hola@hikevodesign.com</strong> y gestionaremos tu solicitud en menos de 48 horas.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">6. Seguridad</h2>
+            <p class="text-gray-600">
+              Implementamos medidas de seguridad estándar (HTTPS/SSL) para proteger tus datos durante la transmisión. Sin embargo, recuerda que ningún método de transmisión por Internet es 100% infalible.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </Container>
+  </main>
+</MainLayout>

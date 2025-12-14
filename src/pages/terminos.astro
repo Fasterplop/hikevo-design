@@ -1,0 +1,81 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/common/Header.astro';
+import Container from '../components/ui/Container.astro';
+
+const title = "Términos y Condiciones | Hikevo Design";
+const description = "Condiciones de uso y contratación de servicios de desarrollo web y contenido en Hikevo Design.";
+---
+
+<MainLayout title={title} description={description}>
+  <Header />
+
+  <main class="pt-32 pb-20">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl font-bold text-hikevo-black mb-4">Términos y Condiciones de Uso</h1>
+        <p class="text-gray-500 mb-12 border-b border-gray-100 pb-8">Por favor, lee detenidamente antes de contratar.</p>
+
+        <div class="space-y-12 text-hikevo-charcoal leading-relaxed">
+          
+          <section>
+            <p class="mb-4">
+              Bienvenido a <strong>Hikevo Design</strong>. Al navegar por este sitio web y contratar nuestros servicios, aceptas los siguientes términos y condiciones. Si no estás de acuerdo con alguna parte, te recomendamos no utilizar nuestros servicios.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">1. Descripción del Servicio</h2>
+            <p class="mb-2 text-gray-600">Hikevo Design es un estudio digital que ofrece:</p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+              <li><strong>Desarrollo Web:</strong> Creación de sitios web corporativos, landing pages y aplicaciones web.</li>
+              <li><strong>Creación de Contenido:</strong> Gestión de redes sociales, diseño gráfico y estrategias de crecimiento digital.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">2. Propiedad Intelectual</h2>
+            <ul class="list-disc pl-5 space-y-4 text-gray-600">
+              <li><strong>Tu Propiedad:</strong> Todo el contenido (textos, imágenes, logos) que nos facilites para el desarrollo de tu web o redes sigue siendo 100% tuyo.</li>
+              <li><strong>Nuestra Propiedad:</strong> El código fuente base, metodologías y diseños preliminares no seleccionados son propiedad intelectual de Hikevo Design hasta que se complete el pago total del servicio.</li>
+              <li><strong>Entregables:</strong> Una vez finalizado y pagado el proyecto, se te transfieren los derechos de uso y explotación del producto final (la web o los creativos).</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">3. Pagos y Cancelaciones</h2>
+            <ul class="list-disc pl-5 space-y-4 text-gray-600">
+              <li><strong>Proyectos Web:</strong> Generalmente requieren un anticipo (ej. 50%) para iniciar y el resto contra entrega. Los depósitos no son reembolsables una vez iniciado el trabajo técnico.</li>
+              <li><strong>Servicios Recurrentes (Growth/Social):</strong> Se facturan mensualmente. Puedes cancelar tu suscripción avisando con al menos 15 días de antelación antes del siguiente ciclo de facturación.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">4. Limitación de Responsabilidad</h2>
+            <p class="mb-4 text-gray-600">Nos esforzamos por ofrecer un código impecable y estrategias sólidas. Sin embargo:</p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+              <li>No garantizamos resultados de ventas específicos (el mercado es variable).</li>
+              <li>No nos hacemos responsables por caídas de servicio ajenas a nosotros (ej: fallos globales de Cloudflare, Meta o tu proveedor de dominio).</li>
+              <li>No somos responsables del contenido legal de tu web (textos legales, RGPD, etc.); eso es responsabilidad final del cliente.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">5. Modificaciones</h2>
+            <p class="text-gray-600">
+              Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en esta página.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">6. Ley Aplicable</h2>
+            <p class="text-gray-600">
+              Estos términos se rigen por las leyes vigentes en la República Bolivariana de Venezuela. Cualquier disputa será resuelta en los tribunales competentes de dicha jurisdicción, salvo acuerdo mutuo de arbitraje internacional.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </Container>
+  </main>
+</MainLayout>

@@ -1,0 +1,79 @@
+---
+import Container from '../ui/Container.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-white border-t border-gray-100 pt-16 pb-8 text-sm">
+  <Container>
+    <div class="grid md:grid-cols-4 gap-12 mb-12">
+      
+      <!-- Columna 1: Marca -->
+      <div class="col-span-1 md:col-span-1">
+        <a href="/" class="flex items-center gap-2 mb-4">
+            <svg class="w-6 h-6 text-hikevo-black" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                <circle cx="12" cy="12" r="5" class="text-hikevo-yellow"/>
+            </svg>
+            <span class="text-lg font-bold tracking-tight text-hikevo-black">Hikevo</span>
+        </a>
+        <p class="text-gray-500 leading-relaxed mb-6">
+          Tu departamento digital, externo y sin complicaciones. Diseñamos para convertir.
+        </p>
+        <div class="flex gap-4">
+          <!-- Social Icons (Placeholders) -->
+          <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-hikevo-black hover:text-white transition-colors" aria-label="Instagram">
+             <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-hikevo-black hover:text-white transition-colors" aria-label="LinkedIn">
+             <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 2: Explorar -->
+      <div>
+        <h4 class="font-bold text-hikevo-black mb-4">Explorar</h4>
+        <ul class="space-y-3">
+          <li><a href="/soluciones" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Soluciones y Precios</a></li>
+          <li><a href="/portafolio" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Portafolio</a></li>
+          <li><a href="/nosotros" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Nosotros</a></li>
+          <li><a href="/contacto" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Servicios -->
+      <div>
+        <h4 class="font-bold text-hikevo-black mb-4">Servicios</h4>
+        <ul class="space-y-3">
+          <li><span class="text-gray-500">Desarrollo Web Astro</span></li>
+          <li><span class="text-gray-500">Diseño UI/UX</span></li>
+          <li><span class="text-gray-500">Estrategia SEO</span></li>
+          <li><span class="text-gray-500">Social Media Growth</span></li>
+        </ul>
+      </div>
+
+      <!-- Columna 4: Legales y Ubicación -->
+      <div>
+        <h4 class="font-bold text-hikevo-black mb-4">Legal</h4>
+        <ul class="space-y-3 mb-6">
+          <li><a href="/privacidad" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Política de Privacidad</a></li>
+          <li><a href="/terminos" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Términos y Condiciones</a></li>
+        </ul>
+        <div class="text-xs text-gray-400 bg-gray-50 p-3 rounded-lg border border-gray-100 inline-block">
+             📍 Maturín, VE / Remote Worldwide
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-gray-400 text-xs">
+        &copy; {year} Hikevo Design. Todos los derechos reservados.
+      </p>
+      <p class="text-gray-400 text-xs flex items-center gap-1">
+        Hecho con <span class="text-red-400">❤</span> y código limpio.
+      </p>
+    </div>
+  </Container>
+</footer>

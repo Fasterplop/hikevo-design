@@ -1,0 +1,292 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/common/Header.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/common/Button.astro';
+import { Image } from 'astro:assets'; // 1. Importar componente de optimización
+
+// IMPORTANTE: Cuando tengas las imágenes reales, descomenta los imports abajo
+// import imgLuxe from '../../assets/images/proyectos/inmobiliaria-luxe.jpg';
+// import imgModa from '../../assets/images/proyectos/moda-organica.jpg';
+
+// Definición de tipos para TypeScript
+interface Project {
+  slug: string;
+  title: string;
+  description: string;
+  client: string;
+  industry: string;
+  services: string;
+  year: string;
+  challenge: string;
+  solution: string;
+  results: { label: string; value: string }[];
+  testimonial?: string;
+  testimonialAuthor?: string;
+  // 2. Nuevo campo para la imagen (ImageMetadata es el tipo interno de Astro)
+  image?: ImageMetadata; 
+}
+
+export async function getStaticPaths() {
+  // Aquí asignarías las imágenes importadas a cada proyecto
+  const projects: Project[] = [
+    {
+        slug: 'inmobiliaria-luxe',
+        title: 'Inmobiliaria Luxe',
+        // image: imgLuxe, // <-- Así asignarás la imagen real
+        description: 'Rediseño Web Corporativo + Estrategia SEO',
+        client: 'Grupo Inmobiliario Luxe',
+        industry: 'Real Estate',
+        services: 'Astro Development, UI Design, SEO',
+        year: '2023',
+        challenge: 'El cliente tenía una web antigua en Wordpress que tardaba 5 segundos en cargar. Su tasa de rebote era alta y no recibían leads cualificados. Necesitaban modernizar su imagen y automatizar la captación de clientes.',
+        solution: 'Migramos su infraestructura a Astro y Tailwind CSS para garantizar una carga instantánea. Rediseñamos la interfaz con un enfoque minimalista ("Apple-like") para transmitir confianza y simplificamos el formulario de contacto para reducir fricción.',
+        results: [
+            { label: 'PageSpeed', value: '99/100' },
+            { label: 'Crecimiento de Leads', value: '+40%' },
+            { label: 'Posición Google', value: 'Top 3' }
+        ],
+        testimonial: 'Hikevo transformó nuestra presencia digital. Ahora los clientes confían en nosotros antes de la primera llamada.',
+        testimonialAuthor: 'Carlos R., CEO'
+    },
+    { 
+        slug: 'moda-organica', 
+        title: 'Moda Orgánica', 
+        // image: imgModa,
+        description: 'Estrategia de Contenidos y Redes Sociales',
+        client: 'EcoStyle Fashion',
+        industry: 'Moda Sostenible',
+        services: 'Content Strategy, Reels, Community Management',
+        year: '2023',
+        challenge: 'La marca tenía productos excelentes pero poco alcance orgánico en Instagram. Su audiencia no interactuaba y las ventas dependían 100% de anuncios pagados.',
+        solution: 'Implementamos una estrategia de contenidos basada en storytelling y Reels educativos. Creamos un calendario editorial consistente y humanizamos la marca mostrando el proceso de fabricación.',
+        results: [
+            { label: 'Alcance Orgánico', value: '+250%' },
+            { label: 'Engagement', value: '4.5%' },
+            { label: 'Seguidores', value: '+5k' }
+        ],
+        testimonial: 'Entendieron nuestra voz a la perfección. Ahora nuestra comunidad espera nuestros posts cada semana.',
+        testimonialAuthor: 'Ana M., Fundadora'
+    },
+    { 
+        slug: 'lanzamiento-app', 
+        title: 'Lanzamiento App', 
+        description: 'Landing Page de Alta Conversión (One-Page)',
+        client: 'FitTrack App',
+        industry: 'Tecnología / Salud',
+        services: 'Landing Page, Copywriting, Astro',
+        year: '2024',
+        challenge: 'Necesitaban validar una idea de app de fitness antes de desarrollarla. Requerían una página rápida para captar emails de interesados (Waitlist).',
+        solution: 'Desarrollamos una One-Page ultra optimizada en Astro enfocada 100% en la conversión. Integramos un formulario directo a su base de datos.',
+        results: [
+            { label: 'Tasa de Conversión', value: '18%' },
+            { label: 'Emails Captados', value: '2,000+' },
+            { label: 'Tiempo de Carga', value: '0.4s' }
+        ],
+         testimonial: 'La velocidad de la landing fue clave para nuestras campañas de pago. Resultados brutales.',
+        testimonialAuthor: 'David S., Product Owner'
+    },
+    { 
+        slug: 'consultoria-legal', 
+        title: 'Consultoría Legal', 
+        description: 'Rediseño de Identidad y Sitio Web',
+        client: 'Legal & Asociados',
+        industry: 'Legal',
+        services: 'Branding, Web Design, Corporate Identity',
+        year: '2023',
+        challenge: 'Su imagen anterior se veía anticuada y poco profesional para clientes corporativos internacionales.',
+        solution: 'Renovamos su logotipo y paleta de colores hacia tonos sobrios y modernos. El sitio web se estructuró para destacar la experiencia de los socios.',
+        results: [
+            { label: 'Retención Web', value: '+60%' },
+            { label: 'Solicitudes Corp.', value: '+25%' },
+            { label: 'Percepción', value: 'Premium' }
+        ]
+    }
+  ];
+
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+
+// Schema BreadcrumbList
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "https://hikevodesign.com"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Portafolio",
+    "item": "https://hikevodesign.com/portafolio"
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "name": project.title
+  }]
+});
+---
+
+<MainLayout title={`${project.title} | Caso de Estudio Hikevo`} description={project.description}>
+  <!-- Inyección Schema -->
+  <script type="application/ld+json" set:html={breadcrumbSchema} slot="head" />
+
+  <Header />
+
+  <main class="pt-32 pb-20">
+    <!-- [SECCIÓN 1: HEADER PROYECTO] -->
+    <section class="mb-20">
+        <Container>
+            <div class="bg-gray-900 text-white rounded-3xl p-8 md:p-16 relative overflow-hidden animate-fade-in">
+                
+                <!-- 3. IMAGEN DE FONDO: Lógica condicional -->
+                {project.image ? (
+                   <div class="absolute inset-0 z-0">
+                      <Image 
+                        src={project.image} 
+                        alt={`Caso de éxito ${project.title}`}
+                        class="w-full h-full object-cover opacity-20"
+                        width={1200}
+                        height={600}
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent"></div>
+                   </div>
+                ) : (
+                   /* Fallback decorativo si no hay imagen */
+                   <div class="absolute top-0 right-0 w-64 h-64 bg-hikevo-yellow opacity-10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+                )}
+                
+                <div class="relative z-10 max-w-4xl">
+                    <span class="text-hikevo-yellow font-bold tracking-wider text-sm uppercase mb-4 block">Caso de Estudio</span>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">{project.title}</h1>
+                    <p class="text-xl text-gray-300 mb-12 max-w-2xl">{project.description}</p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-gray-700 pt-8">
+                        <div>
+                            <span class="block text-gray-500 text-sm mb-1">Cliente</span>
+                            <span class="font-semibold">{project.client}</span>
+                        </div>
+                        <div>
+                            <span class="block text-gray-500 text-sm mb-1">Industria</span>
+                            <span class="font-semibold">{project.industry}</span>
+                        </div>
+                        <div>
+                            <span class="block text-gray-500 text-sm mb-1">Servicios</span>
+                            <span class="font-semibold">{project.services}</span>
+                        </div>
+                         <div>
+                            <span class="block text-gray-500 text-sm mb-1">Año</span>
+                            <span class="font-semibold">{project.year}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    <!-- [SECCIÓN 2: HISTORIA] -->
+    <section class="mb-24">
+        <Container>
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-sm">1</span> 
+                        El Desafío
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed whitespace-pre-line text-lg">
+                        {project.challenge}
+                    </p>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-hikevo-yellow text-sm text-black">2</span> 
+                        La Solución
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed whitespace-pre-line mb-8 text-lg">
+                        {project.solution}
+                    </p>
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                        <h4 class="font-bold text-sm mb-2">Stack Tecnológico</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-medium text-gray-600">Astro</span>
+                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-medium text-gray-600">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-medium text-gray-600">Cloudflare</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    <!-- [SECCIÓN 3: RESULTADOS] -->
+    <section class="mb-24 bg-hikevo-black text-white py-20 rounded-none md:rounded-3xl mx-0 md:mx-4">
+        <Container>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold">Los Resultados</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                {project.results.map((kpi) => (
+                    <div class="p-6">
+                        <div class="text-5xl font-bold text-hikevo-yellow mb-2">{kpi.value}</div>
+                        <div class="text-gray-400 font-medium">{kpi.label}</div>
+                    </div>
+                ))}
+            </div>
+
+            {project.testimonial && (
+                <div class="mt-16 max-w-3xl mx-auto text-center border-t border-gray-800 pt-10">
+                    <p class="text-xl italic text-gray-300 mb-6">"{project.testimonial}"</p>
+                    <div class="text-sm font-bold text-hikevo-yellow">— {project.testimonialAuthor}</div>
+                </div>
+            )}
+        </Container>
+    </section>
+
+    <!-- [SECCIÓN 4: GALERÍA VISUAL - Placeholder para futuras imágenes] -->
+    <section class="mb-24">
+        <Container>
+            <div class="grid gap-8">
+                <!-- Aquí también podrías usar <Image /> cuando tengas las capturas de pantalla -->
+                <div class="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center text-gray-400 font-medium">
+                    Vista Desktop Home
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                     <div class="bg-gray-100 rounded-2xl aspect-square flex items-center justify-center text-gray-400 font-medium">
+                        Detalle Móvil
+                    </div>
+                     <div class="bg-gray-100 rounded-2xl aspect-square flex items-center justify-center text-gray-400 font-medium">
+                        Comparativa Antes/Después
+                    </div>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    <!-- [SECCIÓN 5: CTA CONTEXTUAL] -->
+    <section class="py-20 border-t border-gray-100 bg-gray-50/50">
+         <Container>
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold mb-4">¿Buscas resultados similares?</h2>
+                <p class="text-gray-600 mb-8">No prometemos magia, prometemos ingeniería y estrategia. Hablemos de tu proyecto.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <Button href="https://wa.me/1234567890" variant="primary" isExternal={true}>
+                        Quiero un sitio así
+                    </Button>
+                    <Button href="/portafolio" variant="outline">
+                        Ver otro proyecto
+                    </Button>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+  </main>
+</MainLayout>
