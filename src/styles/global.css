@@ -1,12 +1,84 @@
-/* 1. Inyectamos las capas de Tailwind */
+/* src/styles/global.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* 2. Estilos base adicionales si los necesitas */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+}
+
+/* --- SISTEMA DE ANIMACIONES GLOBAL --- */
+
+@layer utilities {
+  /* * ANIMACIÓN "SMOOTH REVEAL"
+   * Entrada sedosa con desplazamiento, desenfoque y escala.
+   */
+  .reveal-smooth {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+    filter: blur(8px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); /* Curva "Lujo" */
+    will-change: opacity, transform, filter;
+  }
+
+  /* Estado activo (se añade vía JS) */
+  .reveal-smooth.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+
+  /* Delays para efecto escalera (Staggering) */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-150 { transition-delay: 150ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  
+  /* Animación de brillo para tarjetas */
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+    z-index: 10;
+  }
+  .group:hover .shine-effect::after {
+    animation: shine 1.5s ease-in-out;
+  }
+}
+
+/* Keyframes globales */
+@keyframes shine {
+  100% { transform: translateX(100%); }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient {
+  animation: gradient 6s ease infinite;
+}
+
+/* Accesibilidad: Desactivar si el usuario lo pide */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-smooth, .transition-all, .transition-transform {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none !important;
+    animation: none !important;
+  }
 }
