@@ -3,6 +3,8 @@ import MainLayout from '../layouts/MainLayout.astro';
 import Header from '../components/common/Header.astro';
 import Container from '../components/ui/Container.astro';
 import Button from '../components/common/Button.astro';
+import heroBg from '../assets/images/snow-mountain.jpg'; // Asegúrate de mover la imagen a src/assets/images/
+import { Image } from 'astro:assets';
 
 // Metadatos
 const title = "Hikevo Design | Desarrollo Web y Estrategia Digital";
@@ -13,16 +15,29 @@ const description = "Agencia digital especializada en diseño web de alto rendim
   <Header />
 
   <main>
-    <section class="pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      <Container>
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden min-h-[90vh] flex items-center">
+      
+      <div class="absolute inset-0 z-0">
+        <Image 
+          src={heroBg} 
+          alt="Montañas y equipo mirando al horizonte" 
+          class="w-full h-full object-cover"
+          quality="mid"
+          loading="eager" 
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-hikevo-black via-hikevo-black/80 to-hikevo-black/50"></div>
+      </div>
+
+      <Container class="relative z-10">
         <div class="max-w-4xl mx-auto text-center">
-          <h1 class="text-5xl md:text-7xl font-bold text-hikevo-black tracking-tight mb-6 leading-[1.1] reveal-smooth">
-            Tu departamento digital, <br class="hidden md:block" />
-            <span class="text-hikevo-gray/80">externo y sin complicaciones.</span>
+          
+          <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6 leading-[1.1] reveal-smooth">
+            Lleva tu negocio <br class="hidden md:block" />a la cima. 
+           
           </h1>
           
-          <p class="text-lg md:text-xl text-hikevo-charcoal/80 mb-10 max-w-2xl mx-auto leading-relaxed reveal-smooth delay-150">
-            Diseñamos tu web corporativa y gestionamos tus redes sociales para que tú solo te dediques a dirigir tu negocio.
+          <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed reveal-smooth delay-150">
+            Diseñamos tu web corporativa y gestionamos tus redes sociales para que tú solo te dediques a dirigir tu negocio. 
             Sin tecnicismos, con total transparencia.
           </p>
           
@@ -33,11 +48,12 @@ const description = "Agencia digital especializada en diseño web de alto rendim
                 </Button>
             </div>
             <div class="transition-transform duration-500 ease-out hover:scale-105">
-                <Button href="https://wa.me/1234567890" variant="outline" isExternal={true}>
+                <Button href="https://wa.me/1234567890" variant="outline" isExternal={true} class="text-white border-white hover:bg-white hover:text-black">
                 Solicitar Análisis Web Gratuito
                 </Button>
             </div>
           </div>
+
         </div>
       </Container>
     </section>
@@ -187,7 +203,11 @@ const description = "Agencia digital especializada en diseño web de alto rendim
                 
                 <div class="flex flex-col items-center gap-4">
                      <div class="transition-transform duration-500 ease-out hover:scale-105">
-                        <Button href="https://wa.me/1234567890" variant="primary" isExternal={true}>
+                        <Button
+  href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio."
+  variant="primary"
+  isExternal={true}
+>
                             Hablar por WhatsApp
                         </Button>
                      </div>

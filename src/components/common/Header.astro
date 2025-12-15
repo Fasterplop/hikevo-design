@@ -15,11 +15,11 @@ const navItems = [
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2 group">
         <!-- SVG Logo simplificado basado en el PDF -->
-        <svg class="w-8 h-8 text-hikevo-black transition-transform group-hover:scale-105" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-            <circle cx="12" cy="12" r="5" class="text-hikevo-yellow"/>
-        </svg>
-        <span class="text-xl font-bold tracking-tight text-hikevo-black">Hikevo</span>
+        <img 
+  src="/logo.svg" 
+  alt="Logo Hikevo Design" 
+  class="h-8 w-auto transition-transform duration-300 group-hover:scale-105" 
+/>
       </a>
 
       <!-- Desktop Nav -->
@@ -34,7 +34,11 @@ const navItems = [
       <!-- CTA & Mobile Toggle -->
       <div class="flex items-center gap-4">
         <div class="hidden md:block">
-            <Button href="https://wa.me/1234567890" variant="primary" isExternal={true}>
+            <Button
+  href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio."
+  variant="primary"
+  isExternal={true}
+>
               Hablemos
             </Button>
         </div>

@@ -21,7 +21,7 @@ interface Props {
 const { 
 	title, 
 	description, 
-	image = "/images/open-graph.jpg" 
+	image = "/open-graph.png" 
 } = Astro.props;
 
 // CORRECCIÓN 1: Fallback para evitar el error "Invalid URL" si Astro.site no está configurado
@@ -31,7 +31,7 @@ const organizationSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Hikevo Design",
-  "image": "https://hikevodesign.com/logo.png",
+  "image": "https://hikevodesign.com/logo.svg",
   "url": "https://hikevodesign.com",
   "priceRange": "$$$",
   "address": { "@type": "PostalAddress", "addressCountry": "VE" },
