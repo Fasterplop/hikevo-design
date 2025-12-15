@@ -65,65 +65,152 @@ const serviceSchema = JSON.stringify({
     </section>
 
     <!-- [SECCIÓN 2: PAQUETES WEB (ONE-OFF)] -->
-    <section class="mb-24">
-        <Container>
-            <div class="mb-10 border-b border-gray-200 pb-4">
-                <h2 id="web" class="text-2xl font-bold text-hikevo-black">1. Desarrollo Web Corporativo</h2>
-                <p class="text-hikevo-charcoal/70 mt-2">Tu oficina digital, abierta 24/7. Sitios rápidos, seguros y diseñados para captar clientes.</p>
-            </div>
+    <section class="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8 font-sans" id="desarrollo-web">
+  <div class="max-w-6xl mx-auto">
+    
+    <!-- Título de la Sección (Opcional, ajusta según tu diseño actual) -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Planes de Desarrollo Web</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Soluciones escalables diseñadas para convertir visitas en clientes.
+      </p>
+    </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- CARD: PLAN LANDING -->
-                <div class="border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow bg-white relative">
-                    <!-- <span class="absolute top-0 right-0 bg-gray-100 text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl text-gray-500 uppercase tracking-wider">Validación</span> -->
-                    <h3 class="text-xl font-bold mb-2">Plan Landing</h3>
-                    <p class="text-sm text-gray-500 italic mb-6">Ideal para: Validar ideas o captar leads específicos.</p>
-                    
-                    <div class="text-3xl font-bold mb-1">$XXX <span class="text-base font-normal text-gray-500">USD</span></div>
-                    <p class="text-xs text-gray-400 mb-6 uppercase tracking-wide">Pago Único</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      
+      <!-- === PLAN LANDING (Standard) === -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 hover:shadow-md transition-shadow duration-300 relative overflow-hidden group">
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold text-gray-900">Plan Landing</h3>
+          <p class="text-gray-500 mt-2 text-sm leading-relaxed">
+            Tu marca completa en un solo scroll de alto impacto. Perfecto para startups y emprendedores.
+          </p>
+        </div>
 
-                    <ul class="space-y-3 mb-8 text-sm text-hikevo-charcoal/80">
-                        <li class="flex items-start gap-2"><span class="text-hikevo-yellow text-lg">✓</span> Diseño en Una Sola Página (One-page)</li>
-                        <li class="flex items-start gap-2"><span class="text-hikevo-yellow text-lg">✓</span> Estructura de Alta Conversión</li>
-                        <li class="flex items-start gap-2"><span class="text-hikevo-yellow text-lg">✓</span> Formulario de Contacto + WhatsApp</li>
-                        <li class="flex items-start gap-2"><span class="text-hikevo-yellow text-lg">✓</span> Optimización Básica SEO</li>
-                        <li class="flex items-start gap-2"><span class="text-hikevo-yellow text-lg">✓</span> <strong>Velocidad Extrema (Stack Astro)</strong></li>
-                        <li class="flex items-start gap-2 text-gray-400">⏱ Entrega: 1-2 semanas</li>
-                    </ul>
-                    
-                    <Button href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20el%20Plan%20Landing" variant="outline" class="w-full" isExternal={true}>
-                        Elegir Plan Landing
-                    </Button>
-                </div>
+        <div class="mb-6">
+          <div class="flex items-end gap-1">
+            <span class="text-4xl font-extrabold text-gray-900">$199</span> <!-- CAMBIAR PRECIO -->
+            <span class="text-gray-500 font-medium mb-1">USD</span>
+          </div>
+          <span class="text-xs text-green-600 font-semibold bg-green-50 px-2 py-1 rounded-full mt-2 inline-block">
+            Pago único
+          </span>
+        </div>
 
-                <!-- CARD: PLAN CORPORATIVO -->
-                <div class="border-2 border-hikevo-black rounded-2xl p-8 shadow-md bg-white relative transform md:-translate-y-2">
-                    <span class="absolute top-0 right-0 bg-hikevo-yellow text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl text-black uppercase tracking-wider">Recomendado</span>
-                    <h3 class="text-xl font-bold mb-2">Plan Corporativo</h3>
-                    <p class="text-sm text-gray-500 italic mb-6">Ideal para: Empresas establecidas que necesitan autoridad.</p>
-                    
-                    <div class="text-3xl font-bold mb-1">$XXX <span class="text-base font-normal text-gray-500">USD</span></div>
-                    <p class="text-xs text-gray-400 mb-6 uppercase tracking-wide">Pago Único</p>
+        <hr class="border-gray-100 my-6" />
 
-                    <ul class="space-y-3 mb-8 text-sm text-hikevo-charcoal/80">
-                        <li class="flex items-start gap-2"><span class="text-hikevo-yellow text-lg">✓</span> Hasta 5 Páginas (Inicio, Nosotros, Servicios...)</li>
-                        <li class="flex items-start gap-2"><span class="text-hikevo-yellow text-lg">✓</span> Diseño Premium a Medida</li>
-                        <li class="flex items-start gap-2"><span class="text-hikevo-yellow text-lg">✓</span> CMS (Gestor de contenido) opcional</li>
-                        <li class="flex items-start gap-2"><span class="text-hikevo-yellow text-lg">✓</span> Integración de Analítica y Pixel</li>
-                        <li class="flex items-start gap-2"><span class="text-hikevo-yellow text-lg">✓</span> <strong>SEO Técnico Avanzado</strong></li>
-                        <li class="flex items-start gap-2 text-gray-400">⏱ Entrega: 3-4 semanas</li>
-                    </ul>
+        <!-- Lista de Features -->
+        <ul class="space-y-4 mb-8">
+          {[
+            "Diseño One-Page de Alto Impacto",
+            "UX/UI Optimizado para Conversión",
+            "Formulario Inteligente + WhatsApp API",
+            "SEO On-Page (Estructura Semántica)",
+            "Velocidad Extrema (Stack Astro/Next.js)",
+            "Documentación y Soporte Técnico",
+            "Hosting Configurado (1er año Gratis)",
+            "Certificado SSL & Seguridad Básica"
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <div class="mt-1 flex-shrink-0 text-gray-400">
+                <!-- Icono Check -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span class="text-sm text-gray-600">{item}</span>
+            </li>
+          ))}
+        </ul>
 
-                    <Button href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20el%20Plan%20Corporativo" variant="primary" class="w-full" isExternal={true}>
-                        Elegir Plan Corporativo 
-                    </Button>
-                </div>
-            </div>
-            <p class="text-center text-xs text-gray-400 mt-6 italic">
-                * Todos los planes web incluyen hosting configurado y dominio gratuito por el primer año (si aplica).
-            </p>
-        </Container>
-    </section>
+        <div class="flex items-center gap-2 text-sm text-gray-500 mb-6 bg-gray-50 p-2 rounded-lg justify-center">
+          <!-- Icono Clock -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Entrega estimada: <strong>1-2 semanas</strong></span>
+        </div>
+
+        <a href="#contacto" class="w-full py-4 px-6 rounded-xl border-2 border-gray-900 text-gray-900 font-bold hover:bg-gray-900 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group">
+          Elegir Plan Landing
+          <!-- Icono ArrowRight -->
+          <svg class="group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- === PLAN CORPORATIVO (Premium) === -->
+      <div class="bg-white rounded-2xl shadow-xl border-2 border-amber-400 p-8 relative transform md:-translate-y-4">
+        
+        <!-- Badge Recomendado -->
+        <div class="absolute top-0 right-0 bg-amber-400 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-lg uppercase tracking-wide">
+          Recomendado
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            Plan Corporativo
+            <!-- Icono Star -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </h3>
+          <p class="text-gray-500 mt-2 text-sm leading-relaxed">
+            Un ecosistema digital completo con cerebro propio. Ideal para empresas que buscan crecer y dominar su nicho.
+          </p>
+        </div>
+
+        <div class="mb-6">
+          <div class="flex items-end gap-1">
+            <span class="text-4xl font-extrabold text-gray-900">$349</span> <!-- CAMBIAR PRECIO -->
+            <span class="text-gray-500 font-medium mb-1">USD</span>
+          </div>
+          <span class="text-xs text-amber-600 font-semibold bg-amber-50 px-2 py-1 rounded-full mt-2 inline-block">
+            Inversión única
+          </span>
+        </div>
+
+        <!-- El Subtítulo "Puente" UX/SEO -->
+        <div class="bg-amber-50 rounded-lg p-3 mb-6 border border-amber-100 flex items-start gap-3">
+          <div class="bg-amber-100 p-1 rounded-full mt-0.5 flex-shrink-0">
+            <!-- Icono Zap -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-600"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <p class="text-sm text-gray-700 font-medium">
+            Incluye todo el poder del <span class="font-bold text-gray-900">Plan Landing</span> y además potencia tu marca con:
+          </p>
+        </div>
+
+        <!-- Lista de Features Premium -->
+        <ul class="space-y-4 mb-8">
+          {[
+            "Arquitectura Web de 5+ Secciones",
+            "Diseño Premium & Sistema de Marca",
+            "CMS Autogestionable",
+            "Integración Analytics & Pixel (Meta)",
+            "SEO Técnico Avanzado + Sitemap",
+            "Soporte Prioritario Post-Lanzamiento",
+            "Optimización de Imágenes Next-Gen"
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <div class="mt-1 flex-shrink-0 rounded-full p-0.5 text-amber-500 bg-amber-50">
+                <!-- Icono Check -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span class="text-sm text-gray-800 font-medium">{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="flex items-center gap-2 text-sm text-gray-500 mb-6 bg-gray-50 p-2 rounded-lg justify-center">
+          <!-- Icono Clock -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Entrega estimada: <strong>3-4 semanas</strong></span>
+        </div>
+
+        <a href="#contacto" class="w-full py-4 px-6 rounded-xl bg-amber-400 text-gray-900 font-bold hover:bg-amber-500 transition-all duration-300 shadow-lg shadow-amber-200 flex items-center justify-center gap-2 group">
+          Impulsar mi Empresa
+          <!-- Icono ArrowRight -->
+          <svg class="group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
 
     <!-- [SECCIÓN 3: PAQUETES GROWTH (RECURRENTE)] -->
     <section class="mb-24 bg-gray-50 py-16 rounded-3xl mx-4 md:mx-0">
