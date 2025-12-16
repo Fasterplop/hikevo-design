@@ -1,7 +1,7 @@
 ---
 interface Props {
   href: string;
-  variant?: "primary" | "outline" | "text";
+  variant?: "primary" | "outline" | "text" | "ws";
   class?: string;
   isExternal?: boolean;
 }
@@ -13,7 +13,8 @@ const baseStyles = "inline-flex items-center justify-center px-8 py-3 text-sm fo
 const variants = {
   primary: "bg-hikevo-yellow text-hikevo-black hover:bg-[#E5A616] shadow-sm hover:shadow-md",
   outline: "bg-transparent border border-hikevo-black text-hikevo-black hover:bg-gray-50",
-  text: "bg-transparent text-hikevo-black hover:text-hikevo-gray underline decoration-2 decoration-hikevo-yellow underline-offset-4 px-0 py-0 hover:bg-transparent shadow-none rounded-none"
+  text: "bg-transparent text-hikevo-black hover:text-hikevo-gray underline decoration-2 decoration-hikevo-yellow underline-offset-4 px-0 py-0 hover:bg-transparent shadow-none rounded-none",
+  ws: "bg-green-600 text-white shadow-sm hover:shadow-md",
 };
 
 const attrs = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};

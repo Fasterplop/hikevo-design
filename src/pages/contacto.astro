@@ -6,6 +6,28 @@ import Button from '../components/common/Button.astro';
 
 const title = "Contacto | Solicita tu Auditoría Web Gratuita";
 const description = "Contáctanos para desarrollar tu web o gestionar tus redes. Déjanos tu email o escríbenos por WhatsApp. Respuesta en 24h.";
+const faqs = [
+  {
+    question: "¿Necesito un presupuesto gigante para empezar a anunciarme?",
+    answer: "No, necesitas un presupuesto inteligente. Empezamos con campañas optimizadas para tu nivel de inversión actual, nos enfocamos en captar leads de calidad y escalamos solo cuando los resultados lo justifiquen."
+  },
+  {
+    question: "No sé qué publicar para vender, ¿ustedes me dicen qué hacer?",
+    answer: "Sí. No publicamos por publicar. Diseñamos una estrategia de contenido basada en lo que tu cliente necesita escuchar para confiar en ti, mezclando educación, autoridad y venta directa."
+  },
+  {
+    question: "Mis redes están abandonadas porque no tengo tiempo para grabar o publicar.",
+    answer: "Déjalo en nuestras manos. Creamos tu calendario de contenidos, diseñamos los posts y gestionamos la publicación. Tu marca se mantendrá activa y profesional mientras tú te ocupas de operar tu negocio."
+  },
+  {
+    question: "¿Por qué invertir en una web a medida y no usar una plantilla barata?",
+    answer: "Porque las plantillas son lentas y genéricas. Nosotros construimos activos digitales optimizados (con Astro y Tailwind) que cargan al instante y enamoran a Google. No gastes en una web, invierte en una herramienta de ventas."
+  },
+  {
+    question: "¿Necesito tener los textos y fotos listos ya?",
+    answer: "No te preocupes. Si no tienes contenido, nosotros te ayudamos a estructurarlo o te guiamos con plantillas simples para que no pierdas tiempo frente a una hoja en blanco."
+  },
+];
 ---
 
 <MainLayout title={title} description={description}>
@@ -58,7 +80,7 @@ const description = "Contáctanos para desarrollar tu web o gestionar tus redes.
                             </li>
                         </ul>
 
-                        <Button href="https://wa.me/1234567890" variant="primary" class="w-full bg-green-500 hover:bg-green-600 text-white shadow-green-200" isExternal={true}>
+                        <Button href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio." variant="ws" class="w-full hover:bg-green-800 text-white shadow-green-200" isExternal={true}>
                             Abrir WhatsApp
                         </Button>
                         <p class="text-center text-xs text-gray-400 mt-4">Hola, me interesa saber más sobre...</p>
@@ -116,22 +138,36 @@ const description = "Contáctanos para desarrollar tu web o gestionar tus redes.
     <!-- [SECCIÓN 3: FAQ DE CONTACTO] -->
     <section class="mb-24">
         <Container>
-            <div class="max-w-2xl mx-auto">
-                <h3 class="text-2xl font-bold mb-8 text-center">Antes de escribirnos...</h3>
+            <div class="max-w-4xl mx-auto"> <h3 class="text-3xl font-bold mb-12 text-center tracking-tight text-hikevo-black">
+                    Antes de escribirnos...
+                </h3>
                 
-                <div class="space-y-8">
-                    <div>
-                        <h4 class="font-bold text-lg mb-2 text-hikevo-black">¿Hacen reuniones por Zoom/Meet?</h4>
-                        <p class="text-gray-600 text-sm leading-relaxed">Sí, pero valoramos tu tiempo. Primero preferimos analizar tu caso por mensaje o email para asegurarnos de que podemos ayudarte. Si es un "match", agendamos una llamada breve.</p>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-2 text-hikevo-black">¿Cuál es el presupuesto mínimo?</h4>
-                        <p class="text-gray-600 text-sm leading-relaxed">Creemos en la transparencia. Nuestros paquetes están diseñados para ser accesibles a PYMES serias. Al dejarnos tu email, te enviaremos los detalles.</p>
-                    </div>
-                     <div>
-                        <h4 class="font-bold text-lg mb-2 text-hikevo-black">¿Trabajan con clientes internacionales?</h4>
-                        <p class="text-gray-600 text-sm leading-relaxed">Sí, somos 100% remotos y trabajamos con clientes de cualquier parte del mundo.</p>
-                    </div>
+                <div class="space-y-5"> {faqs.map((faq, index) => (
+                        <div class="accordion-item group bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
+                            <button 
+                                class="accordion-header w-full flex justify-between items-center p-4 text-left focus:outline-none"
+                                aria-expanded="false"
+                            >
+                                <span class="font-bold text-lg md:text-xl text-hikevo-black group-hover:text-hikevo-gray transition-colors pr-6">
+                                    {faq.question}
+                                </span>
+                                
+                                <div class="accordion-icon-wrapper flex-shrink-0 w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center transition-colors duration-300 group-hover:bg-gray-100">
+                                    <svg class="accordion-icon w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </button>
+                            
+                            <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out opacity-0">
+                                <div class="px-6 md:px-8 pb-8 pt-0">
+                                    <p class="text-base text-gray-600 leading-relaxed">
+                                        {faq.answer}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </Container>
@@ -173,4 +209,57 @@ const description = "Contáctanos para desarrollar tu web o gestionar tus redes.
             }, 2000);
         });
     }
+const accordionItems = document.querySelectorAll('.accordion-item');
+
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header') as HTMLButtonElement;
+        const content = item.querySelector('.accordion-content') as HTMLElement;
+        const icon = item.querySelector('.accordion-icon') as HTMLElement;
+        const iconWrapper = item.querySelector('.accordion-icon-wrapper') as HTMLElement;
+
+        header.addEventListener('click', () => {
+            // 1. Cerrar otros (Comportamiento exclusivo)
+            accordionItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    const otherContent = otherItem.querySelector('.accordion-content') as HTMLElement;
+                    const otherIcon = otherItem.querySelector('.accordion-icon') as HTMLElement;
+                    const otherWrapper = otherItem.querySelector('.accordion-icon-wrapper') as HTMLElement;
+                    
+                    otherContent.style.maxHeight = '0px';
+                    otherContent.classList.remove('opacity-100'); // Fade out
+                    otherIcon.classList.remove('rotate-180');
+                    // Resetear colores
+                    otherItem.classList.remove('border-green-200'); // Opcional: Borde de color activo
+                    otherWrapper.classList.remove('bg-green-100', 'text-green-600');
+                    otherWrapper.classList.add('bg-gray-50');
+                }
+            });
+
+            // 2. Alternar actual
+            const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+            if (isOpen) {
+                // CERRAR
+                content.style.maxHeight = '0px';
+                content.classList.remove('opacity-100');
+                icon.classList.remove('rotate-180');
+                
+                // Estilos inactivos
+                iconWrapper.classList.remove('bg-green-100', 'text-green-600');
+                iconWrapper.classList.add('bg-gray-50');
+            } else {
+                // ABRIR
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add('opacity-100'); // Fade in
+                icon.classList.add('rotate-180');
+                
+                // Estilos activos (UX: Color verde sutil para indicar éxito/apertura)
+                // Nota: Si no tienes el verde configurado, usa colores de tu marca (hikevo-yellow)
+                iconWrapper.classList.remove('bg-gray-50');
+                iconWrapper.classList.add('bg-green-100', 'text-green-600'); 
+            }
+        });
+    });
+    
+    
 </script>

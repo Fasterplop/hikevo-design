@@ -3,55 +3,84 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import Header from '../../components/common/Header.astro';
 import Container from '../../components/ui/Container.astro';
 import Button from '../../components/common/Button.astro';
+// 1. Importaciones necesarias para imágenes
+import { Image } from 'astro:assets';
+
+import paulinalopezescritora from '../../assets/images/projects/paulinalopezescritora/paulinalopezescritora.com.png';
+import ganeshastores from '../../assets/images/projects/ganeshastores/ganeshastores.com.png';
+import mistermango from '../../assets/images/projects/mistermango/mistermango-mobile.png';
+import anisbarbara from '../../assets/images/projects/anis-barbara/anisbarbara-mobile.png';
+
 
 const title = "Portafolio | Hikevo Design";
 const description = "Selección de proyectos de desarrollo web y estrategias digitales. Resultados reales para empresas reales.";
 
-// Datos de proyectos (Mockup basado en el documento)
-const projects = [
+// 2. Definir la interfaz para asegurar que 'image' siempre sea ImageMetadata
+interface Project {
+  id: number;
+  slug: string;
+  title: string;
+  category: string;
+  categoryLabel: string;
+  service: string;
+  result: string;
+  image: ImageMetadata; // Esto elimina el error de tipo "string | ImageMetadata"
+}
+
+// 3. Datos de proyectos tipados correctamente
+const projects: Project[] = [
   {
     id: 1,
-    slug: 'inmobiliaria-luxe',
-    title: 'Inmobiliaria Luxe',
+    slug: 'paulina-lopez-escritora',
+    title: 'Paulina Lopez Escritora',
     category: 'web',
     categoryLabel: 'Desarrollo Web',
-    service: 'Desarrollo Web Corporativo + SEO',
-    result: '+40% Leads en 3 meses',
-    image: 'bg-gray-200' // Placeholder class
+    service: 'Desarrollo Web A Medida con Sistema de Marketing',
+    result: 'Crecimiento orgánico de comunidad y ventas recurrentes',
+    image: paulinalopezescritora,
   },
   {
     id: 2,
-    slug: 'moda-organica',
-    title: 'Moda Orgánica',
-    category: 'social',
-    categoryLabel: 'Redes Sociales',
-    service: 'Estrategia de Contenidos (Instagram)',
-    result: 'Crecimiento orgánico de comunidad',
-    image: 'bg-gray-300'
+    slug: 'ganesha-stores',
+    title: 'Ganesha Stores',
+    category: 'web',
+    categoryLabel: 'Desarrollo Web',
+    service: 'Desarrollo Web E-commerce sin pasarela de pago',
+    result: 'Aumento del 20% en ventas mensuales',
+    image: ganeshastores
   },
   {
     id: 3,
-    slug: 'lanzamiento-app',
-    title: 'Lanzamiento App',
-    category: 'web',
-    categoryLabel: 'Landing Page',
-    service: 'Landing Page (One-page)',
-    result: 'Lanzamiento de producto exitoso',
-    image: 'bg-gray-200'
+    slug: 'mister-mango',
+    title: 'Mister Mango',
+    category: 'social',
+    categoryLabel: 'Social Media',
+    service: 'Creación de contenido y gestión de redes sociales',
+    result: 'Crecimiento orgánico de comunidad y ventas recurrentes',
+    image: mistermango
   },
   {
     id: 4,
-    slug: 'consultoria-legal',
-    title: 'Consultoría Legal',
-    category: 'branding',
-    categoryLabel: 'Branding',
-    service: 'Rediseño Web & Branding',
-    result: 'Modernización de identidad',
-    image: 'bg-gray-300'
-  }
+    slug: 'anis-barbara',
+    title: 'Anis Barbara Viajes',
+    category: 'social',
+    categoryLabel: 'Social Media',
+    service: 'Creación de contenido y gestión de redes sociales',
+    result: 'Crecimiento orgánico de comunidad y ventas recurrentes',
+    image: anisbarbara
+  },
+  // {
+  //   id: 5,
+  //   slug: 'consultoria-legal',
+  //   title: 'Consultoría Legal',
+  //   category: 'branding',
+  //   categoryLabel: 'Branding',
+  //   service: 'Rediseño Web & Presencia Orgánica',
+  //   result: 'Modernización de identidad',
+  //   image: imgPlaceholder
+  // }
 ];
 ---
-
 <MainLayout title={title} description={description}>
   <Header />
 
@@ -79,9 +108,9 @@ const projects = [
             <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" data-filter="social">
               Redes Sociales
             </button>
-             <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" data-filter="branding">
+             <!-- <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" data-filter="branding">
               Branding
-            </button>
+            </button> -->
           </div>
         </div>
       </Container>
@@ -89,41 +118,49 @@ const projects = [
 
     <!-- [SECCIÓN 2: GRID DE PROYECTOS] -->
     <section class="mb-24">
-      <Container>
-        <div class="grid md:grid-cols-2 gap-8" id="projects-grid">
-          {projects.map((project) => (
-            <article class="group project-card" data-category={project.category}>
-              <a href={`/portafolio/${project.slug}`} class="block">
-                <!-- Imagen con Aspect Ratio -->
-                <div class={`rounded-2xl aspect-[4/3] mb-6 overflow-hidden relative ${project.image} group-hover:shadow-lg transition-all duration-500`}>
-                   <!-- Placeholder visual -->
-                   <div class="absolute inset-0 flex items-center justify-center text-gray-400 font-medium group-hover:scale-105 transition-transform duration-700">
-                      Mockup {project.title}
-                   </div>
-                   <!-- Overlay al Hover -->
-                   <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300"></div>
-                </div>
-                
-                <div class="flex items-start justify-between">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors">{project.title}</h3>
-                        <p class="text-sm text-hikevo-gray font-medium mb-2">{project.service}</p>
-                        <div class="inline-block bg-green-50 text-green-700 text-xs px-2 py-1 rounded-md font-medium border border-green-100">
-                             Result: {project.result}
-                        </div>
+  <Container>
+    <div class="grid md:grid-cols-2 gap-8" id="projects-grid">
+      {projects.map((project) => (
+        <article class="group project-card" data-category={project.category}>
+          <a href={`/portafolio/${project.slug}`} class="block">
+            
+            <div class="rounded-2xl aspect-[4/3] mb-6 overflow-hidden relative bg-gray-200 group-hover:shadow-lg transition-all duration-500">
+               
+               <Image 
+                 src={project.image} 
+                 alt={`Proyecto ${project.title}`}
+                 width={800} 
+                 height={600}
+                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 z-0"
+               />
+
+               <div class="absolute inset-0 flex items-center justify-center text-gray-400 font-medium z-0 opacity-0">
+                  Mockup {project.title}
+               </div>
+
+               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 z-10"></div>
+            </div>
+            
+            <div class="flex items-start justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors">{project.title}</h3>
+                    <p class="text-sm text-hikevo-gray font-medium mb-2">{project.service}</p>
+                    <div class="inline-block bg-green-50 text-green-700 text-xs px-2 py-1 rounded-md font-medium border border-green-100">
+                      Resultado: {project.result}
                     </div>
-                    <div class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-hikevo-black group-hover:border-hikevo-black transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-black group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </div>
                 </div>
-              </a>
-            </article>
-          ))}
-        </div>
-      </Container>
-    </section>
+                <div class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-hikevo-black group-hover:border-hikevo-black transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-black group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </div>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>
 
     <!-- [SECCIÓN 3: CTA "BANDEJA DE SALIDA"] -->
     <section class="py-20 bg-hikevo-gray-light">
@@ -132,7 +169,7 @@ const projects = [
                 <h2 class="text-3xl font-bold mb-4">¿Te gusta lo que ves?</h2>
                 <p class="text-gray-600 mb-8">Podemos construir algo igual de efectivo para tu negocio.</p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Button href="https://wa.me/1234567890" variant="primary" isExternal={true}>
+                    <Button href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio." variant="primary" isExternal={true}>
                         Iniciar mi Proyecto
                     </Button>
                     <Button href="/soluciones" variant="outline">

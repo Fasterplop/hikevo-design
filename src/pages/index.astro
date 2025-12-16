@@ -6,6 +6,11 @@ import Button from '../components/common/Button.astro';
 import heroBg from '../assets/images/snow-mountain.jpg'; // Asegúrate de mover la imagen a src/assets/images/
 import { Image } from 'astro:assets';
 
+import paulinalopezescritora from '../assets/images/projects/paulinalopezescritora/paulinalopezescritora.com.png';
+import ganeshastores from '../assets/images/projects/ganeshastores/ganeshastores.com.png';
+import anisbarbara from '../assets/images/projects/anis-barbara/anisbarbara-mobile.png';
+import mistermango from '../assets/images/projects/mistermango/mistermango-mobile.png';
+
 // Metadatos
 const title = "Hikevo Design | Desarrollo Web y Estrategia Digital";
 const description = "Agencia digital especializada en diseño web de alto rendimiento y gestión de redes sociales.";
@@ -104,51 +109,71 @@ const description = "Agencia digital especializada en diseño web de alto rendim
 
         <div class="grid md:grid-cols-2 gap-8 mb-12">
           <article class="group cursor-pointer reveal-smooth">
-            <div class="bg-gray-200 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <div class="absolute inset-0 flex items-center justify-center text-gray-400 font-medium bg-gray-50 transition-transform duration-700 ease-out group-hover:scale-105">
-                  Mockup Inmobiliaria
-               </div>
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
-            </div>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Nombre del Cliente</h3>
+            <a href="/portafolio/paulina-lopez-escritora" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
+               <Image 
+                 src={paulinalopezescritora} 
+                 alt="Diseño Web para Paulina Lopez Escritora" 
+                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                 width={800} 
+               />
+               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+            </a>
+            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Paulina Lopez Escritora</h3>
             <p class="text-sm text-hikevo-gray font-medium mb-3">Desarrollo Web + SEO</p>
-            <span class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">Ver Caso</span>
+            <a href="/portafolio/paulina-lopez-escritora" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
+                Ver Caso
+            </a>
           </article>
 
           <article class="group cursor-pointer reveal-smooth delay-150">
-            <div class="bg-gray-200 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <div class="absolute inset-0 flex items-center justify-center text-gray-400 font-medium bg-gray-50 transition-transform duration-700 ease-out group-hover:scale-105">
-                  Mockup Social Media
-               </div>
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
-            </div>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Nombre del Cliente</h3>
-            <p class="text-sm text-hikevo-gray font-medium mb-3">Estrategia de Contenidos</p>
-            <span class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">Ver Caso</span>
+            <a href="/portafolio/ganesha-stores" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
+               <Image 
+                 src={ganeshastores} 
+                 alt="Diseño Web para Ganesha Stores" 
+                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                 width={800}
+               />
+               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+            </a>
+            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Ganeshastores</h3>
+            <p class="text-sm text-hikevo-gray font-medium mb-3">Desarrollo Web E-commerce</p>
+            <a href="/portafolio/ganesha-stores" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
+                Ver Caso
+            </a>
           </article>
 
           <article class="group cursor-pointer reveal-smooth">
-            <div class="bg-gray-200 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <div class="absolute inset-0 flex items-center justify-center text-gray-400 font-medium bg-gray-50 transition-transform duration-700 ease-out group-hover:scale-105">
-                  Mockup Arquitectura
-               </div>
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
-            </div>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Nombre del Cliente</h3>
-            <p class="text-sm text-hikevo-gray font-medium mb-3">Diseño Minimalista</p>
-            <span class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">Ver Caso</span>
+            <a href="/portafolio/mistermango" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
+               <Image 
+                 src={mistermango} 
+                 alt="Estrategia Social Media para Mister Mango" 
+                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                 width={800}
+               />
+               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+            </a>
+            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Mister Mango</h3>
+            <p class="text-sm text-hikevo-gray font-medium mb-3">Creación de contenido y gestión de redes sociales</p>
+            <a href="/portafolio/mistermango" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
+                Ver Caso
+            </a>
           </article>
 
           <article class="group cursor-pointer reveal-smooth delay-150">
-            <div class="bg-gray-200 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <div class="absolute inset-0 flex items-center justify-center text-gray-400 font-medium bg-gray-50 transition-transform duration-700 ease-out group-hover:scale-105">
-                  Mockup Ecommerce
-               </div>
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
-            </div>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Nombre del Cliente</h3>
-            <p class="text-sm text-hikevo-gray font-medium mb-3">Desarrollo Web</p>
-            <span class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">Ver Caso</span>
+            <a href="/portafolio/anis-barbara" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
+               <Image 
+                 src={anisbarbara} 
+                 alt="Estrategia Social Media para Anis Barbara" 
+                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                 width={800}
+               />
+               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+            </a>
+            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Anis Barbara</h3>
+            <p class="text-sm text-hikevo-gray font-medium mb-3">Creación de contenido y gestión de redes sociales</p>
+            <a href="/portafolio/anis-barbara" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
+                Ver Caso
+            </a>
           </article>
         </div>
 
@@ -179,7 +204,7 @@ const description = "Agencia digital especializada en diseño web de alto rendim
                   <span class="w-2 h-2 rounded-full bg-hikevo-yellow transition-transform duration-500 group-hover:scale-150"></span> Obsesión por Rendimiento
                </h3>
                <p class="text-hikevo-charcoal/80 text-sm leading-relaxed">
-                  No usamos plantillas lentas. Construimos con Astro y Tailwind, tecnologías modernas que enamoran a Google.
+                  No usamos plantillas lentas. Construimos con tecnologías modernas que enamoran a Google.
                </p>
             </div>
 

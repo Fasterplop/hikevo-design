@@ -3,11 +3,13 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import Header from '../../components/common/Header.astro';
 import Container from '../../components/ui/Container.astro';
 import Button from '../../components/common/Button.astro';
-import { Image } from 'astro:assets'; // 1. Importar componente de optimización
+import { Image } from 'astro:assets'; 
 
-// IMPORTANTE: Cuando tengas las imágenes reales, descomenta los imports abajo
-// import imgLuxe from '../../assets/images/proyectos/inmobiliaria-luxe.jpg';
-// import imgModa from '../../assets/images/proyectos/moda-organica.jpg';
+import paulinalopezescritora from '../../assets/images/projects/paulinalopezescritora/paulinalopezescritora.com.png';
+import ganeshastores from '../../assets/images/projects/ganeshastores/ganeshastores.com.png';
+import ganeshafeatured from '../../assets/images/projects/ganeshastores/ganesha-featured.png';
+import mistermango from '../../assets/images/projects/mistermango/mistermango-mobile.png';
+
 
 // Definición de tipos para TypeScript
 interface Project {
@@ -25,34 +27,41 @@ interface Project {
   testimonialAuthor?: string;
   // 2. Nuevo campo para la imagen (ImageMetadata es el tipo interno de Astro)
   image?: ImageMetadata; 
+   galleryDesktop?: ImageMetadata; // Recomendado: 1920 x 1080px, Minimo: 1280 x 720px
+  galleryMobile?: ImageMetadata;   // Recomendado: 1080 x 1080px , Minimo: 800 x 800px
+  galleryFeatured?: ImageMetadata; // Recomendado: 1080 x 1080px , Minimo: 800 x 800px
+
 }
 
 export async function getStaticPaths() {
   // Aquí asignarías las imágenes importadas a cada proyecto
   const projects: Project[] = [
     {
-        slug: 'inmobiliaria-luxe',
-        title: 'Inmobiliaria Luxe',
-        // image: imgLuxe, // <-- Así asignarás la imagen real
+        slug: 'paulina-lopez-escritora',
+        title: 'Paulina Lopez Escritora',
+        image: paulinalopezescritora, // <-- Así asignarás la imagen real
         description: 'Rediseño Web Corporativo + Estrategia SEO',
-        client: 'Grupo Inmobiliario Luxe',
-        industry: 'Real Estate',
-        services: 'Astro Development, UI Design, SEO',
-        year: '2023',
-        challenge: 'El cliente tenía una web antigua en Wordpress que tardaba 5 segundos en cargar. Su tasa de rebote era alta y no recibían leads cualificados. Necesitaban modernizar su imagen y automatizar la captación de clientes.',
-        solution: 'Migramos su infraestructura a Astro y Tailwind CSS para garantizar una carga instantánea. Rediseñamos la interfaz con un enfoque minimalista ("Apple-like") para transmitir confianza y simplificamos el formulario de contacto para reducir fricción.',
+        client: 'Paulina Lopez',
+        industry: 'Escritora / Autora',
+        services: 'Desarrollo Web A Medida con Sistema de Marketing',
+        year: '2025',
+        challenge: 'El objetivo fue centralizar la presencia digital de la autora en un hub profesional que convirtiera seguidores en suscriptores. El reto principal consistió en implementar una estética visual rica (partículas, efectos parallax y texturas) sin sacrificar la velocidad de carga necesaria para retener al tráfico móvil proveniente de redes sociales.',
+        solution: 'Se implementó una arquitectura web a medida que prioriza el contenido estático ligero, cargando la interactividad solo cuando es necesaria. La experiencia se optimizó mediante animaciones de aparición progresiva y formularios de suscripción asíncronos, garantizando una navegación fluida y sin interrupciones para el lector.',
         results: [
-            { label: 'PageSpeed', value: '99/100' },
-            { label: 'Crecimiento de Leads', value: '+40%' },
-            { label: 'Posición Google', value: 'Top 3' }
+            { label: 'Suscriptores al Newsletter', value: '+1000' },
+            { label: 'calificación en Amazon', value: '5.0' },
+            { label: 'Resultados reales', value: 'Éxito' },
         ],
-        testimonial: 'Hikevo transformó nuestra presencia digital. Ahora los clientes confían en nosotros antes de la primera llamada.',
-        testimonialAuthor: 'Carlos R., CEO'
+        testimonial: 'La velocidad de la página es increíble, pero lo que más valoro es la facilidad con la que ahora manejo mi marketing. El sistema integrado me permite controlar todas mis campañas y automatizaciones con total autonomía, simplificando enormemente mi trabajo diario.',
+        testimonialAuthor: 'Paulina L., CEO',
+        galleryDesktop: paulinalopezescritora,
+
+
     },
     { 
-        slug: 'moda-organica', 
-        title: 'Moda Orgánica', 
-        // image: imgModa,
+        slug: 'ganesha-stores', 
+        title: 'Ganesha Stores', 
+        image: ganeshastores,
         description: 'Estrategia de Contenidos y Redes Sociales',
         client: 'EcoStyle Fashion',
         industry: 'Moda Sostenible',
@@ -66,10 +75,13 @@ export async function getStaticPaths() {
             { label: 'Seguidores', value: '+5k' }
         ],
         testimonial: 'Entendieron nuestra voz a la perfección. Ahora nuestra comunidad espera nuestros posts cada semana.',
-        testimonialAuthor: 'Ana M., Fundadora'
+        testimonialAuthor: 'Ana M., Fundadora',
+        galleryDesktop: ganeshastores,
+        galleryMobile: ganeshastores,
+        galleryFeatured: ganeshafeatured,
     },
     { 
-        slug: 'lanzamiento-app', 
+        slug: 'mister-mango', 
         title: 'Lanzamiento App', 
         description: 'Landing Page de Alta Conversión (One-Page)',
         client: 'FitTrack App',
@@ -84,10 +96,12 @@ export async function getStaticPaths() {
             { label: 'Tiempo de Carga', value: '0.4s' }
         ],
          testimonial: 'La velocidad de la landing fue clave para nuestras campañas de pago. Resultados brutales.',
-        testimonialAuthor: 'David S., Product Owner'
+        testimonialAuthor: 'David S., Product Owner',
+        galleryDesktop: mistermango,
+        galleryMobile: mistermango,
     },
     { 
-        slug: 'consultoria-legal', 
+        slug: 'anis-barbara', 
         title: 'Consultoría Legal', 
         description: 'Rediseño de Identidad y Sitio Web',
         client: 'Legal & Asociados',
@@ -212,14 +226,7 @@ const breadcrumbSchema = JSON.stringify({
                     <p class="text-gray-600 leading-relaxed whitespace-pre-line mb-8 text-lg">
                         {project.solution}
                     </p>
-                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
-                        <h4 class="font-bold text-sm mb-2">Stack Tecnológico</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-medium text-gray-600">Astro</span>
-                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-medium text-gray-600">Tailwind CSS</span>
-                            <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-medium text-gray-600">Cloudflare</span>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </Container>
@@ -252,23 +259,56 @@ const breadcrumbSchema = JSON.stringify({
 
     <!-- [SECCIÓN 4: GALERÍA VISUAL - Placeholder para futuras imágenes] -->
     <section class="mb-24">
-        <Container>
-            <div class="grid gap-8">
-                <!-- Aquí también podrías usar <Image /> cuando tengas las capturas de pantalla -->
-                <div class="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center text-gray-400 font-medium">
-                    Vista Desktop Home
-                </div>
-                <div class="grid md:grid-cols-2 gap-8">
-                     <div class="bg-gray-100 rounded-2xl aspect-square flex items-center justify-center text-gray-400 font-medium">
-                        Detalle Móvil
-                    </div>
-                     <div class="bg-gray-100 rounded-2xl aspect-square flex items-center justify-center text-gray-400 font-medium">
-                        Comparativa Antes/Después
-                    </div>
-                </div>
-            </div>
-        </Container>
-    </section>
+        <Container>
+            <div class="grid gap-8">
+                                {project.galleryDesktop ? (
+                    <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-sm relative aspect-video">
+            
+                         <Image 
+                            src={project.galleryDesktop} 
+                            alt={`Vista Desktop - ${project.title}`}
+                            class="absolute inset-0 w-full h-full object-fit" 
+                         />
+                    </div>
+                ) : (
+                    /* Fallback si no hay foto */
+                    <div class="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center text-gray-400 font-medium">
+                        Vista Desktop Home (No disponible)
+                    </div>
+                )}
+
+                <div class="grid md:grid-cols-2 gap-8">
+                                          {project.galleryMobile ? (
+                        <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-sm relative aspect-square">
+                            <Image 
+                                src={project.galleryMobile} 
+                                alt={`Vista Móvil - ${project.title}`}
+                                class="absolute inset-0 w-full h-full object-cover" 
+                            />
+                        </div>
+                     ) : (
+                        <div class="bg-gray-100 rounded-2xl aspect-square flex items-center justify-center text-gray-400 font-medium">
+                            Detalle Móvil
+                        </div>
+                     )}
+
+                                          {project.galleryFeatured ? (
+                        <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-sm relative aspect-square">
+                            <Image 
+                                src={project.galleryFeatured} 
+                                alt={`Comparativa - ${project.title}`}
+                                class="absolute inset-0 w-full h-full object-cover" 
+                            />
+                        </div>
+                     ) : (
+                        <div class="bg-gray-100 rounded-2xl aspect-square flex items-center justify-center text-gray-400 font-medium">
+                            Comparativa Antes/Después
+                        </div>
+                     )}
+                </div>
+            </div>
+        </Container>
+    </section>
 
     <!-- [SECCIÓN 5: CTA CONTEXTUAL] -->
     <section class="py-20 border-t border-gray-100 bg-gray-50/50">
@@ -277,7 +317,7 @@ const breadcrumbSchema = JSON.stringify({
                 <h2 class="text-3xl font-bold mb-4">¿Buscas resultados similares?</h2>
                 <p class="text-gray-600 mb-8">No prometemos magia, prometemos ingeniería y estrategia. Hablemos de tu proyecto.</p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Button href="https://wa.me/1234567890" variant="primary" isExternal={true}>
+                    <Button href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio." variant="primary" isExternal={true}>
                         Quiero un sitio así
                     </Button>
                     <Button href="/portafolio" variant="outline">

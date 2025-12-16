@@ -8,7 +8,8 @@ import Button from '../components/common/Button.astro';
 const title = "Soluciones y Precios | Hikevo Design";
 const description = "Paquetes de diseño web y gestión de redes sociales con precios claros. Sin sorpresas ni costos ocultos.";
 
-// Schema Service (JSON-LD) para SEO
+// Schema Service (JSON-LD) para SEO - FUSIONADO
+// Schema Service (JSON-LD) para SEO - COMPLETO CON GROWTH
 const serviceSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Service",
@@ -22,11 +23,17 @@ const serviceSchema = JSON.stringify({
     "@type": "OfferCatalog",
     "name": "Digital Services",
     "itemListElement": [
+      // --- PLANES WEB (PAGO ÚNICO) ---
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
           "name": "Plan Landing (One-page)"
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "USD",
+          "price": "199"
         }
       },
       {
@@ -34,6 +41,50 @@ const serviceSchema = JSON.stringify({
         "itemOffered": {
           "@type": "Service",
           "name": "Plan Corporativo (Multipágina)"
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "USD",
+          "price": "349"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Plan A Medida (Personalizado)"
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "USD",
+          "minPrice": "500"
+        }
+      },
+      // --- PLANES GROWTH (MENSUALES) ---
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Plan Presencia Orgánica"
+        },
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification", 
+          "priceCurrency": "USD",
+          "price": "99",
+          "unitText": "MONTH" 
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Plan Aceleradora (Ads + Social)"
+        },
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "priceCurrency": "USD",
+          "price": "129",
+          "unitText": "MONTH"
         }
       }
     ]
@@ -42,315 +93,515 @@ const serviceSchema = JSON.stringify({
 ---
 
 <MainLayout title={title} description={description}>
-  <!-- Inyectar Schema específico de Servicios -->
   <script type="application/ld+json" set:html={serviceSchema} slot="head" />
 
   <Header />
 
-  <main class="pt-32 pb-20">
+  <main class="pt-24 md:pt-32 pb-12 md:pb-20">
     
-    <!-- [SECCIÓN 1: HERO] -->
-    <section class="mb-20">
+    <section class="mb-12 md:mb-20 px-4">
         <Container>
             <div class="max-w-3xl mx-auto text-center animate-fade-in">
-                <h1 class="text-4xl md:text-6xl font-bold text-hikevo-black mb-6 tracking-tight">
+                <h1 class="text-4xl md:text-6xl font-bold text-hikevo-black mb-4 md:mb-6 tracking-tight leading-tight">
                     Inversión clara, <br />
                     <span class="text-hikevo-gray">sin letra pequeña.</span>
                 </h1>
-                <p class="text-lg text-hikevo-charcoal/80 leading-relaxed">
+                <p class="text-base md:text-lg text-hikevo-charcoal/80 leading-relaxed px-2 md:px-0">
                     Paquetes diseñados para resolver problemas específicos, no para venderte horas de desarrollo. Elige cómo quieres crecer.
                 </p>
             </div>
         </Container>
     </section>
 
-    <!-- [SECCIÓN 2: PAQUETES WEB (ONE-OFF)] -->
-    <section class="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8 font-sans" id="desarrollo-web">
-  <div class="max-w-6xl mx-auto">
-    
-    <!-- Título de la Sección (Opcional, ajusta según tu diseño actual) -->
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Planes de Desarrollo Web</h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Soluciones escalables diseñadas para convertir visitas en clientes.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-      
-      <!-- === PLAN LANDING (Standard) === -->
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 hover:shadow-md transition-shadow duration-300 relative overflow-hidden group">
-        <div class="mb-6">
-          <h3 class="text-2xl font-bold text-gray-900">Plan Landing</h3>
-          <p class="text-gray-500 mt-2 text-sm leading-relaxed">
-            Tu marca completa en un solo scroll de alto impacto. Perfecto para startups y emprendedores.
-          </p>
-        </div>
-
-        <div class="mb-6">
-          <div class="flex items-end gap-1">
-            <span class="text-4xl font-extrabold text-gray-900">$199</span> <!-- CAMBIAR PRECIO -->
-            <span class="text-gray-500 font-medium mb-1">USD</span>
-          </div>
-          <span class="text-xs text-green-600 font-semibold bg-green-50 px-2 py-1 rounded-full mt-2 inline-block">
-            Pago único
-          </span>
-        </div>
-
-        <hr class="border-gray-100 my-6" />
-
-        <!-- Lista de Features -->
-        <ul class="space-y-4 mb-8">
-          {[
-            "Diseño One-Page de Alto Impacto",
-            "UX/UI Optimizado para Conversión",
-            "Formulario Inteligente + WhatsApp API",
-            "SEO On-Page (Estructura Semántica)",
-            "Velocidad Extrema (Stack Astro/Next.js)",
-            "Documentación y Soporte Técnico",
-            "Hosting Configurado (1er año Gratis)",
-            "Certificado SSL & Seguridad Básica"
-          ].map((item) => (
-            <li class="flex items-start gap-3">
-              <div class="mt-1 flex-shrink-0 text-gray-400">
-                <!-- Icono Check -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <span class="text-sm text-gray-600">{item}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div class="flex items-center gap-2 text-sm text-gray-500 mb-6 bg-gray-50 p-2 rounded-lg justify-center">
-          <!-- Icono Clock -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          <span>Entrega estimada: <strong>1-2 semanas</strong></span>
-        </div>
-
-        <a href="#contacto" class="w-full py-4 px-6 rounded-xl border-2 border-gray-900 text-gray-900 font-bold hover:bg-gray-900 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group">
-          Elegir Plan Landing
-          <!-- Icono ArrowRight -->
-          <svg class="group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </a>
-      </div>
-
-      <!-- === PLAN CORPORATIVO (Premium) === -->
-      <div class="bg-white rounded-2xl shadow-xl border-2 border-amber-400 p-8 relative transform md:-translate-y-4">
+    <section class="bg-gray-50 py-12 md:py-16 px-4 sm:px-6 lg:px-8 font-sans" id="desarrollo-web">
+      <div class="max-w-7xl mx-auto">
         
-        <!-- Badge Recomendado -->
-        <div class="absolute top-0 right-0 bg-amber-400 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-lg uppercase tracking-wide">
-          Recomendado
-        </div>
-
-        <div class="mb-6">
-          <h3 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            Plan Corporativo
-            <!-- Icono Star -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          </h3>
-          <p class="text-gray-500 mt-2 text-sm leading-relaxed">
-            Un ecosistema digital completo con cerebro propio. Ideal para empresas que buscan crecer y dominar su nicho.
+        <div class="text-center mb-10 md:mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">Planes de Desarrollo Web</h2>
+          <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+            Soluciones escalables diseñadas para convertir visitas en clientes.
           </p>
         </div>
 
-        <div class="mb-6">
-          <div class="flex items-end gap-1">
-            <span class="text-4xl font-extrabold text-gray-900">$349</span> <!-- CAMBIAR PRECIO -->
-            <span class="text-gray-500 font-medium mb-1">USD</span>
-          </div>
-          <span class="text-xs text-amber-600 font-semibold bg-amber-50 px-2 py-1 rounded-full mt-2 inline-block">
-            Inversión única
-          </span>
-        </div>
-
-        <!-- El Subtítulo "Puente" UX/SEO -->
-        <div class="bg-amber-50 rounded-lg p-3 mb-6 border border-amber-100 flex items-start gap-3">
-          <div class="bg-amber-100 p-1 rounded-full mt-0.5 flex-shrink-0">
-            <!-- Icono Zap -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-600"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-          </div>
-          <p class="text-sm text-gray-700 font-medium">
-            Incluye todo el poder del <span class="font-bold text-gray-900">Plan Landing</span> y además potencia tu marca con:
-          </p>
-        </div>
-
-        <!-- Lista de Features Premium -->
-        <ul class="space-y-4 mb-8">
-          {[
-            "Arquitectura Web de 5+ Secciones",
-            "Diseño Premium & Sistema de Marca",
-            "CMS Autogestionable",
-            "Integración Analytics & Pixel (Meta)",
-            "SEO Técnico Avanzado + Sitemap",
-            "Soporte Prioritario Post-Lanzamiento",
-            "Optimización de Imágenes Next-Gen"
-          ].map((item) => (
-            <li class="flex items-start gap-3">
-              <div class="mt-1 flex-shrink-0 rounded-full p-0.5 text-amber-500 bg-amber-50">
-                <!-- Icono Check -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <span class="text-sm text-gray-800 font-medium">{item}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div class="flex items-center gap-2 text-sm text-gray-500 mb-6 bg-gray-50 p-2 rounded-lg justify-center">
-          <!-- Icono Clock -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          <span>Entrega estimada: <strong>3-4 semanas</strong></span>
-        </div>
-
-        <a href="#contacto" class="w-full py-4 px-6 rounded-xl bg-amber-400 text-gray-900 font-bold hover:bg-amber-500 transition-all duration-300 shadow-lg shadow-amber-200 flex items-center justify-center gap-2 group">
-          Impulsar mi Empresa
-          <!-- Icono ArrowRight -->
-          <svg class="group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-    <!-- [SECCIÓN 3: PAQUETES GROWTH (RECURRENTE)] -->
-    <section class="mb-24 bg-gray-50 py-16 rounded-3xl mx-4 md:mx-0">
-        <Container>
-            <div class="mb-10 border-b border-gray-200 pb-4">
-                <h2 class="text-2xl font-bold text-hikevo-black">2. Social Media & Growth</h2>
-                <p class="text-hikevo-charcoal/70 mt-2">No dejes que tu web acumule polvo. Te ayudamos a llevar tráfico y mantener tu marca activa.</p>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
+          
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8 hover:shadow-md transition-all duration-300 relative overflow-hidden group flex flex-col max-w-md mx-auto lg:max-w-none w-full">
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold text-gray-900">Plan Landing</h3>
+              <p class="text-gray-500 mt-2 text-sm leading-relaxed">
+                Tu marca completa en un solo scroll de alto impacto. Perfecto para validar ideas y startups.
+              </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                 <!-- CARD: GESTIÓN DE CONTENIDO -->
-                 <div class="bg-white rounded-2xl p-8 shadow-sm">
-                    <h3 class="text-lg font-bold mb-2">Gestión de Contenido</h3>
-                    <p class="text-sm text-gray-500 italic mb-4">Para mantener presencia y confianza.</p>
-                    <div class="text-2xl font-bold mb-6">$XXX <span class="text-sm font-normal text-gray-500">/ mes</span></div>
-                    
-                    <ul class="space-y-2 mb-8 text-sm text-gray-600">
-                        <li>• Estrategia de contenidos mensual</li>
-                        <li>• <strong>X Posts/Reels</strong> diseñados</li>
-                        <li>• Redacción de copys persuasivos</li>
-                        <li>• Programación y publicación</li>
-                        <li>• Informe mensual de resultados</li>
-                    </ul>
-                    <Button href="https://wa.me/1234567890" variant="text" isExternal={true} class="text-sm">Empezar Ahora &rarr;</Button>
-                 </div>
+            <div class="mb-6">
+              <div class="flex items-end gap-1">
+                <span class="text-4xl font-extrabold text-gray-900">$199</span>
+                <span class="text-gray-500 font-medium mb-1">USD</span>
+              </div>
+              <span class="text-xs text-green-600 font-semibold bg-green-50 px-2 py-1 rounded-full mt-2 inline-block">
+                 Pago único
+              </span>
+            </div>
 
-                 <!-- CARD: FULL GROWTH -->
-                 <div class="bg-white rounded-2xl p-8 shadow-sm border border-hikevo-yellow/30">
-                    <h3 class="text-lg font-bold mb-2">Full Growth (Ads + Social)</h3>
-                    <p class="text-sm text-gray-500 italic mb-4">Para empresas que necesitan vender YA.</p>
-                    <div class="text-2xl font-bold mb-1">$XXX <span class="text-sm font-normal text-gray-500">/ mes</span></div>
-                    <p class="text-xs text-gray-400 mb-6">+ Inversión publicitaria</p>
+            <hr class="border-gray-100 my-6" />
+
+            <ul class="space-y-4 mb-8 flex-grow">
+              {[
+                "Diseño One-Page de Alto Impacto",
+                "UX/UI Optimizado para Conversión",
+                "Formulario Inteligente + WhatsApp API",
+                "SEO On-Page (Estructura Semántica)",
+                "Velocidad Extrema (Stack Astro)",
+                "Documentación básica de entrega",
+                "Hosting Configurado (1er año Gratis)",
+                "Certificado SSL & Seguridad Básica"
+              ].map((item) => (
+                <li class="flex items-start gap-3">
+                  <div class="mt-1 flex-shrink-0 text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <span class="text-sm text-gray-600">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex items-center gap-2 text-sm text-gray-500 mb-6 bg-gray-50 p-2 rounded-lg justify-center mt-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Entrega: <strong>1-2 semanas</strong></span>
+            </div>
+
+            <a href="https://wa.me/17866692775?text=Hola,%20me%20interesa%20empezar%20con%20el%20Plan%20Landing%20(One-page)." target="_blank" class="w-full py-4 px-6 rounded-xl border-2 border-gray-900 text-gray-900 font-bold hover:bg-gray-900 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group">
+              Elegir Plan Landing
+            </a>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-xl border-2 border-amber-400 p-6 md:p-8 relative transform lg:-translate-y-4 z-10 flex flex-col max-w-md mx-auto lg:max-w-none w-full order-first lg:order-none">
+            
+            <div class="absolute top-0 right-0 bg-amber-400 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-lg uppercase tracking-wide">
+               Recomendado
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                Plan Corporativo
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </h3>
+              <p class="text-gray-500 mt-2 text-sm leading-relaxed">
+                Un ecosistema digital multipágina. Ideal para empresas que buscan posicionarse y crecer en Google.
+              </p>
+            </div>
+
+            <div class="mb-6">
+              <div class="flex items-end gap-1">
+                <span class="text-4xl font-extrabold text-gray-900">$349</span>
+                <span class="text-gray-500 font-medium mb-1">USD</span>
+              </div>
+              <span class="text-xs text-amber-600 font-semibold bg-amber-50 px-2 py-1 rounded-full mt-2 inline-block">
+                 Inversión única
+              </span>
+            </div>
+
+            <div class="bg-amber-50 rounded-lg p-3 mb-6 border border-amber-100 flex items-start gap-3">
+              <div class="bg-amber-100 p-1 rounded-full mt-0.5 flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-600"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <p class="text-sm text-gray-700 font-medium">
+                Incluye <span class="font-bold">todo lo del Plan Landing</span> y potenciamos tu marca con:
+              </p>
+            </div>
+
+            <ul class="space-y-4 mb-8 flex-grow">
+              {[
+                "Arquitectura Web de 5+ Secciones",
+                "Diseño Premium & Sistema de Marca",
+                "CMS Autogestionable (Blog/Noticias)",
+                "Integración Analytics & Pixel",
+                "SEO Técnico Avanzado + Sitemap",
+                "Soporte Prioritario Post-Lanzamiento",
+                "Optimización de Imágenes Next-Gen"
+              ].map((item) => (
+                <li class="flex items-start gap-3">
+                  <div class="mt-1 flex-shrink-0 rounded-full p-0.5 text-amber-500 bg-amber-50">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <span class="text-sm text-gray-800 font-medium">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex items-center gap-2 text-sm text-gray-500 mb-6 bg-gray-50 p-2 rounded-lg justify-center mt-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Entrega: <strong>3-4 semanas</strong></span>
+            </div>
+
+            <a href="https://wa.me/17866692775?text=Hola,%20me%20interesa%20el%20Plan%20Corporativo%20(Multip%C3%A1gina)%20para%20mi%20negocio." target="_blank" class="w-full py-4 px-6 rounded-xl bg-amber-400 text-gray-900 font-bold hover:bg-amber-500 transition-all duration-300 shadow-lg shadow-amber-200 flex items-center justify-center gap-2 group">
+              Impulsar mi Empresa
+              <svg class="group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <div class="bg-hikevo-charcoal text-white rounded-2xl shadow-xl border border-gray-700 p-6 md:p-8 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group flex flex-col max-w-md mx-auto lg:max-w-none w-full">
+            
+            <div class="absolute top-0 right-0 w-64 h-64 bg-hikevo-yellow opacity-5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 group-hover:opacity-10 transition-opacity duration-500"></div>
+
+            <div class="mb-6 relative z-10">
+              <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                A Medida
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-hikevo-yellow"><path d="M6 3h12l4 6-10 13L2 9z"></path><path d="M11 3 8 9l4 13 4-13-3-6"></path><path d="M2 9h20"></path></svg>
+              </h3>
+              <p class="text-gray-400 mt-2 text-sm leading-relaxed">
+                Para proyectos que rompen el molde. Funcionalidades complejas, sistemas internos o E-commerce avanzado.
+              </p>
+            </div>
+
+            <div class="mb-6 relative z-10">
+              <div class="flex items-end gap-1">
+                <span class="text-4xl font-extrabold text-white tracking-tight">Cotizar</span>
+              </div>
+              <span class="text-xs text-hikevo-yellow font-semibold bg-white/10 px-2 py-1 rounded-full mt-2 inline-block border border-white/10">
+                 Proyecto personalizado
+              </span>
+            </div>
+
+            <div class="bg-white/5 rounded-lg p-3 mb-6 border border-white/10 flex items-start gap-3 relative z-10">
+              <div class="bg-white/10 p-1 rounded-full mt-0.5 flex-shrink-0 text-hikevo-yellow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <p class="text-sm text-gray-300 font-medium">
+                Incluye <span class="font-bold text-white">todo lo del Plan Corporativo</span> y mucho más:
+              </p>
+            </div>
+
+            <ul class="space-y-4 mb-8 relative z-10 flex-grow">
+              {[
+                "Desarrollo Full-Stack",
+                "E-commerce o Pasarelas de Pago",
+                "Áreas de Miembros / Intranets",
+                "Integraciones API Complejas",
+                "Diseño de Producto Digital (SaaS)",
+                "Sistemas de Diseño Escalables",
+                "Arquitectura Multi-idioma (i18n)",
+                "Consultoría de Estrategia Digital"
+              ].map((item) => (
+                <li class="flex items-start gap-3">
+                  <div class="mt-1 flex-shrink-0 text-gray-500 group-hover:text-gray-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <span class="text-sm text-gray-300 group-hover:text-white transition-colors">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="relative z-10 mt-auto">
+                <a href="https://wa.me/17866692775?text=Hola,%20tengo%20un%20proyecto%20especial%20y%20necesito%20una%20cotizaci%C3%B3n%20A%20Medida." target="_blank" class="w-full py-4 px-6 rounded-xl bg-white text-black font-bold hover:bg-hikevo-yellow transition-all duration-300 flex items-center justify-center gap-2 group">
+                Agendar Consultoría
+                <svg class="group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-16 md:mb-24 px-4 pt-8 md:pt-16 md:px-0 font-sans" id="social-growth">
+        <Container>
+            <div class="mb-10 md:mb-16 md:text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-hikevo-black mb-3 md:mb-4">Planes de Redes Sociales</h2>
+                <p class="text-hikevo-charcoal/70 text-base md:text-lg leading-relaxed">
+                    Contenido diseñado para transformar la interacción en oportunidades de venta.
+                </p>
+            </div>
+
+            <div class="flex flex-col gap-6 md:gap-8">
+                
+                <div class="bg-white border border-gray-200 rounded-3xl p-6 md:p-12 flex flex-col md:flex-row gap-6 md:gap-10 items-center hover:border-gray-300 transition-colors">
+                    <div class="w-full md:w-1/2">
+                        <div class="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
+                            Branding & Confianza
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-hikevo-black mb-3">Presencia Orgánica</h3>
+                        <p class="text-gray-600 text-base md:text-lg mb-6 leading-relaxed">
+                            Mantén tu marca activa y relevante sin que te quite tiempo. Ideal para construir autoridad a largo plazo.
+                        </p>
+                        <div class="flex items-baseline gap-2 mb-8">
+                            <span class="text-4xl font-extrabold text-hikevo-black">$99</span> <span class="text-gray-500 font-medium">/ mes</span>
+                        </div>
+                        <Button href="https://wa.me/17866692775?text=Hola,%20me%20interesa%20el%20plan%20Org%C3%A1nico." variant="outline" isExternal={true} class="w-full md:w-auto justify-center hover:bg-hikevo-black hover:text-white hover:border-hikevo-black hover:shadow-lg transition-all duration-300">
+                            Solicitar este plan
+                        </Button>
+                    </div>
                     
-                    <ul class="space-y-2 mb-8 text-sm text-gray-600">
-                        <li>• Todo lo del plan Contenido</li>
-                        <li>• <strong>Gestión de campañas en Meta Ads</strong></li>
-                        <li>• Creación de creativos para anuncios</li>
-                        <li>• Optimización de presupuesto</li>
-                        <li>• Seguimiento de conversiones</li>
-                    </ul>
-                    <Button href="https://wa.me/1234567890" variant="text" isExternal={true} class="text-sm font-bold">Empezar Ahora &rarr;</Button>
-                 </div>
+                    <div class="w-full md:w-1/2 bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-100 h-full">
+                        <h4 class="font-bold text-hikevo-black mb-4 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            ¿Qué incluye?
+                        </h4>
+                        <ul class="space-y-4 text-sm text-gray-600">
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-hikevo-yellow mt-2 flex-shrink-0"></span>
+                                <span>Estrategia de contenidos mensual</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-hikevo-yellow mt-2 flex-shrink-0"></span>
+                                <span><strong>12 Posts / 6 Reels / 6 Stories</strong> <br/>(Guión + Diseño + Edición + Publicación )</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-hikevo-yellow mt-2 flex-shrink-0"></span>
+                                <span>Gestión de comunidad (Respuestas en 24h)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-hikevo-yellow mt-2 flex-shrink-0"></span>
+                                <span>Reporte mensual de rendimiento</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-hikevo-black text-white rounded-3xl p-6 md:p-12 flex flex-col md:flex-row gap-6 md:gap-10 items-center shadow-xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-hikevo-yellow/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+
+                    <div class="w-full md:w-1/2 relative z-10">
+                        <div class="inline-block bg-hikevo-yellow text-black text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
+                            Ventas & Escalamiento
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">Plan Acelerador</h3>
+                        <p class="text-gray-400 text-base md:text-lg mb-6 leading-relaxed">
+                            Para negocios que no pueden esperar. Combinamos contenido orgánico con publicidad de pago para traer clientes hoy.
+                        </p>
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="text-4xl font-extrabold text-hikevo-yellow">$129</span> <span class="text-gray-400 font-medium">/ mes</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-8">+ Inversión publicitaria (directo a Meta/Google)</p>
+
+                        <Button href="https://wa.me/17866692775?text=Hola,%20quiero%20escalar%20ventas%20con%20Ads." variant="primary" isExternal={true} class="w-full md:w-auto justify-center bg-white text-black hover:bg-hikevo-yellow border-none">
+                            Empezar a Escalar
+                        </Button>
+                    </div>
+                    
+                    <div class="w-full md:w-1/2 bg-white/5 rounded-2xl p-6 md:p-8 border border-white/10 relative z-10">
+                        <h4 class="font-bold text-white mb-4 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-hikevo-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Poder Adicional:
+                        </h4>
+                        <ul class="space-y-4 text-sm text-gray-300">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-hikevo-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="font-medium text-white">Todo lo del Plan Orgánico</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-hikevo-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span><strong>Gestión Pro de Campañas</strong> (Meta Ads)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-hikevo-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Creativos (Ads) enfocados en conversión</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-hikevo-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Optimización de presupuesto y ROAS</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-gray-200 mt-4 md:mt-8">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-4 text-center md:text-left">
+                        <div class="p-3 bg-white rounded-xl text-hikevo-black shadow-sm">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+    </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-hikevo-black mb-2 md:mb-1">Soporte Técnico y Micro-Soluciones</h3>
+                            <p class="text-gray-600 text-sm mb-3 max-w-md mx-auto md:mx-0">
+                                ¿Necesitas algo puntual? Configuramos tu email corporativo, arreglamos errores, migramos dominios o hacemos ajustes de diseño.
+                            </p>
+                            <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                                <span class="px-2 py-1 bg-white border border-gray-200 text-gray-500 text-xs rounded-md">Config. Email</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 text-gray-500 text-xs rounded-md">Google Business</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 text-gray-500 text-xs rounded-md">Formularios</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 text-gray-500 text-xs rounded-md">Tarjeta de presentación</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-full md:w-auto">
+                        <Button 
+                            href="https://wa.me/17866692775?text=Hola,%20necesito%20ayuda%20con%20una%20soluci%C3%B3n%20t%C3%A9cnica%20puntual." 
+                            variant="outline" 
+                            isExternal={true} 
+                            class="w-full md:w-auto justify-center bg-white border-gray-200 text-hikevo-black hover:bg-hikevo-black hover:text-white hover:border-hikevo-black rounded-full px-6 transition-colors shadow-sm"
+                        >
+                            Consultar Tarea
+                        </Button>
+                    </div>
+                </div>
+
             </div>
         </Container>
     </section>
 
-    <!-- [SECCIÓN 4: NUESTRO PROCESO] -->
-    <section class="mb-24">
+    <section class="mb-16 md:mb-24 py-8 md:py-12">
         <Container>
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-2">¿Cómo trabajamos?</h2>
-                <p class="text-gray-500">Sin tecnicismos, paso a paso.</p>
+            <div class="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-hikevo-black">Nuestro Proceso</h2>
+                <p class="text-gray-500 text-lg">Diseñamos un camino sencillo y sin estrés. Es un proceso claro que te da la tranquilidad de saber siempre qué esperar.</p>
             </div>
             
-            <div class="grid md:grid-cols-4 gap-6 relative">
-                <!-- Linea conectora (Solo Desktop) -->
-                <div class="hidden md:block absolute top-6 left-0 w-full h-0.5 bg-gray-100 -z-10"></div>
+            <div class="relative max-w-4xl mx-auto px-4 md:px-0">
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-100 -z-10 hidden md:block"></div>
 
-                <!-- Paso 1 -->
-                <div class="bg-white p-6 md:pt-0 text-center relative">
-                    <div class="w-12 h-12 bg-hikevo-black text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-4 border-4 border-white">1</div>
-                    <h3 class="font-bold text-lg mb-2">Discovery</h3>
-                    <p class="text-sm text-gray-600">Nos reunimos para entender tu negocio y confirmar si somos el fit ideal.</p>
-                </div>
-                 <!-- Paso 2 -->
-                 <div class="bg-white p-6 md:pt-0 text-center relative">
-                    <div class="w-12 h-12 bg-gray-200 text-gray-600 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-4 border-4 border-white">2</div>
-                    <h3 class="font-bold text-lg mb-2">Estrategia</h3>
-                    <p class="text-sm text-gray-600">Te enviamos el plan y contrato. Abonamos el 50% para iniciar.</p>
-                </div>
-                 <!-- Paso 3 -->
-                 <div class="bg-white p-6 md:pt-0 text-center relative">
-                    <div class="w-12 h-12 bg-gray-200 text-gray-600 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-4 border-4 border-white">3</div>
-                    <h3 class="font-bold text-lg mb-2">Desarrollo</h3>
-                    <p class="text-sm text-gray-600">Nosotros construimos, tú te relajas. Te mostramos avances clave.</p>
-                </div>
-                 <!-- Paso 4 -->
-                 <div class="bg-white p-6 md:pt-0 text-center relative">
-                    <div class="w-12 h-12 bg-hikevo-yellow text-black rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-4 border-4 border-white">4</div>
-                    <h3 class="font-bold text-lg mb-2">Lanzamiento</h3>
-                    <p class="text-sm text-gray-600">Revisión final, pago restante y ¡en vivo! Tu negocio ya es digital.</p>
+                <div class="space-y-8 md:space-y-0">
+                    
+                    <div class="flex flex-col md:flex-row items-center md:justify-between relative group cursor-default">
+                        <div class="hidden md:block w-5/12 text-right pr-8 order-1">
+                            <h3 class="font-bold text-xl mb-2 text-hikevo-black transition-colors duration-300">1. Auditoría</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Antes de cotizar, escuchamos. Analizamos tu situación actual y definimos objetivos reales para asegurarnos de que somos el equipo ideal.
+                            </p>
+                        </div>
+                        
+                        <div class="w-16 h-16 bg-white border-4 border-gray-100 text-gray-400 rounded-full flex items-center justify-center text-xl font-bold z-10 md:order-2 shadow-sm group-hover:border-hikevo-yellow group-hover:text-hikevo-black group-hover:scale-110 transition-all duration-300 ease-out mb-4 md:mb-0">
+                            1
+                        </div>
+                        
+                        <div class="w-full md:w-5/12 pl-0 md:pl-8 mt-0 md:mt-0 md:order-3 text-center md:text-left">
+                            <div class="md:hidden">
+                                <h3 class="font-bold text-xl mb-2 text-hikevo-black">1. Auditoría</h3>
+                                <p class="text-gray-600 leading-relaxed">Analizamos tu situación actual y definimos objetivos reales antes de empezar.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center md:justify-between relative group md:mt-24 cursor-default">
+                        <div class="w-full md:w-5/12 pr-0 md:pr-8 text-center md:text-right order-3 md:order-1">
+                            <div class="md:hidden mt-4">
+                                <h3 class="font-bold text-xl mb-2 text-hikevo-black">2. Estrategia</h3>
+                                <p class="text-gray-600 leading-relaxed">Recibes un plan de acción detallado. Sabrás exactamente qué haremos, cuándo estará listo y cuánto costará.</p>
+                           </div>
+                        </div>
+                        
+                        <div class="w-16 h-16 bg-white border-4 border-gray-100 text-gray-400 rounded-full flex items-center justify-center text-xl font-bold z-10 order-1 md:order-2 shadow-sm group-hover:border-hikevo-yellow group-hover:text-hikevo-black group-hover:scale-110 transition-all duration-300 ease-out mb-4 md:mb-0">
+                            2
+                        </div>
+                        
+                        <div class="hidden md:block w-5/12 pl-8 order-2 md:order-3">
+                            <h3 class="font-bold text-xl mb-2 text-hikevo-black group-hover:text-hikevo-yellow transition-colors duration-300">2. Estrategia</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                               Recibes un plan de acción detallado. Sabrás exactamente qué haremos, cuándo estará listo y cuánto costará.
+                            </p>
+                        </div>
+                    </div>
+
+                     <div class="flex flex-col md:flex-row items-center md:justify-between relative group md:mt-24 cursor-default">
+                        <div class="hidden md:block w-5/12 text-right pr-8 order-1">
+                            <h3 class="font-bold text-xl mb-2 text-hikevo-black group-hover:text-hikevo-yellow transition-colors duration-300">3. Desarrollo</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Manos a la obra. Construimos tu activo digital (Web o Social Media) mientras tú te enfocas en tu negocio.
+                            </p>
+                        </div>
+                        
+                        <div class="w-16 h-16 bg-white border-4 border-gray-100 text-gray-400 rounded-full flex items-center justify-center text-xl font-bold z-10 md:order-2 shadow-sm group-hover:border-hikevo-yellow group-hover:text-hikevo-black group-hover:scale-110 transition-all duration-300 ease-out mb-4 md:mb-0">
+                            3
+                        </div>
+                        
+                        <div class="w-full md:w-5/12 pl-0 md:pl-8 mt-0 md:mt-0 md:order-3 text-center md:text-left">
+                            <div class="md:hidden">
+                                 <h3 class="font-bold text-xl mb-2 text-hikevo-black">3. Desarrollo</h3>
+                                 <p class="text-gray-600 leading-relaxed">Construimos tu activo digital con reportes de avance semanales.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center md:justify-between relative group md:mt-24 cursor-default">
+                        <div class="w-full md:w-5/12 pr-0 md:pr-8 text-center md:text-right order-3 md:order-1">
+                             <div class="md:hidden mt-4">
+                                 <h3 class="font-bold text-xl mb-2 text-hikevo-black">4. Entrega</h3>
+                                 <p class="text-gray-600 leading-relaxed">Revisión final, capacitación y entrega. ¡Tu negocio está online!</p>
+                            </div>
+                        </div>
+                        
+                        <div class="w-16 h-16 bg-white border-4 border-gray-100 text-gray-400 rounded-full flex items-center justify-center text-xl font-bold z-10 order-1 md:order-2 shadow-sm group-hover:border-hikevo-yellow group-hover:text-hikevo-black group-hover:scale-110 transition-all duration-300 ease-out mb-4 md:mb-0">
+                            4
+                        </div>
+                        
+                        <div class="hidden md:block w-5/12 pl-8 order-2 md:order-3">
+                            <h3 class="font-bold text-xl mb-2 text-hikevo-black group-hover:text-hikevo-yellow transition-colors duration-300">4. Lanzamiento</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                               Tu visión cobra vida. Te entregamos todo listo para usar y nos aseguramos de que tengas la confianza necesaria para dar el siguiente paso.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </Container>
     </section>
 
-    <!-- [SECCIÓN 5: FAQ (OBJECIONES)] -->
-    <section class="mb-24">
+    <section class="mb-16 md:mb-24 scroll-mt-24" id="faq">
         <Container>
-            <div class="max-w-3xl mx-auto">
-                <h3 class="text-2xl font-bold mb-8 text-center">Preguntas Frecuentes</h3>
+            <div class="max-w-3xl mx-auto px-4 md:px-0">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 text-center text-hikevo-black">Resolvemos tus dudas antes de invertir</h3>
                 
-                <div class="space-y-6">
-                    <details class="group bg-white border border-gray-100 rounded-xl p-6 cursor-pointer open:shadow-md transition-all">
-                        <summary class="flex justify-between items-center font-medium list-none">
-                            ¿Qué pasa si necesito algo que no está en los paquetes?
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                <div class="space-y-4">
+                    <details class="group bg-white border border-gray-100 rounded-2xl p-2 open:bg-gray-50 transition-colors duration-300">
+                        <summary class="flex justify-between items-center font-bold text-hikevo-charcoal p-4 cursor-pointer list-none select-none text-left">
+                            <span class="pr-4">¿Qué pasa si mi negocio necesita una funcionalidad a medida?</span>
+                            <span class="transition-transform duration-300 group-open:rotate-180 text-hikevo-yellow flex-shrink-0">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
                             </span>
                         </summary>
-                        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
-                            Somos flexibles. Si necesitas una tienda en línea compleja o una funcionalidad especial, contáctanos para una cotización a medida.
-                        </p>
+                        <div class="px-4 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-200/0 group-open:border-gray-200/50 pt-2 transition-all">
+                            <p>Somos flexibles. Los paquetes cubren el 90% de las necesidades de una PYME moderna, pero si requieres integraciones complejas (CRM, Reservas, ERP), analizaremos tu caso y te daremos un presupuesto personalizado.</p>
+                        </div>
                     </details>
 
-                    <details class="group bg-white border border-gray-100 rounded-xl p-6 cursor-pointer open:shadow-md transition-all">
-                        <summary class="flex justify-between items-center font-medium list-none">
-                            ¿Tengo que pagar mantenimiento mensual por la web?
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                    <details class="group bg-white border border-gray-100 rounded-2xl p-2 open:bg-gray-50 transition-colors duration-300">
+                        <summary class="flex justify-between items-center font-bold text-hikevo-charcoal p-4 cursor-pointer list-none select-none text-left">
+                            <span class="pr-4">¿El pago de publicidad (Ads) está incluido en la cuota?</span>
+                            <span class="transition-transform duration-300 group-open:rotate-180 text-hikevo-yellow flex-shrink-0">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
                             </span>
                         </summary>
-                        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
-                            No es obligatorio, pero es recomendable. Ofrecemos un plan de mantenimiento técnico (actualizaciones y seguridad) por una pequeña cuota anual para que duermas tranquilo.
-                        </p>
+                        <div class="px-4 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-200/0 group-open:border-gray-200/50 pt-2 transition-all">
+                            <p>No. Creemos en la transparencia total: <strong>nuestros honorarios son por el trabajo estratégico y técnico</strong>. El presupuesto publicitario se paga directamente a las plataformas (Meta/Google) desde tu tarjeta. Así sabes exactamente cuánto inviertes en anuncios y cuánto en gestión.</p>
+                        </div>
                     </details>
 
-                    <details class="group bg-white border border-gray-100 rounded-xl p-6 cursor-pointer open:shadow-md transition-all">
-                        <summary class="flex justify-between items-center font-medium list-none">
-                            ¿Ustedes pagan la publicidad en el plan Growth?
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                    <details class="group bg-white border border-gray-100 rounded-2xl p-2 open:bg-gray-50 transition-colors duration-300">
+                        <summary class="flex justify-between items-center font-bold text-hikevo-charcoal p-4 cursor-pointer list-none select-none text-left">
+                            <span class="pr-4">¿Hay permanencia en los planes de Social Media?</span>
+                            <span class="transition-transform duration-300 group-open:rotate-180 text-hikevo-yellow flex-shrink-0">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
                             </span>
                         </summary>
-                        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
-                            No. El precio del paquete cubre nuestros honorarios por gestión y estrategia. El presupuesto para pagar a Facebook/Instagram se factura directamente a tu tarjeta.
-                        </p>
+                        <div class="px-4 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-200/0 group-open:border-gray-200/50 pt-2 transition-all">
+                            <p>No creemos en atar clientes insatisfechos. Puedes cancelar tu suscripción avisando con 15 días de antelación antes de tu siguiente ciclo de facturación. Queremos que te quedes por los resultados, no por un contrato.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-white border border-gray-100 rounded-2xl p-2 open:bg-gray-50 transition-colors duration-300">
+                        <summary class="flex justify-between items-center font-bold text-hikevo-charcoal p-4 cursor-pointer list-none select-none text-left">
+                            <span class="pr-4">¿Ofrecen mantenimiento una vez terminada la web?</span>
+                            <span class="transition-transform duration-300 group-open:rotate-180 text-hikevo-yellow flex-shrink-0">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="px-4 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-200/0 group-open:border-gray-200/50 pt-2 transition-all">
+                            <p>Sí, ofrecemos un <strong>Plan de Tranquilidad Técnica</strong> mensual opcional. Nos encargamos de actualizaciones de seguridad, copias de seguridad y monitoreo para que tú solo te preocupes de vender.</p>
+                        </div>
                     </details>
                 </div>
             </div>
         </Container>
     </section>
 
-    <!-- [SECCIÓN 6: CTA FINAL] -->
-    <section class="py-20 bg-hikevo-gray-light">
+    <section class="py-16 md:py-20 bg-hikevo-gray-light">
         <Container>
-            <div class="text-center max-w-2xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto px-4 md:px-0">
                 <h2 class="text-3xl font-bold mb-4">¿Dudas sobre cuál plan elegir?</h2>
                 <p class="text-gray-600 mb-8">Solicita tu auditoría gratuita y te diremos exactamente qué necesita tu negocio en este momento.</p>
-                <Button href="https://wa.me/1234567890" variant="primary" isExternal={true}>
+                <Button href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio." variant="primary" isExternal={true} class="w-full md:w-auto justify-center">
                     Hablar con el equipo
                 </Button>
             </div>
