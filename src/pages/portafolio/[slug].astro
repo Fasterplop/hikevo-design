@@ -254,7 +254,7 @@ const breadcrumbSchema = JSON.stringify({
     <!-- [SECCIÓN 3: RESULTADOS] -->
     <section class="mb-24 bg-hikevo-black text-white py-20 rounded-none md:rounded-3xl mx-0 md:mx-4">
         <Container>
-            <div class="text-center mb-12">
+            <div class="text-center mb-8">
                 <h2 class="text-3xl font-bold">Los Resultados</h2>
             </div>
             
@@ -268,7 +268,7 @@ const breadcrumbSchema = JSON.stringify({
             </div>
 
             {project.testimonial && (
-                <div class="mt-16 max-w-3xl mx-auto text-center border-t border-gray-800 pt-10">
+                <div class="mt-12 max-w-3xl mx-auto text-center border-t border-gray-800 pt-10">
                     <p class="text-xl italic text-gray-300 mb-6">"{project.testimonial}"</p>
                     <div class="text-sm font-bold text-hikevo-yellow">— {project.testimonialAuthor}</div>
                 </div>
@@ -277,57 +277,96 @@ const breadcrumbSchema = JSON.stringify({
     </section>
 
     <!-- [SECCIÓN 4: GALERÍA VISUAL - Placeholder para futuras imágenes] -->
-    <section class="mb-24">
-        <Container>
-            <div class="grid gap-8">
-                                {project.galleryDesktop ? (
-                    <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-sm relative aspect-video">
+ 
+
+    <section class="mb-24 overflow-hidden py-10">
+        <!-- <Container>
+            <div class="text-center mb-12">
+                <h3 class="text-2xl font-bold text-black md:text-3xl">Inmersión Volumétrica</h3>
+                <p class="text-gray-500 mt-2">Visualización de la interfaz en espacio tridimensional.</p>
+            </div>
+        </Container> -->
+
+        {/* Contenedor Principal Responsive */}
+        <div class="w-full px-4">
             
-                         <Image 
-                            src={project.galleryDesktop} 
-                            alt={`Vista Desktop - ${project.title}`}
-                            class="absolute inset-0 w-full h-full object-fit" 
-                         />
-                    </div>
-                ) : (
-                    /* Fallback si no hay foto */
-                    <div class="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center text-gray-400 font-medium">
-                        Vista Desktop Home (No disponible)
-                    </div>
-                )}
+            {/* --- VISTA DESKTOP (3D TILT) --- */}
+            {/* Se activa solo en pantallas grandes (lg/xl) para asegurar que hay espacio para el efecto */}
+            <div class="hidden lg:flex gap-6 items-center justify-center [perspective:1200px] max-w-7xl mx-auto">
+                
+                {/* Panel Izquierdo (Mobile) */}
+                {project.galleryMobile && (
+                    <div class="w-[240px] shrink-0 transition-transform duration-500 ease-out hover:[transform:rotateY(0deg)_scale(1.05)_translateZ(20px)] [transform:rotateY(15deg)] shadow-xl shadow-gray-200/50 rounded-3xl bg-white border border-gray-100 overflow-hidden z-10">
+                        <Image 
+                            src={project.galleryMobile} 
+                            alt="Mobile Perspective"
+                            class="w-full h-auto object-cover"
+                        />
+                    </div>
+                )}
 
-                <div class="grid md:grid-cols-2 gap-8">
-                                          {project.galleryMobile ? (
-                        <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-sm relative aspect-square">
-                            <Image 
-                                src={project.galleryMobile} 
-                                alt={`Vista Móvil - ${project.title}`}
-                                class="absolute inset-0 w-full h-full object-cover" 
-                            />
-                        </div>
-                     ) : (
-                        <div class="bg-gray-100 rounded-2xl aspect-square flex items-center justify-center text-gray-400 font-medium">
-                            Detalle Móvil
-                        </div>
-                     )}
+                {/* Panel Central (Desktop) - Dimensiones ajustadas para no ser tan ancho */}
+                {project.galleryDesktop && (
+                     <div class="w-[600px] xl:w-[700px] shrink-0 transition-transform duration-500 ease-out hover:scale-[1.02] shadow-2xl shadow-gray-200/50 rounded-2xl bg-white border border-gray-100 overflow-hidden z-20 relative">
+                        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-50 z-30"></div>
+                        <Image 
+                            src={project.galleryDesktop} 
+                            alt="Desktop Focus"
+                            class="w-full h-auto object-cover"
+                        />
+                    </div>
+                )}
 
-                                          {project.galleryFeatured ? (
-                        <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-sm relative aspect-square">
-                            <Image 
-                                src={project.galleryFeatured} 
-                                alt={`Comparativa - ${project.title}`}
-                                class="absolute inset-0 w-full h-full object-cover" 
-                            />
-                        </div>
-                     ) : (
-                        <div class="bg-gray-100 rounded-2xl aspect-square flex items-center justify-center text-gray-400 font-medium">
-                            Comparativa Antes/Después
-                        </div>
-                     )}
-                </div>
-            </div>
-        </Container>
-    </section>
+                {/* Panel Derecho (Featured) */}
+                {project.galleryFeatured && (
+                     <div class="w-[240px] shrink-0 transition-transform duration-500 ease-out hover:[transform:rotateY(0deg)_scale(1.05)_translateZ(20px)] [transform:rotateY(-15deg)] shadow-xl shadow-gray-200/50 rounded-3xl bg-white border border-gray-100 overflow-hidden z-10">
+                        <Image 
+                            src={project.galleryFeatured} 
+                            alt="Featured Perspective"
+                            class="w-full h-auto object-cover"
+                        />
+                    </div>
+                )}
+
+            </div>
+
+            {/* --- VISTA TABLET/MÓVIL (STACK VERTICAL) --- */}
+            {/* Diseño distinto: Tarjetas limpias sin texto, solo imágenes */}
+            <div class="lg:hidden flex flex-col gap-8 max-w-2xl mx-auto">
+                 
+                 {/* 1. Tarjeta Principal (Desktop) */}
+                 {project.galleryDesktop && (
+                    <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-white">
+                        <Image src={project.galleryDesktop} alt="D" class="w-full h-auto" />
+                    </div>
+                 )}
+
+                 {/* Grid para las secundarias (1 col en móvil, 2 cols en tablet) */}
+                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                     
+                     {/* 2. Tarjeta Móvil */}
+                     {project.galleryMobile && (
+                        <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-white flex flex-col">
+                            <div class="flex-1 bg-[#F5F5F7] p-6 flex items-center justify-center">
+                                <Image src={project.galleryMobile} alt="M" class="w-full h-auto shadow-sm rounded-xl" />
+                            </div>
+                        </div>
+                     )}
+
+                     {/* 3. Tarjeta Featured */}
+                     {project.galleryFeatured && (
+                        <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-white flex flex-col">
+                            <div class="flex-1 relative">
+                                <Image src={project.galleryFeatured} alt="F" class="w-full h-full object-cover min-h-[200px]" />
+                            </div>
+                        </div>
+                     )}
+                 </div>
+
+            </div>
+
+        </div>
+    </section>
 
     <!-- [SECCIÓN 5: CTA CONTEXTUAL] -->
     <section class="py-20 border-t border-gray-100 bg-gray-50/50">
