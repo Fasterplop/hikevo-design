@@ -100,6 +100,7 @@ const faqs = [
 
                         <!-- Formulario Simulado -->
                         <form id="contact-form" class="space-y-4">
+                            <input type="text" name="hp_check" class="hidden" tabindex="-1" autocomplete="off" />
                             <div>
                                 <label for="email" class="sr-only">Tu Email</label>
                                 <input 
@@ -177,7 +178,7 @@ const faqs = [
 </MainLayout>
 
 <script>
-    // Lógica para simular el envío del formulario (Frontend Feedback)
+    const loadTime = Date.now(); // [!code ++]
     const form = document.getElementById('contact-form') as HTMLFormElement;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
     const arrowIcon = document.getElementById('arrow-icon');
@@ -186,29 +187,55 @@ const faqs = [
     const emailInput = document.getElementById('email') as HTMLInputElement;
 
     if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // 1. Estado de carga
-            submitBtn.disabled = true;
-            arrowIcon?.classList.add('hidden');
-            loadingIcon?.classList.remove('hidden');
-            
-            // 2. Simulación de red (2 segundos)
-            setTimeout(() => {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Anti-spam de tiempo: Si han pasado menos de 2.5 seg, es sospechoso
+        const timeElapsed = Date.now() - loadTime; // [!code ++]
+        if (timeElapsed < 2500) { // [!code ++]
+            // Bloqueo silencioso (Frontend) o dejamos que el backend decida
+            console.warn("Envío demasiado rápido (Bot?)"); // [!code ++]
+            // Opcional: return; para bloquear aquí mismo
+        }
+
+        // ... resto de tu código de UI (submitBtn.disabled = true...)
+
+        try {
+            const formData = new FormData(form);
+            // Agregamos el tiempo de inicio al envío para que el backend verifique
+            formData.append("startTime", loadTime.toString()); // [!code ++]
+
+            const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                // Leemos la respuesta del servidor
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Error en el servidor');
+                }
+
                 // 3. Estado de éxito
                 form.classList.add('hidden'); // Ocultar form
-                successMessage?.classList.remove('hidden'); // Mostrar mensaje
+                successMessage?.classList.remove('hidden'); // Mostrar mensaje de éxito
+                emailInput.value = ''; // Limpiar input
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un problema al enviar tu correo. Por favor intenta de nuevo.');
                 
-                // Reset (opcional, por si quieren enviar otro)
+                // Si falla, restauramos el botón para que puedan intentar otra vez
                 submitBtn.disabled = false;
                 arrowIcon?.classList.remove('hidden');
                 loadingIcon?.classList.add('hidden');
-                emailInput.value = '';
-                
-            }, 2000);
+            }
         });
     }
+
+
+          // logica del accordion
 const accordionItems = document.querySelectorAll('.accordion-item');
 
     accordionItems.forEach(item => {

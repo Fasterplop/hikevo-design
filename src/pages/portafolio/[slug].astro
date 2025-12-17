@@ -5,11 +5,21 @@ import Container from '../../components/ui/Container.astro';
 import Button from '../../components/common/Button.astro';
 import { Image } from 'astro:assets'; 
 
-import paulinalopezescritora from '../../assets/images/projects/paulinalopezescritora/paulinalopezescritora.com.png';
-import ganeshastores from '../../assets/images/projects/ganeshastores/ganeshastores.com.png';
-import ganeshafeatured from '../../assets/images/projects/ganeshastores/ganesha-featured.png';
-import mistermango from '../../assets/images/projects/mistermango/mistermango-mobile.png';
+import anisbarbara from '../../assets/images/projects/anis-barbara/anisbarbara-desktop.png';
+import anisbarbaramobile from '../../assets/images/projects/anis-barbara/anisbarbara-mobile.png';   
+import anisbarbarafeatured from '../../assets/images/projects/anis-barbara/anisbarbara-featured.png';
 
+import paulinalopezescritora from '../../assets/images/projects/paulinalopezescritora/paulinalopezescritora.com.png';
+import paulinalopezescritoramobile from '../../assets/images/projects/paulinalopezescritora/paulina-mobile.png';
+import paulinalopezescritorafeatured from '../../assets/images/projects/paulinalopezescritora/paulina-featured.png';
+
+import ganeshastores from '../../assets/images/projects/ganeshastores/ganeshastores.com.png';
+import ganeshastoresmobile from '../../assets/images/projects/ganeshastores/ganesha-mobile.png';
+import ganeshastoresfeatured from '../../assets/images/projects/ganeshastores/ganesha-featured.png';  
+
+import mistermango from '../../assets/images/projects/mistermango/mistermango-desktop.png';
+import mistermangomobile from '../../assets/images/projects/mistermango/mistermango-mobile.png';    
+import mistermangofeatured from '../../assets/images/projects/mistermango/mistermango-featured.png';    
 
 // Definición de tipos para TypeScript
 interface Project {
@@ -27,7 +37,7 @@ interface Project {
   testimonialAuthor?: string;
   // 2. Nuevo campo para la imagen (ImageMetadata es el tipo interno de Astro)
   image?: ImageMetadata; 
-   galleryDesktop?: ImageMetadata; // Recomendado: 1920 x 1080px, Minimo: 1280 x 720px
+  galleryDesktop?: ImageMetadata; // Recomendado: 1920 x 1080px, Minimo: 1280 x 720px
   galleryMobile?: ImageMetadata;   // Recomendado: 1080 x 1080px , Minimo: 800 x 800px
   galleryFeatured?: ImageMetadata; // Recomendado: 1080 x 1080px , Minimo: 800 x 800px
 
@@ -40,81 +50,90 @@ export async function getStaticPaths() {
         slug: 'paulina-lopez-escritora',
         title: 'Paulina Lopez Escritora',
         image: paulinalopezescritora, // <-- Así asignarás la imagen real
-        description: 'Rediseño Web Corporativo + Estrategia SEO',
-        client: 'Paulina Lopez',
+        description: 'Desarrollo Web A Medida con Sistema de Marketing y Base de Datos',
+        client: 'Paulina L.',
         industry: 'Escritora / Autora',
-        services: 'Desarrollo Web A Medida con Sistema de Marketing',
+        services: 'Desarrollo Web A Medida + Social Media + Ads',
         year: '2025',
         challenge: 'El objetivo fue centralizar la presencia digital de la autora en un hub profesional que convirtiera seguidores en suscriptores. El reto principal consistió en implementar una estética visual rica (partículas, efectos parallax y texturas) sin sacrificar la velocidad de carga necesaria para retener al tráfico móvil proveniente de redes sociales.',
         solution: 'Se implementó una arquitectura web a medida que prioriza el contenido estático ligero, cargando la interactividad solo cuando es necesaria. La experiencia se optimizó mediante animaciones de aparición progresiva y formularios de suscripción asíncronos, garantizando una navegación fluida y sin interrupciones para el lector.',
         results: [
             { label: 'Suscriptores al Newsletter', value: '+1000' },
             { label: 'calificación en Amazon', value: '5.0' },
-            { label: 'Resultados reales', value: 'Éxito' },
+            { label: 'De visitas a leads', value: 'Conversión' },
         ],
         testimonial: 'La velocidad de la página es increíble, pero lo que más valoro es la facilidad con la que ahora manejo mi marketing. El sistema integrado me permite controlar todas mis campañas y automatizaciones con total autonomía, simplificando enormemente mi trabajo diario.',
-        testimonialAuthor: 'Paulina L., CEO',
+        testimonialAuthor: 'Paulina L., Autora',
         galleryDesktop: paulinalopezescritora,
-
-
+        galleryMobile: paulinalopezescritoramobile,
+        galleryFeatured: paulinalopezescritorafeatured,
     },
     { 
         slug: 'ganesha-stores', 
         title: 'Ganesha Stores', 
         image: ganeshastores,
-        description: 'Estrategia de Contenidos y Redes Sociales',
-        client: 'EcoStyle Fashion',
-        industry: 'Moda Sostenible',
-        services: 'Content Strategy, Reels, Community Management',
-        year: '2023',
-        challenge: 'La marca tenía productos excelentes pero poco alcance orgánico en Instagram. Su audiencia no interactuaba y las ventas dependían 100% de anuncios pagados.',
-        solution: 'Implementamos una estrategia de contenidos basada en storytelling y Reels educativos. Creamos un calendario editorial consistente y humanizamos la marca mostrando el proceso de fabricación.',
+        description: 'Desarrollo Web A Medida E-commerce con CMS y Base de Datos',
+        client: 'Gerardo G.',
+        industry: 'E-commerce / Retail',
+        services: 'Desarrollo Web A Medida + Social Media + Ads',
+        year: '2025',
+        challenge: 'La marca enfrentaba un cuello de botella operativo: carecía de una plataforma centralizada para mostrar sus productos. La dependencia de canales informales para enviar fotos y precios limitaba la experiencia de compra, impidiendo que los clientes pudieran explorar el catálogo completo de forma autónoma y visual.',
+        solution: 'Desarrollamos un E-commerce a medida con una base de datos estructurada que funciona como un catálogo digital 24/7. Diseñamos una interfaz centrada en la fotografía de producto para facilitar la exploración visual, permitiendo a los usuarios filtrar y descubrir el inventario sin fricción, profesionalizando así la presencia digital de la marca.',
         results: [
-            { label: 'Alcance Orgánico', value: '+250%' },
-            { label: 'Engagement', value: '4.5%' },
-            { label: 'Seguidores', value: '+5k' }
+            { label: 'Ventas Online', value: '+70%' },
+            { label: 'Clientes Felices', value: '100%' },
+            { label: 'Visitas al Catálogo', value: '+5.000' }
         ],
-        testimonial: 'Entendieron nuestra voz a la perfección. Ahora nuestra comunidad espera nuestros posts cada semana.',
-        testimonialAuthor: 'Ana M., Fundadora',
+        testimonial: 'Antes me pasaba el día respondiendo mensajes. Ahora la web vende por mí y los clientes aman poder ver las fotos con detalle.',
+        testimonialAuthor: 'Gerardo G., Fundador',
         galleryDesktop: ganeshastores,
-        galleryMobile: ganeshastores,
-        galleryFeatured: ganeshafeatured,
+        galleryMobile: ganeshastoresmobile,
+        galleryFeatured: ganeshastoresfeatured,
+  
     },
     { 
         slug: 'mister-mango', 
-        title: 'Lanzamiento App', 
-        description: 'Landing Page de Alta Conversión (One-Page)',
-        client: 'FitTrack App',
-        industry: 'Tecnología / Salud',
-        services: 'Landing Page, Copywriting, Astro',
+        title: 'Mister Mango', 
+        image: mistermango,
+        description: 'Creación de contenido y gestión de redes sociales',
+        client: 'Mateo L.',
+        industry: 'Comida y alimentos',
+        services: 'Presencia Orgánica',
         year: '2024',
-        challenge: 'Necesitaban validar una idea de app de fitness antes de desarrollarla. Requerían una página rápida para captar emails de interesados (Waitlist).',
-        solution: 'Desarrollamos una One-Page ultra optimizada en Astro enfocada 100% en la conversión. Integramos un formulario directo a su base de datos.',
+        challenge: 'El desafío era doble: primero, lograr que una foto transmitiera la acidez y frescura del producto (que se hiciera agua la boca). Segundo, capturar a ese cliente antojado que, aunque amaba el producto, no siempre tenía tiempo para desplazarse físicamente hasta el kiosko.',
+        solution: 'Diseñamos una estrategia visual de "Food Porn" para activar el deseo inmediato. Canalizamos ese antojo facilitando la acción: si no puedes venir al kiosko, un clic en la bio convierte el "qué rico se ve" en un pedido directo por DoorDash.',
         results: [
-            { label: 'Tasa de Conversión', value: '18%' },
-            { label: 'Emails Captados', value: '2,000+' },
-            { label: 'Tiempo de Carga', value: '0.4s' }
+            { label: 'Antojos Despertados', value: 'Miles' },
+            { label: 'Pedidos por Doordash', value: '+100' },
+            { label: 'Seguidores', value: '+1000' }
         ],
-         testimonial: 'La velocidad de la landing fue clave para nuestras campañas de pago. Resultados brutales.',
-        testimonialAuthor: 'David S., Product Owner',
+         testimonial: 'La gente llega al kiosko mostrándome los videos de TikTok y pidiendo "ese mismo mango que vi en Instagram". Las redes realmente nos trajeron gente nueva.',
+        testimonialAuthor: 'Mateo L., Fundador',
         galleryDesktop: mistermango,
-        galleryMobile: mistermango,
+        galleryMobile: mistermangomobile,
+        galleryFeatured: mistermangofeatured,
     },
     { 
         slug: 'anis-barbara', 
-        title: 'Consultoría Legal', 
-        description: 'Rediseño de Identidad y Sitio Web',
-        client: 'Legal & Asociados',
-        industry: 'Legal',
-        services: 'Branding, Web Design, Corporate Identity',
-        year: '2023',
-        challenge: 'Su imagen anterior se veía anticuada y poco profesional para clientes corporativos internacionales.',
-        solution: 'Renovamos su logotipo y paleta de colores hacia tonos sobrios y modernos. El sitio web se estructuró para destacar la experiencia de los socios.',
+        title: 'Anis Barbara',
+        image: anisbarbara, 
+        description: 'Creación de contenido y gestión de redes sociales',
+        client: 'Barbara S.',
+        industry: 'Bebidas Alcohólicas',
+        services: 'Presencia Orgánica',
+        year: '2025',
+        challenge: 'El reto era vender una bebida alcohólica propia exclusivamente por Instagram. Necesitábamos que el contenido visual generara por sí solo la confianza y el deseo necesarios para que un seguidor decidiera pedir su botella y concretar la compra a través de un mensaje directo (DM).',
+        solution: 'Transformamos su perfil en una experiencia de marca completa. Creamos contenido "lifestyle" que asocia la bebida con momentos de celebración y estatus, y gestionamos la comunidad para mantener una presencia activa. Logramos que el feed de Instagram hiciera el trabajo de venta, actuando como catálogo, vitrina y canal de atención al cliente todo en uno.',
         results: [
-            { label: 'Retención Web', value: '+60%' },
-            { label: 'Solicitudes Corp.', value: '+25%' },
-            { label: 'Percepción', value: 'Premium' }
-        ]
+            { label: 'Ventas por DM', value: 'Constantes' },
+            { label: 'Comunidad', value: 'Fiel' },
+            { label: 'de Brindis Compartidos', value: 'Miles' }
+        ],
+        testimonial: 'Mi Instagram ahora se ve increíble y profesional. Ustedes lograron captar la esencia de mi marca y gracias a eso he tenido muchos pedidos al DM.',
+        testimonialAuthor: 'Barbara S., Fundadora',
+        galleryDesktop: anisbarbara,
+        galleryMobile: anisbarbaramobile,
+        galleryFeatured: anisbarbarafeatured,
     }
   ];
 

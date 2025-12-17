@@ -1,9 +1,10 @@
+// astro.config.mjs
 import { defineConfig } from 'astro/config';
-// Importamos la integración oficial de Astro (la que tienes instalada en package.json)
 import tailwind from '@astrojs/tailwind';
+import cloudflare from '@astrojs/cloudflare'; // [!code ++]
 
 export default defineConfig({
-  // Usamos la integración aquí, NO en vite.plugins
   site: 'https://hikevodesign.com', 
   integrations: [tailwind()],
+  adapter: cloudflare(), // [!code ++] (Conecta el adaptador)
 });
