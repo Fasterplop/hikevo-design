@@ -8,7 +8,6 @@ import { Image } from 'astro:assets';
 import anisbarbara from '../../assets/images/projects/anis-barbara/anisbarbara-desktop.png';
 import anisbarbaramobile from '../../assets/images/projects/anis-barbara/anisbarbara-mobile.png';   
 import anisbarbarafeatured from '../../assets/images/projects/anis-barbara/anisbarbara-featured.png';
-
 import paulinalopezescritora from '../../assets/images/projects/paulinalopezescritora/paulinalopezescritora.com.png';
 import paulinalopezescritoramobile from '../../assets/images/projects/paulinalopezescritora/paulina-mobile.png';
 import paulinalopezescritorafeatured from '../../assets/images/projects/paulinalopezescritora/paulina-featured.png';
@@ -19,7 +18,7 @@ import ganeshastoresfeatured from '../../assets/images/projects/ganeshastores/ga
 
 import mistermango from '../../assets/images/projects/mistermango/mistermango-desktop.png';
 import mistermangomobile from '../../assets/images/projects/mistermango/mistermango-mobile.png';    
-import mistermangofeatured from '../../assets/images/projects/mistermango/mistermango-featured.png';    
+import mistermangofeatured from '../../assets/images/projects/mistermango/mistermango-featured.png';
 
 // Definición de tipos para TypeScript
 interface Project {
@@ -37,9 +36,12 @@ interface Project {
   testimonialAuthor?: string;
   // 2. Nuevo campo para la imagen (ImageMetadata es el tipo interno de Astro)
   image?: ImageMetadata; 
-  galleryDesktop?: ImageMetadata; // Recomendado: 1920 x 1080px, Minimo: 1280 x 720px
-  galleryMobile?: ImageMetadata;   // Recomendado: 1080 x 1080px , Minimo: 800 x 800px
-  galleryFeatured?: ImageMetadata; // Recomendado: 1080 x 1080px , Minimo: 800 x 800px
+  galleryDesktop?: ImageMetadata;
+  // Recomendado: 1920 x 1080px, Minimo: 1280 x 720px
+  galleryMobile?: ImageMetadata;
+  // Recomendado: 1080 x 1080px , Minimo: 800 x 800px
+  galleryFeatured?: ImageMetadata;
+  // Recomendado: 1080 x 1080px , Minimo: 800 x 800px
 
 }
 
@@ -55,14 +57,14 @@ export async function getStaticPaths() {
         industry: 'Escritora / Autora',
         services: 'Desarrollo Web A Medida + Social Media + Ads',
         year: '2025',
-        challenge: 'El objetivo fue centralizar la presencia digital de la autora en un hub profesional que convirtiera seguidores en suscriptores. El reto principal consistió en implementar una estética visual rica (partículas, efectos parallax y texturas) sin sacrificar la velocidad de carga necesaria para retener al tráfico móvil proveniente de redes sociales.',
-        solution: 'Se implementó una arquitectura web a medida que prioriza el contenido estático ligero, cargando la interactividad solo cuando es necesaria. La experiencia se optimizó mediante animaciones de aparición progresiva y formularios de suscripción asíncronos, garantizando una navegación fluida y sin interrupciones para el lector.',
+        challenge: 'El objetivo fue centralizar la presencia digital de la autora en un hub profesional que convirtiera seguidores en suscriptores.\nEl reto principal consistió en implementar una estética visual rica (partículas, efectos parallax y texturas) sin sacrificar la velocidad de carga necesaria para retener al tráfico móvil proveniente de redes sociales.',
+        solution: 'Se implementó una arquitectura web a medida que prioriza el contenido estático ligero, cargando la interactividad solo cuando es necesaria.\nLa experiencia se optimizó mediante animaciones de aparición progresiva y formularios de suscripción asíncronos, garantizando una navegación fluida y sin interrupciones para el lector.',
         results: [
             { label: 'Suscriptores al Newsletter', value: '+1000' },
             { label: 'calificación en Amazon', value: '5.0' },
             { label: 'De visitas a leads', value: 'Conversión' },
         ],
-        testimonial: 'La velocidad de la página es increíble, pero lo que más valoro es la facilidad con la que ahora manejo mi marketing. El sistema integrado me permite controlar todas mis campañas y automatizaciones con total autonomía, simplificando enormemente mi trabajo diario.',
+        testimonial: 'La velocidad de la página es increíble, pero lo que más valoro es la facilidad con la que ahora manejo mi marketing.\nEl sistema integrado me permite controlar todas mis campañas y automatizaciones con total autonomía, simplificando enormemente mi trabajo diario.',
         testimonialAuthor: 'Paulina L., Autora',
         galleryDesktop: paulinalopezescritora,
         galleryMobile: paulinalopezescritoramobile,
@@ -77,19 +79,18 @@ export async function getStaticPaths() {
         industry: 'E-commerce / Retail',
         services: 'Desarrollo Web A Medida + Social Media + Ads',
         year: '2025',
-        challenge: 'La marca enfrentaba un cuello de botella operativo: carecía de una plataforma centralizada para mostrar sus productos. La dependencia de canales informales para enviar fotos y precios limitaba la experiencia de compra, impidiendo que los clientes pudieran explorar el catálogo completo de forma autónoma y visual.',
-        solution: 'Desarrollamos un E-commerce a medida con una base de datos estructurada que funciona como un catálogo digital 24/7. Diseñamos una interfaz centrada en la fotografía de producto para facilitar la exploración visual, permitiendo a los usuarios filtrar y descubrir el inventario sin fricción, profesionalizando así la presencia digital de la marca.',
+        challenge: 'La marca enfrentaba un cuello de botella operativo: carecía de una plataforma centralizada para mostrar sus productos.\nLa dependencia de canales informales para enviar fotos y precios limitaba la experiencia de compra, impidiendo que los clientes pudieran explorar el catálogo completo de forma autónoma y visual.',
+        solution: 'Desarrollamos un E-commerce a medida con una base de datos estructurada que funciona como un catálogo digital 24/7.\nDiseñamos una interfaz centrada en la fotografía de producto para facilitar la exploración visual, permitiendo a los usuarios filtrar y descubrir el inventario sin fricción, profesionalizando así la presencia digital de la marca.',
         results: [
             { label: 'Ventas Online', value: '+70%' },
             { label: 'Clientes Felices', value: '100%' },
             { label: 'Visitas al Catálogo', value: '+5.000' }
         ],
-        testimonial: 'Antes me pasaba el día respondiendo mensajes. Ahora la web vende por mí y los clientes aman poder ver las fotos con detalle.',
+        testimonial: 'Antes me pasaba el día respondiendo mensajes.\nAhora la web vende por mí y los clientes aman poder ver las fotos con detalle.',
         testimonialAuthor: 'Gerardo G., Fundador',
         galleryDesktop: ganeshastores,
         galleryMobile: ganeshastoresmobile,
         galleryFeatured: ganeshastoresfeatured,
-  
     },
     { 
         slug: 'mister-mango', 
@@ -100,14 +101,14 @@ export async function getStaticPaths() {
         industry: 'Comida y alimentos',
         services: 'Presencia Orgánica',
         year: '2024',
-        challenge: 'El desafío era doble: primero, lograr que una foto transmitiera la acidez y frescura del producto (que se hiciera agua la boca). Segundo, capturar a ese cliente antojado que, aunque amaba el producto, no siempre tenía tiempo para desplazarse físicamente hasta el kiosko.',
-        solution: 'Diseñamos una estrategia visual de "Food Porn" para activar el deseo inmediato. Canalizamos ese antojo facilitando la acción: si no puedes venir al kiosko, un clic en la bio convierte el "qué rico se ve" en un pedido directo por DoorDash.',
+        challenge: 'El desafío era doble: primero, lograr que una foto transmitiera la acidez y frescura del producto (que se hiciera agua la boca).\nSegundo, capturar a ese cliente antojado que, aunque amaba el producto, no siempre tenía tiempo para desplazarse físicamente hasta el kiosko.',
+        solution: 'Diseñamos una estrategia visual de "Food Porn" para activar el deseo inmediato.\nCanalizamos ese antojo facilitando la acción: si no puedes venir al kiosko, un clic en la bio convierte el "qué rico se ve" en un pedido directo por DoorDash.',
         results: [
             { label: 'Antojos Despertados', value: 'Miles' },
             { label: 'Pedidos por Doordash', value: '+100' },
             { label: 'Seguidores', value: '+1000' }
         ],
-         testimonial: 'La gente llega al kiosko mostrándome los videos de TikTok y pidiendo "ese mismo mango que vi en Instagram". Las redes realmente nos trajeron gente nueva.',
+        testimonial: 'La gente llega al kiosko mostrándome los videos de TikTok y pidiendo "ese mismo mango que vi en Instagram".\nLas redes realmente nos trajeron gente nueva.',
         testimonialAuthor: 'Mateo L., Fundador',
         galleryDesktop: mistermango,
         galleryMobile: mistermangomobile,
@@ -122,21 +123,20 @@ export async function getStaticPaths() {
         industry: 'Bebidas Alcohólicas',
         services: 'Presencia Orgánica',
         year: '2025',
-        challenge: 'El reto era vender una bebida alcohólica propia exclusivamente por Instagram. Necesitábamos que el contenido visual generara por sí solo la confianza y el deseo necesarios para que un seguidor decidiera pedir su botella y concretar la compra a través de un mensaje directo (DM).',
-        solution: 'Transformamos su perfil en una experiencia de marca completa. Creamos contenido "lifestyle" que asocia la bebida con momentos de celebración y estatus, y gestionamos la comunidad para mantener una presencia activa. Logramos que el feed de Instagram hiciera el trabajo de venta, actuando como catálogo, vitrina y canal de atención al cliente todo en uno.',
+        challenge: 'El reto era vender una bebida alcohólica propia exclusivamente por Instagram.\nNecesitábamos que el contenido visual generara por sí solo la confianza y el deseo necesarios para que un seguidor decidiera pedir su botella y concretar la compra a través de un mensaje directo (DM).',
+        solution: 'Transformamos su perfil en una experiencia de marca completa.\nCreamos contenido "lifestyle" que asocia la bebida con momentos de celebración y estatus, y gestionamos la comunidad para mantener una presencia activa.\nLogramos que el feed de Instagram hiciera el trabajo de venta, actuando como catálogo, vitrina y canal de atención al cliente todo en uno.',
         results: [
             { label: 'Ventas por DM', value: 'Constantes' },
             { label: 'Comunidad', value: 'Fiel' },
             { label: 'de Brindis Compartidos', value: 'Miles' }
         ],
-        testimonial: 'Mi Instagram ahora se ve increíble y profesional. Ustedes lograron captar la esencia de mi marca y gracias a eso he tenido muchos pedidos al DM.',
+        testimonial: 'Mi Instagram ahora se ve increíble y profesional.\nUstedes lograron captar la esencia de mi marca y gracias a eso he tenido muchos pedidos al DM.',
         testimonialAuthor: 'Barbara S., Fundadora',
         galleryDesktop: anisbarbara,
         galleryMobile: anisbarbaramobile,
         galleryFeatured: anisbarbarafeatured,
     }
   ];
-
   return projects.map(project => ({
     params: { slug: project.slug },
     props: { project },
@@ -168,18 +168,15 @@ const breadcrumbSchema = JSON.stringify({
 ---
 
 <MainLayout title={`${project.title} | Caso de Estudio Hikevo`} description={project.description}>
-  <!-- Inyección Schema -->
   <script type="application/ld+json" set:html={breadcrumbSchema} slot="head" />
 
   <Header />
 
   <main class="pt-32 pb-20">
-    <!-- [SECCIÓN 1: HEADER PROYECTO] -->
     <section class="mb-20">
         <Container>
             <div class="bg-gray-900 text-white rounded-3xl p-8 md:p-16 relative overflow-hidden animate-fade-in">
                 
-                <!-- 3. IMAGEN DE FONDO: Lógica condicional -->
                 {project.image ? (
                    <div class="absolute inset-0 z-0">
                       <Image 
@@ -189,7 +186,7 @@ const breadcrumbSchema = JSON.stringify({
                         width={1200}
                         height={600}
                       />
-                      <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent"></div>
+                       <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent"></div>
                    </div>
                 ) : (
                    /* Fallback decorativo si no hay imagen */
@@ -214,7 +211,7 @@ const breadcrumbSchema = JSON.stringify({
                             <span class="block text-gray-500 text-sm mb-1">Servicios</span>
                             <span class="font-semibold">{project.services}</span>
                         </div>
-                         <div>
+                        <div>
                             <span class="block text-gray-500 text-sm mb-1">Año</span>
                             <span class="font-semibold">{project.year}</span>
                         </div>
@@ -224,10 +221,9 @@ const breadcrumbSchema = JSON.stringify({
         </Container>
     </section>
 
-    <!-- [SECCIÓN 2: HISTORIA] -->
     <section class="mb-24">
         <Container>
-            <div class="grid md:grid-cols-2 gap-16 items-start">
+            <div class="grid md:grid-cols-2 gap-16 items-start reveal-smooth">
                 <div>
                     <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
                         <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-sm">1</span> 
@@ -245,20 +241,18 @@ const breadcrumbSchema = JSON.stringify({
                     <p class="text-gray-600 leading-relaxed whitespace-pre-line mb-8 text-lg">
                         {project.solution}
                     </p>
-                    
                 </div>
             </div>
         </Container>
     </section>
 
-    <!-- [SECCIÓN 3: RESULTADOS] -->
     <section class="mb-24 bg-hikevo-black text-white py-20 rounded-none md:rounded-3xl mx-0 md:mx-4">
         <Container>
-            <div class="text-center mb-8">
+            <div class="text-center mb-8 reveal-smooth">
                 <h2 class="text-3xl font-bold">Los Resultados</h2>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8 text-center">
+            <div class="grid md:grid-cols-3 gap-8 text-center reveal-smooth delay-150">
                 {project.results.map((kpi) => (
                     <div class="p-6">
                         <div class="text-5xl font-bold text-hikevo-yellow mb-2">{kpi.value}</div>
@@ -268,7 +262,7 @@ const breadcrumbSchema = JSON.stringify({
             </div>
 
             {project.testimonial && (
-                <div class="mt-12 max-w-3xl mx-auto text-center border-t border-gray-800 pt-10">
+                <div class="mt-12 max-w-3xl mx-auto text-center border-t border-gray-800 pt-10 reveal-smooth delay-300">
                     <p class="text-xl italic text-gray-300 mb-6">"{project.testimonial}"</p>
                     <div class="text-sm font-bold text-hikevo-yellow">— {project.testimonialAuthor}</div>
                 </div>
@@ -276,23 +270,13 @@ const breadcrumbSchema = JSON.stringify({
         </Container>
     </section>
 
-    <!-- [SECCIÓN 4: GALERÍA VISUAL - Placeholder para futuras imágenes] -->
- 
-
     <section class="mb-24 overflow-hidden py-10">
-        <!-- <Container>
-            <div class="text-center mb-12">
-                <h3 class="text-2xl font-bold text-black md:text-3xl">Inmersión Volumétrica</h3>
-                <p class="text-gray-500 mt-2">Visualización de la interfaz en espacio tridimensional.</p>
-            </div>
-        </Container> -->
-
         {/* Contenedor Principal Responsive */}
         <div class="w-full px-4">
             
             {/* --- VISTA DESKTOP (3D TILT) --- */}
-            {/* Se activa solo en pantallas grandes (lg/xl) para asegurar que hay espacio para el efecto */}
-            <div class="hidden lg:flex gap-6 items-center justify-center [perspective:1200px] max-w-7xl mx-auto">
+            {/* Animación añadida al contenedor desktop */}
+            <div class="hidden lg:flex gap-6 items-center justify-center [perspective:1200px] max-w-7xl mx-auto reveal-smooth">
                 
                 {/* Panel Izquierdo (Mobile) */}
                 {project.galleryMobile && (
@@ -305,7 +289,7 @@ const breadcrumbSchema = JSON.stringify({
                     </div>
                 )}
 
-                {/* Panel Central (Desktop) - Dimensiones ajustadas para no ser tan ancho */}
+                {/* Panel Central (Desktop) */}
                 {project.galleryDesktop && (
                      <div class="w-[600px] xl:w-[700px] shrink-0 transition-transform duration-500 ease-out hover:scale-[1.02] shadow-2xl shadow-gray-200/50 rounded-2xl bg-white border border-gray-100 overflow-hidden z-20 relative">
                         <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-50 z-30"></div>
@@ -327,12 +311,11 @@ const breadcrumbSchema = JSON.stringify({
                         />
                     </div>
                 )}
-
             </div>
 
             {/* --- VISTA TABLET/MÓVIL (STACK VERTICAL) --- */}
-            {/* Diseño distinto: Tarjetas limpias sin texto, solo imágenes */}
-            <div class="lg:hidden flex flex-col gap-8 max-w-2xl mx-auto">
+            {/* Animación añadida al contenedor móvil */}
+            <div class="lg:hidden flex flex-col gap-8 max-w-2xl mx-auto reveal-smooth">
                  
                  {/* 1. Tarjeta Principal (Desktop) */}
                  {project.galleryDesktop && (
@@ -341,9 +324,8 @@ const breadcrumbSchema = JSON.stringify({
                     </div>
                  )}
 
-                 {/* Grid para las secundarias (1 col en móvil, 2 cols en tablet) */}
+                 {/* Grid para las secundarias */}
                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                     
                      {/* 2. Tarjeta Móvil */}
                      {project.galleryMobile && (
                         <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-white flex flex-col">
@@ -362,16 +344,13 @@ const breadcrumbSchema = JSON.stringify({
                         </div>
                      )}
                  </div>
-
             </div>
-
         </div>
     </section>
 
-    <!-- [SECCIÓN 5: CTA CONTEXTUAL] -->
     <section class="py-20 border-t border-gray-100 bg-gray-50/50">
          <Container>
-            <div class="text-center max-w-2xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto reveal-smooth">
                 <h2 class="text-3xl font-bold mb-4">¿Buscas resultados similares?</h2>
                 <p class="text-gray-600 mb-8">No prometemos magia, prometemos ingeniería y estrategia. Hablemos de tu proyecto.</p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">

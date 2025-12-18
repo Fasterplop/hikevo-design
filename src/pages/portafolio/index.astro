@@ -14,7 +14,6 @@ import anisbarbara from '../../assets/images/projects/anis-barbara/anisbarbara-m
 
 const title = "Portafolio | Hikevo Design";
 const description = "Selección de proyectos de desarrollo web y estrategias digitales. Resultados reales para empresas reales.";
-
 // 2. Definir la interfaz para asegurar que 'image' siempre sea ImageMetadata
 interface Project {
   id: number;
@@ -24,7 +23,8 @@ interface Project {
   categoryLabel: string;
   service: string;
   result: string;
-  image: ImageMetadata; // Esto elimina el error de tipo "string | ImageMetadata"
+  image: ImageMetadata;
+// Esto elimina el error de tipo "string | ImageMetadata"
 }
 
 // 3. Datos de proyectos tipados correctamente
@@ -69,23 +69,12 @@ const projects: Project[] = [
     result: 'Crecimiento orgánico de comunidad y ventas recurrentes',
     image: anisbarbara
   },
-  // {
-  //   id: 5,
-  //   slug: 'consultoria-legal',
-  //   title: 'Consultoría Legal',
-  //   category: 'branding',
-  //   categoryLabel: 'Branding',
-  //   service: 'Rediseño Web & Presencia Orgánica',
-  //   result: 'Modernización de identidad',
-  //   image: imgPlaceholder
-  // }
 ];
 ---
 <MainLayout title={title} description={description}>
   <Header />
 
   <main class="pt-32 pb-20">
-    <!-- [SECCIÓN 1: HERO] -->
     <section class="mb-16">
       <Container>
         <div class="max-w-3xl mx-auto text-center animate-fade-in">
@@ -94,11 +83,11 @@ const projects: Project[] = [
             <span class="text-hikevo-gray">más impacto.</span>
           </h1>
           <p class="text-lg text-hikevo-charcoal/80 leading-relaxed mb-10">
-            Una selección de nuestros proyectos favoritos. Diseñados para convertir y construidos para durar.
+            Una selección de nuestros proyectos favoritos.
+            Diseñados para convertir y construidos para durar.
           </p>
 
-          <!-- Filtros de Categoría -->
-          <div class="flex flex-wrap justify-center gap-2 md:gap-4" id="portfolio-filters">
+          <div class="flex flex-wrap justify-center gap-2 md:gap-4 reveal-smooth delay-150" id="portfolio-filters">
             <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-all bg-hikevo-black text-white" data-filter="all">
               Todos
             </button>
@@ -108,64 +97,58 @@ const projects: Project[] = [
             <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" data-filter="social">
               Redes Sociales
             </button>
-             <!-- <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" data-filter="branding">
-              Branding
-            </button> -->
           </div>
         </div>
       </Container>
     </section>
 
-    <!-- [SECCIÓN 2: GRID DE PROYECTOS] -->
     <section class="mb-24">
-  <Container>
-    <div class="grid md:grid-cols-2 gap-8" id="projects-grid">
-      {projects.map((project) => (
-        <article class="group project-card" data-category={project.category}>
-          <a href={`/portafolio/${project.slug}`} class="block">
-            
-            <div class="rounded-2xl aspect-[4/3] mb-6 overflow-hidden relative bg-gray-200 group-hover:shadow-lg transition-all duration-500">
-               
-               <Image 
-                 src={project.image} 
-                 alt={`Proyecto ${project.title}`}
-                 width={800} 
-                 height={600}
-                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 z-0"
-               />
+      <Container>
+        <div class="grid md:grid-cols-2 gap-8 reveal-smooth delay-300" id="projects-grid">
+          {projects.map((project) => (
+            <article class="group project-card" data-category={project.category}>
+              <a href={`/portafolio/${project.slug}`} class="block">
+                
+                <div class="rounded-2xl aspect-[4/3] mb-6 overflow-hidden relative bg-gray-200 group-hover:shadow-lg transition-all duration-500">
+                  <Image 
+                    src={project.image} 
+                    alt={`Proyecto ${project.title}`}
+                    width={800} 
+                    height={600}
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 z-0"
+                  />
 
-               <div class="absolute inset-0 flex items-center justify-center text-gray-400 font-medium z-0 opacity-0">
-                  Mockup {project.title}
-               </div>
+                  <div class="absolute inset-0 flex items-center justify-center text-gray-400 font-medium z-0 opacity-0">
+                      Mockup {project.title}
+                  </div>
 
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 z-10"></div>
-            </div>
-            
-            <div class="flex items-start justify-between">
-                <div>
-                    <h3 class="text-2xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors">{project.title}</h3>
-                    <p class="text-sm text-hikevo-gray font-medium mb-2">{project.service}</p>
-                    <div class="inline-block bg-green-50 text-green-700 text-xs px-2 py-1 rounded-md font-medium border border-green-100">
-                      Resultado: {project.result}
+                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 z-10"></div>
+                </div>
+                
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors">{project.title}</h3>
+                        <p class="text-sm text-hikevo-gray font-medium mb-2">{project.service}</p>
+                        <div class="inline-block bg-green-50 text-green-700 text-xs px-2 py-1 rounded-md font-medium border border-green-100">
+                          Resultado: {project.result}
+                        </div>
+                    </div>
+                    <div class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-hikevo-black group-hover:border-hikevo-black transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-black group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
                     </div>
                 </div>
-                <div class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-hikevo-black group-hover:border-hikevo-black transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-black group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                </div>
-            </div>
-          </a>
-        </article>
-      ))}
-    </div>
-  </Container>
-</section>
+              </a>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </section>
 
-    <!-- [SECCIÓN 3: CTA "BANDEJA DE SALIDA"] -->
     <section class="py-20 bg-hikevo-gray-light">
         <Container>
-            <div class="text-center max-w-2xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto reveal-smooth">
                 <h2 class="text-3xl font-bold mb-4">¿Te gusta lo que ves?</h2>
                 <p class="text-gray-600 mb-8">Podemos construir algo igual de efectivo para tu negocio.</p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
