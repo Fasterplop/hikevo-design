@@ -5,7 +5,7 @@ import type { APIRoute } from "astro";
 import { Resend } from 'resend';
 import { z } from 'zod'; // Validación de tipos
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
+
 
 // Schema de validación
 const ContactSchema = z.object({
@@ -16,6 +16,7 @@ const ContactSchema = z.object({
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    const resend = new Resend(import.meta.env.RESEND_API_KEY);
     const formData = await request.formData();
     const email = formData.get("email");
     const hp_check = formData.get("hp_check"); // Campo oculto anti-spam
