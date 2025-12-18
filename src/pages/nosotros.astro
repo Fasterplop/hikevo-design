@@ -4,9 +4,9 @@ import Header from '../components/common/Header.astro';
 import Container from '../components/ui/Container.astro';
 import Button from '../components/common/Button.astro';
 import { Image } from 'astro:assets';
-import luis from '../assets/images/luis.png';
-import paulina from '../assets/images/paulina.png';
-import hikevo from '../assets/images/hikevo.jpg';
+import luis from '../assets/images/luis.jpg';
+import paulina from '../assets/images/paulina.jpg';
+import logo from '/public/logo.svg';
 
 const title = "Sobre Hikevo | Agencia Digital Honesta y Técnica";
 const description = "Conoce al equipo detrás de Hikevo. Desarrollo web y contenido estratégico con un trato personal y transparente.";
@@ -39,11 +39,12 @@ const description = "Conoce al equipo detrás de Hikevo. Desarrollo web y conten
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div>
                      <!-- Placeholder Imagen Lifestyle -->
-                    <div class="aspect-[4/5] bg-gray-200 rounded-3xl relative overflow-hidden">
+                    <div class="aspect-[4/5] rounded-3xl relative overflow-hidden">
+                        <!-- <div class="aspect-[4/5] bg-gray-200 rounded-3xl relative overflow-hidden"> -->
     <Image 
-        src={hikevo} 
+        src={logo} 
         alt="Espacio de trabajo de Hikevo Design" 
-        class="w-full h-full object-cover"
+        class="w-full h-full object-fit"
         width={800} 
         quality="high"
     />
