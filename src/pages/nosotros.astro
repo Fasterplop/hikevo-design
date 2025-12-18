@@ -17,7 +17,6 @@ const description = "Conoce al equipo detrás de Hikevo. Desarrollo web y conten
 
   <main class="pt-32 pb-20">
     
-    <!-- [SECCIÓN 1: HERO - LA IDENTIDAD] -->
     <section class="mb-24">
         <Container>
             <div class="max-w-4xl mx-auto text-center animate-fade-in">
@@ -27,40 +26,41 @@ const description = "Conoce al equipo detrás de Hikevo. Desarrollo web y conten
                     <span class="text-hikevo-gray">en el mundo digital.</span>
                 </h1>
                 <p class="text-lg text-hikevo-charcoal/80 leading-relaxed max-w-2xl mx-auto">
-                    Desarrollo Web y Creación de Contenido. Nos encargamos de la tecnología para que tú solo disfrutes de los resultados.
+                    Desarrollo Web y Creación de Contenido.
+                    Nos encargamos de la tecnología para que tú solo disfrutes de los resultados.
                 </p>
             </div>
         </Container>
     </section>
 
-    <!-- [SECCIÓN 2: MISIÓN (EL ALIVIO)] -->
     <section class="mb-24 py-20 bg-hikevo-gray-light">
         <Container>
-            <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="grid md:grid-cols-2 gap-16 items-center reveal-smooth">
                 <div>
-                     <!-- Placeholder Imagen Lifestyle -->
-                    <div class="aspect-[4/5] rounded-3xl relative overflow-hidden">
-                        <!-- <div class="aspect-[4/5] bg-gray-200 rounded-3xl relative overflow-hidden"> -->
-    <Image 
-        src={logo} 
-        alt="Espacio de trabajo de Hikevo Design" 
-        class="w-full h-full object-fit"
-        width={800} 
-        quality="high"
-    />
-</div>
+                    <div class="aspect-[4/5] rounded-3xl relative overflow-hidden bg-white p-8 flex items-center justify-center">
+                        <Image 
+                            src={logo} 
+                            alt="Espacio de trabajo de Hikevo Design" 
+                            class="w-full h-full object-contain"
+                            width={800} 
+                            quality="high"
+                        />
+                    </div>
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold mb-6">Tu tranquilidad es nuestro proyecto.</h2>
                     <div class="space-y-6 text-hikevo-charcoal/80 text-lg leading-relaxed">
                         <p>
-                            Sabemos que el mundo digital puede ser abrumador. Nuestra misión es simple: <strong>quitarte ese peso de encima.</strong>
+                            Sabemos que el mundo digital puede ser abrumador.
+                            Nuestra misión es simple: <strong>quitarte ese peso de encima.</strong>
                         </p>
                         <p>
-                            No necesitas ser un experto en tecnología ni tener la idea perfecta definida. Nosotros te guiamos paso a paso con total transparencia, construyendo para ti una presencia digital de la que te sientas profundamente orgulloso.
+                            No necesitas ser un experto en tecnología ni tener la idea perfecta definida.
+                            Nosotros te guiamos paso a paso con total transparencia, construyendo para ti una presencia digital de la que te sientas profundamente orgulloso.
                         </p>
                         <p>
-                            Transformamos tu "no sé por dónde empezar" en una web y unos contenidos de calidad superior. Sin pérdidas de tiempo. Sin estrés.
+                            Transformamos tu "no sé por dónde empezar" en una web y unos contenidos de calidad superior.
+                            Sin pérdidas de tiempo. Sin estrés.
                         </p>
                     </div>
                 </div>
@@ -68,72 +68,74 @@ const description = "Conoce al equipo detrás de Hikevo. Desarrollo web y conten
         </Container>
     </section>
 
-    <!-- [SECCIÓN 3: VISIÓN Y VALORES] -->
     <section class="mb-24">
         <Container>
-            <div class="max-w-3xl mx-auto text-center mb-16">
+            <div class="max-w-3xl mx-auto text-center mb-16 reveal-smooth">
                 <h2 class="text-3xl font-bold mb-4">Un nuevo estándar de colaboración.</h2>
                 <p class="text-gray-600 text-lg">
-                    Buscamos redefinir la experiencia en este sector. Creemos que la contratación de servicios no debería ser una incertidumbre. Nuestra misión es construir un estándar basado en <strong>la transparencia, el compromiso técnico y los resultados tangibles.</strong>
+                    Buscamos redefinir la experiencia en este sector.
+                    Creemos que la contratación de servicios no debería ser una incertidumbre.
+                    Nuestra misión es construir un estándar basado en <strong>la transparencia, el compromiso técnico y los resultados tangibles.</strong>
                 </p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-0 border-t border-b border-gray-200 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-    <div class="p-10 flex flex-col items-start hover:bg-gray-50 transition-colors">
-        <div class="text-4xl font-bold mb-6 text-black border-b-2 border-black pb-2">01</div>
-        <h3 class="text-lg font-bold mb-3 uppercase tracking-wide">Transparencia Total</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">Nunca te dejaremos a oscuras. Te explicamos cada decisión, cada costo y cada paso. Si no lo necesitas, no te lo vendemos.</p>
-    </div>
+                
+                <div class="p-10 flex flex-col items-start hover:bg-gray-50 transition-colors reveal-smooth">
+                    <div class="text-4xl font-bold mb-6 text-black border-b-2 border-black pb-2">01</div>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-wide">Transparencia Total</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Nunca te dejaremos a oscuras.
+                    Te explicamos cada decisión, cada costo y cada paso. Si no lo necesitas, no te lo vendemos.</p>
+                </div>
 
-    <div class="p-10 flex flex-col items-start hover:bg-gray-50 transition-colors">
-        <div class="text-4xl font-bold mb-6 text-black border-b-2 border-yellow-400 pb-2">02</div>
-        <h3 class="text-lg font-bold mb-3 uppercase tracking-wide">Calidad que Sorprende</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">No hacemos "webs rápidas para salir del paso". Creamos activos digitales premium con un nivel de detalle superior.</p>
-    </div>
+                <div class="p-10 flex flex-col items-start hover:bg-gray-50 transition-colors reveal-smooth delay-150">
+                    <div class="text-4xl font-bold mb-6 text-black border-b-2 border-yellow-400 pb-2">02</div>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-wide">Calidad que Sorprende</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">No hacemos "webs rápidas para salir del paso".
+                    Creamos activos digitales premium con un nivel de detalle superior.</p>
+                </div>
 
-    <div class="p-10 flex flex-col items-start hover:bg-gray-50 transition-colors">
-        <div class="text-4xl font-bold mb-6 text-black border-b-2 border-gray-300 pb-2">03</div>
-        <h3 class="text-lg font-bold mb-3 uppercase tracking-wide">Guía Paso a Paso</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">¿No tienes la idea clara? Mejor. Nos encanta dar forma al caos. Nosotros ponemos la estructura y la estrategia.</p>
-    </div>
-</div>
+                <div class="p-10 flex flex-col items-start hover:bg-gray-50 transition-colors reveal-smooth delay-300">
+                    <div class="text-4xl font-bold mb-6 text-black border-b-2 border-gray-300 pb-2">03</div>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-wide">Guía Paso a Paso</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">¿No tienes la idea clara?
+                    Mejor. Nos encanta dar forma al caos. Nosotros ponemos la estructura y la estrategia.</p>
+                </div>
+            </div>
         </Container>
     </section>
 
-    <!-- [SECCIÓN 5: EL EQUIPO] -->
     <section class="mb-24">
         <Container>
-             <div class="text-center mb-12">
+             <div class="text-center mb-12 reveal-smooth">
                 <h2 class="text-3xl font-bold mb-2">Tus socios en el crecimiento digital</h2>
                 <p class="text-gray-500">Trabajamos mano a mano contigo para asegurar que tu presencia digital crezca a la par de tu negocio.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-                <!-- Miembro 1 -->
-                <div class="group text-center">
+                <div class="group text-center reveal-smooth">
                     <div class="aspect-square bg-gray-200 rounded-full mx-auto mb-6 max-w-[250px] overflow-hidden relative ">
-    <Image 
-        src={luis} 
-        alt="Luis Lozada - Fundador" 
-        class="w-full h-full object-cover"
-        width={400}
-    />
-</div>
+                        <Image 
+                            src={luis} 
+                            alt="Luis Lozada - Fundador" 
+                            class="w-full h-full object-cover"
+                            width={400}
+                        />
+                    </div>
                     <h3 class="text-xl font-bold">Luis Lozada</h3>
                     <p class="text-hikevo-yellow font-medium text-sm mb-4">Fundador & Web Developer</p>
                     <p class="text-gray-600 text-sm italic">"Me encargo de que tu web sea rápida, segura y esté construida sobre cimientos sólidos."</p>
                 </div>
 
-                <!-- Miembro 2 -->
-                <div class="group text-center">
+                <div class="group text-center reveal-smooth delay-150">
                     <div class="aspect-square bg-gray-200 rounded-full mx-auto mb-6 max-w-[250px] overflow-hidden relative">
-    <Image 
-        src={paulina} 
-        alt="Paulina Lopez - Cofundadora" 
-        class="w-full h-full object-cover"
-        width={400}
-    />
-</div>
+                        <Image 
+                            src={paulina} 
+                            alt="Paulina Lopez - Cofundadora" 
+                            class="w-full h-full object-cover"
+                            width={400}
+                        />
+                    </div>
                     <h3 class="text-xl font-bold">Paulina Lopez</h3>
                     <p class="text-hikevo-yellow font-medium text-sm mb-4">Cofundadora & Content Manager</p>
                     <p class="text-gray-600 text-sm italic">"Doy voz a tu marca en redes sociales para conectar con tu audiencia real."</p>
@@ -142,14 +144,13 @@ const description = "Conoce al equipo detrás de Hikevo. Desarrollo web y conten
         </Container>
     </section>
 
-    <!-- [SECCIÓN 6: CTA FINAL] -->
     <section class="py-20 bg-hikevo-black text-white">
         <Container>
-            <div class="text-center max-w-2xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto reveal-smooth">
                 <h2 class="text-3xl font-bold mb-4">¿Listo para sentirte orgulloso de tu marca?</h2>
                 <p class="text-gray-400 mb-8">Deja la tecnología en nuestras manos y enfócate en dirigir tu negocio.</p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                     <Button href="https://wa.me/1234567890" variant="primary" isExternal={true}>
+                     <Button href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio." variant="primary" isExternal={true}>
                         Hablar con nosotros
                     </Button>
                     <Button href="/portafolio" variant="outline" class="text-white border-white hover:bg-white hover:text-black">

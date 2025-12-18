@@ -8,7 +8,6 @@ import Button from '../components/common/Button.astro';
 const title = "Soluciones y Precios | Hikevo Design";
 const description = "Paquetes de diseño web y gestión de redes sociales con precios claros. Sin sorpresas ni costos ocultos.";
 
-// Schema Service (JSON-LD) para SEO - FUSIONADO
 // Schema Service (JSON-LD) para SEO - COMPLETO CON GROWTH
 const serviceSchema = JSON.stringify({
   "@context": "https://schema.org",
@@ -107,7 +106,8 @@ const serviceSchema = JSON.stringify({
                     <span class="text-hikevo-gray">sin letra pequeña.</span>
                 </h1>
                 <p class="text-base md:text-lg text-hikevo-charcoal/80 leading-relaxed px-2 md:px-0">
-                    Paquetes diseñados para resolver problemas específicos, no para venderte horas de desarrollo. Elige cómo quieres crecer.
+                    Paquetes diseñados para resolver problemas específicos, no para venderte horas de desarrollo.
+                    Elige cómo quieres crecer.
                 </p>
             </div>
         </Container>
@@ -116,7 +116,7 @@ const serviceSchema = JSON.stringify({
     <section class="bg-gray-50 py-12 md:py-16 px-4 sm:px-6 lg:px-8 font-sans" id="desarrollo-web">
       <div class="max-w-7xl mx-auto">
         
-        <div class="text-center mb-10 md:mb-12">
+        <div class="text-center mb-10 md:mb-12 reveal-smooth">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">Planes de Desarrollo Web</h2>
           <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
             Soluciones escalables diseñadas para convertir visitas en clientes.
@@ -125,11 +125,12 @@ const serviceSchema = JSON.stringify({
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
           
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8 hover:shadow-md transition-all duration-300 relative overflow-hidden group flex flex-col max-w-md mx-auto lg:max-w-none w-full">
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8 hover:shadow-md transition-all duration-300 relative overflow-hidden group flex flex-col max-w-md mx-auto lg:max-w-none w-full reveal-smooth">
             <div class="mb-6">
               <h3 class="text-2xl font-bold text-gray-900">Plan Landing</h3>
               <p class="text-gray-500 mt-2 text-sm leading-relaxed">
-                Tu marca completa en un solo scroll de alto impacto. Perfecto para validar ideas y startups.
+                Tu marca completa en un solo scroll de alto impacto.
+                Perfecto para validar ideas y startups.
               </p>
             </div>
 
@@ -175,7 +176,7 @@ const serviceSchema = JSON.stringify({
             </a>
           </div>
 
-          <div class="bg-white rounded-2xl shadow-xl border-2 border-amber-400 p-6 md:p-8 relative transform lg:-translate-y-4 z-10 flex flex-col max-w-md mx-auto lg:max-w-none w-full order-first lg:order-none">
+          <div class="bg-white rounded-2xl shadow-xl border-2 border-amber-400 p-6 md:p-8 relative transform lg:-translate-y-4 z-10 flex flex-col max-w-md mx-auto lg:max-w-none w-full order-first lg:order-none reveal-smooth delay-150">
             
             <div class="absolute top-0 right-0 bg-amber-400 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-lg uppercase tracking-wide">
                Recomendado
@@ -187,7 +188,8 @@ const serviceSchema = JSON.stringify({
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               </h3>
               <p class="text-gray-500 mt-2 text-sm leading-relaxed">
-                Un ecosistema digital multipágina. Ideal para empresas que buscan posicionarse y crecer en Google.
+                Un ecosistema digital multipágina.
+                Ideal para empresas que buscan posicionarse y crecer en Google.
               </p>
             </div>
 
@@ -240,7 +242,7 @@ const serviceSchema = JSON.stringify({
             </a>
           </div>
 
-          <div class="bg-hikevo-charcoal text-white rounded-2xl shadow-xl border border-gray-700 p-6 md:p-8 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group flex flex-col max-w-md mx-auto lg:max-w-none w-full">
+          <div class="bg-hikevo-charcoal text-white rounded-2xl shadow-xl border border-gray-700 p-6 md:p-8 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group flex flex-col max-w-md mx-auto lg:max-w-none w-full reveal-smooth delay-300">
             
             <div class="absolute top-0 right-0 w-64 h-64 bg-hikevo-yellow opacity-5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 group-hover:opacity-10 transition-opacity duration-500"></div>
 
@@ -306,7 +308,7 @@ const serviceSchema = JSON.stringify({
 
     <section class="mb-16 md:mb-24 px-4 pt-8 md:pt-16 md:px-0 font-sans" id="social-growth">
         <Container>
-            <div class="mb-10 md:mb-16 md:text-center max-w-3xl mx-auto">
+            <div class="mb-10 md:mb-16 md:text-center max-w-3xl mx-auto reveal-smooth">
                 <h2 class="text-3xl font-bold text-hikevo-black mb-3 md:mb-4">Planes de Redes Sociales</h2>
                 <p class="text-hikevo-charcoal/70 text-base md:text-lg leading-relaxed">
                     Contenido diseñado para transformar la interacción en oportunidades de venta.
@@ -315,14 +317,15 @@ const serviceSchema = JSON.stringify({
 
             <div class="flex flex-col gap-6 md:gap-8">
                 
-                <div class="bg-white border border-gray-200 rounded-3xl p-6 md:p-12 flex flex-col md:flex-row gap-6 md:gap-10 items-center hover:border-gray-300 transition-colors">
+                <div class="bg-white border border-gray-200 rounded-3xl p-6 md:p-12 flex flex-col md:flex-row gap-6 md:gap-10 items-center hover:border-gray-300 transition-colors reveal-smooth">
                     <div class="w-full md:w-1/2">
                         <div class="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
                             Branding & Confianza
                         </div>
                         <h3 class="text-2xl md:text-3xl font-bold text-hikevo-black mb-3">Presencia Orgánica</h3>
                         <p class="text-gray-600 text-base md:text-lg mb-6 leading-relaxed">
-                            Mantén tu marca activa y relevante sin que te quite tiempo. Ideal para construir autoridad a largo plazo.
+                            Mantén tu marca activa y relevante sin que te quite tiempo.
+                            Ideal para construir autoridad a largo plazo.
                         </p>
                         <div class="flex items-baseline gap-2 mb-8">
                             <span class="text-4xl font-extrabold text-hikevo-black">$99</span> <span class="text-gray-500 font-medium">/ mes</span>
@@ -331,7 +334,7 @@ const serviceSchema = JSON.stringify({
                             Solicitar este plan
                         </Button>
                     </div>
-                    
+                
                     <div class="w-full md:w-1/2 bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-100 h-full">
                         <h4 class="font-bold text-hikevo-black mb-4 flex items-center gap-2">
                             <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -358,7 +361,7 @@ const serviceSchema = JSON.stringify({
                     </div>
                 </div>
 
-                <div class="bg-hikevo-black text-white rounded-3xl p-6 md:p-12 flex flex-col md:flex-row gap-6 md:gap-10 items-center shadow-xl relative overflow-hidden group">
+                <div class="bg-hikevo-black text-white rounded-3xl p-6 md:p-12 flex flex-col md:flex-row gap-6 md:gap-10 items-center shadow-xl relative overflow-hidden group reveal-smooth delay-150">
                     <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-hikevo-yellow/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
 
                     <div class="w-full md:w-1/2 relative z-10">
@@ -367,7 +370,8 @@ const serviceSchema = JSON.stringify({
                         </div>
                         <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">Plan Acelerador</h3>
                         <p class="text-gray-400 text-base md:text-lg mb-6 leading-relaxed">
-                            Para negocios que no pueden esperar. Combinamos contenido orgánico con publicidad de pago para traer clientes hoy.
+                            Para negocios que no pueden esperar.
+                            Combinamos contenido orgánico con publicidad de pago para traer clientes hoy.
                         </p>
                         <div class="flex items-baseline gap-2 mb-2">
                             <span class="text-4xl font-extrabold text-hikevo-yellow">$129</span> <span class="text-gray-400 font-medium">/ mes</span>
@@ -405,7 +409,7 @@ const serviceSchema = JSON.stringify({
                     </div>
                 </div>
 
-                <div class="bg-gray-100 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-gray-200 mt-4 md:mt-8">
+                <div class="bg-gray-100 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-gray-200 mt-4 md:mt-8 reveal-smooth">
                     <div class="flex flex-col md:flex-row items-center md:items-start gap-4 text-center md:text-left">
                         <div class="p-3 bg-white rounded-xl text-hikevo-black shadow-sm">
                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -415,7 +419,8 @@ const serviceSchema = JSON.stringify({
                         <div>
                             <h3 class="text-xl font-bold text-hikevo-black mb-2 md:mb-1">Soporte Técnico y Micro-Soluciones</h3>
                             <p class="text-gray-600 text-sm mb-3 max-w-md mx-auto md:mx-0">
-                                ¿Necesitas algo puntual? Configuramos tu email corporativo, arreglamos errores, migramos dominios o hacemos ajustes de diseño.
+                                ¿Necesitas algo puntual?
+                                Configuramos tu email corporativo, arreglamos errores, migramos dominios o hacemos ajustes de diseño.
                             </p>
                             <div class="flex flex-wrap gap-2 justify-center md:justify-start">
                                 <span class="px-2 py-1 bg-white border border-gray-200 text-gray-500 text-xs rounded-md">Config. Email</span>
@@ -427,8 +432,7 @@ const serviceSchema = JSON.stringify({
                     </div>
                     <div class="flex-shrink-0 w-full md:w-auto">
                         <Button 
-                            href="https://wa.me/17866692775?text=Hola,%20necesito%20ayuda%20con%20una%20soluci%C3%B3n%20t%C3%A9cnica%20puntual." 
-                            variant="outline" 
+                            href="https://wa.me/17866692775?text=Hola,%20necesito%20ayuda%20con%20una%20soluci%C3%B3n%20t%C3%A9cnica%20puntual." variant="outline" 
                             isExternal={true} 
                             class="w-full md:w-auto justify-center bg-white border-gray-200 text-hikevo-black hover:bg-hikevo-black hover:text-white hover:border-hikevo-black rounded-full px-6 transition-colors shadow-sm"
                         >
@@ -443,21 +447,23 @@ const serviceSchema = JSON.stringify({
 
     <section class="mb-16 md:mb-24 py-8 md:py-12">
         <Container>
-            <div class="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
+            <div class="text-center mb-12 md:mb-16 max-w-2xl mx-auto reveal-smooth">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 text-hikevo-black">Nuestro Proceso</h2>
-                <p class="text-gray-500 text-lg">Diseñamos un camino sencillo y sin estrés. Es un proceso claro que te da la tranquilidad de saber siempre qué esperar.</p>
+                <p class="text-gray-500 text-lg">Diseñamos un camino sencillo y sin estrés.
+                Es un proceso claro que te da la tranquilidad de saber siempre qué esperar.</p>
             </div>
             
             <div class="relative max-w-4xl mx-auto px-4 md:px-0">
                 <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-100 -z-10 hidden md:block"></div>
 
                 <div class="space-y-8 md:space-y-0">
-                    
-                    <div class="flex flex-col md:flex-row items-center md:justify-between relative group cursor-default">
+                  
+                    <div class="flex flex-col md:flex-row items-center md:justify-between relative group cursor-default reveal-smooth">
                         <div class="hidden md:block w-5/12 text-right pr-8 order-1">
                             <h3 class="font-bold text-xl mb-2 text-hikevo-black transition-colors duration-300">1. Auditoría</h3>
                             <p class="text-gray-600 leading-relaxed">
-                                Antes de cotizar, escuchamos. Analizamos tu situación actual y definimos objetivos reales para asegurarnos de que somos el equipo ideal.
+                                Antes de cotizar, escuchamos.
+                                Analizamos tu situación actual y definimos objetivos reales para asegurarnos de que somos el equipo ideal.
                             </p>
                         </div>
                         
@@ -473,11 +479,12 @@ const serviceSchema = JSON.stringify({
                         </div>
                     </div>
 
-                    <div class="flex flex-col md:flex-row items-center md:justify-between relative group md:mt-24 cursor-default">
+                    <div class="flex flex-col md:flex-row items-center md:justify-between relative group md:mt-24 cursor-default reveal-smooth">
                         <div class="w-full md:w-5/12 pr-0 md:pr-8 text-center md:text-right order-3 md:order-1">
                             <div class="md:hidden mt-4">
                                 <h3 class="font-bold text-xl mb-2 text-hikevo-black">2. Estrategia</h3>
-                                <p class="text-gray-600 leading-relaxed">Recibes un plan de acción detallado. Sabrás exactamente qué haremos, cuándo estará listo y cuánto costará.</p>
+                                <p class="text-gray-600 leading-relaxed">Recibes un plan de acción detallado.
+                                Sabrás exactamente qué haremos, cuándo estará listo y cuánto costará.</p>
                            </div>
                         </div>
                         
@@ -488,16 +495,18 @@ const serviceSchema = JSON.stringify({
                         <div class="hidden md:block w-5/12 pl-8 order-2 md:order-3">
                             <h3 class="font-bold text-xl mb-2 text-hikevo-black group-hover:text-hikevo-yellow transition-colors duration-300">2. Estrategia</h3>
                             <p class="text-gray-600 leading-relaxed">
-                               Recibes un plan de acción detallado. Sabrás exactamente qué haremos, cuándo estará listo y cuánto costará.
+                               Recibes un plan de acción detallado.
+                               Sabrás exactamente qué haremos, cuándo estará listo y cuánto costará.
                             </p>
                         </div>
                     </div>
 
-                     <div class="flex flex-col md:flex-row items-center md:justify-between relative group md:mt-24 cursor-default">
+                    <div class="flex flex-col md:flex-row items-center md:justify-between relative group md:mt-24 cursor-default reveal-smooth">
                         <div class="hidden md:block w-5/12 text-right pr-8 order-1">
                             <h3 class="font-bold text-xl mb-2 text-hikevo-black group-hover:text-hikevo-yellow transition-colors duration-300">3. Desarrollo</h3>
                             <p class="text-gray-600 leading-relaxed">
-                                Manos a la obra. Construimos tu activo digital (Web o Social Media) mientras tú te enfocas en tu negocio.
+                                Manos a la obra.
+                                Construimos tu activo digital (Web o Social Media) mientras tú te enfocas en tu negocio.
                             </p>
                         </div>
                         
@@ -513,11 +522,12 @@ const serviceSchema = JSON.stringify({
                         </div>
                     </div>
 
-                    <div class="flex flex-col md:flex-row items-center md:justify-between relative group md:mt-24 cursor-default">
+                    <div class="flex flex-col md:flex-row items-center md:justify-between relative group md:mt-24 cursor-default reveal-smooth">
                         <div class="w-full md:w-5/12 pr-0 md:pr-8 text-center md:text-right order-3 md:order-1">
-                             <div class="md:hidden mt-4">
+                            <div class="md:hidden mt-4">
                                  <h3 class="font-bold text-xl mb-2 text-hikevo-black">4. Entrega</h3>
-                                 <p class="text-gray-600 leading-relaxed">Revisión final, capacitación y entrega. ¡Tu negocio está online!</p>
+                                 <p class="text-gray-600 leading-relaxed">Revisión final, capacitación y entrega.
+                                 ¡Tu negocio está online!</p>
                             </div>
                         </div>
                         
@@ -528,7 +538,8 @@ const serviceSchema = JSON.stringify({
                         <div class="hidden md:block w-5/12 pl-8 order-2 md:order-3">
                             <h3 class="font-bold text-xl mb-2 text-hikevo-black group-hover:text-hikevo-yellow transition-colors duration-300">4. Lanzamiento</h3>
                             <p class="text-gray-600 leading-relaxed">
-                               Tu visión cobra vida. Te entregamos todo listo para usar y nos aseguramos de que tengas la confianza necesaria para dar el siguiente paso.
+                               Tu visión cobra vida.
+                               Te entregamos todo listo para usar y nos aseguramos de que tengas la confianza necesaria para dar el siguiente paso.
                             </p>
                         </div>
                     </div>
@@ -541,9 +552,9 @@ const serviceSchema = JSON.stringify({
     <section class="mb-16 md:mb-24 scroll-mt-24" id="faq">
         <Container>
             <div class="max-w-3xl mx-auto px-4 md:px-0">
-                <h3 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 text-center text-hikevo-black">Resolvemos tus dudas antes de invertir</h3>
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 text-center text-hikevo-black reveal-smooth">Resolvemos tus dudas antes de invertir</h3>
                 
-                <div class="space-y-4">
+                <div class="space-y-4 reveal-smooth delay-150">
                     <details class="group bg-white border border-gray-100 rounded-2xl p-2 open:bg-gray-50 transition-colors duration-300">
                         <summary class="flex justify-between items-center font-bold text-hikevo-charcoal p-4 cursor-pointer list-none select-none text-left">
                             <span class="pr-4">¿Qué pasa si mi negocio necesita una funcionalidad a medida?</span>
@@ -552,7 +563,8 @@ const serviceSchema = JSON.stringify({
                             </span>
                         </summary>
                         <div class="px-4 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-200/0 group-open:border-gray-200/50 pt-2 transition-all">
-                            <p>Somos flexibles. Los paquetes cubren el 90% de las necesidades de una PYME moderna, pero si requieres integraciones complejas (CRM, Reservas, ERP), analizaremos tu caso y te daremos un presupuesto personalizado.</p>
+                            <p>Somos flexibles.
+                            Los paquetes cubren el 90% de las necesidades de una PYME moderna, pero si requieres integraciones complejas (CRM, Reservas, ERP), analizaremos tu caso y te daremos un presupuesto personalizado.</p>
                         </div>
                     </details>
 
@@ -564,7 +576,10 @@ const serviceSchema = JSON.stringify({
                             </span>
                         </summary>
                         <div class="px-4 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-200/0 group-open:border-gray-200/50 pt-2 transition-all">
-                            <p>No. Creemos en la transparencia total: <strong>nuestros honorarios son por el trabajo estratégico y técnico</strong>. El presupuesto publicitario se paga directamente a las plataformas (Meta/Google) desde tu tarjeta. Así sabes exactamente cuánto inviertes en anuncios y cuánto en gestión.</p>
+                            <p>No.
+                            Creemos en la transparencia total: <strong>nuestros honorarios son por el trabajo estratégico y técnico</strong>.
+                            El presupuesto publicitario se paga directamente a las plataformas (Meta/Google) desde tu tarjeta.
+                            Así sabes exactamente cuánto inviertes en anuncios y cuánto en gestión.</p>
                         </div>
                     </details>
 
@@ -576,7 +591,9 @@ const serviceSchema = JSON.stringify({
                             </span>
                         </summary>
                         <div class="px-4 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-200/0 group-open:border-gray-200/50 pt-2 transition-all">
-                            <p>No creemos en atar clientes insatisfechos. Puedes cancelar tu suscripción avisando con 15 días de antelación antes de tu siguiente ciclo de facturación. Queremos que te quedes por los resultados, no por un contrato.</p>
+                            <p>No creemos en atar clientes insatisfechos.
+                            Puedes cancelar tu suscripción avisando con 15 días de antelación antes de tu siguiente ciclo de facturación.
+                            Queremos que te quedes por los resultados, no por un contrato.</p>
                         </div>
                     </details>
                     
@@ -588,7 +605,8 @@ const serviceSchema = JSON.stringify({
                             </span>
                         </summary>
                         <div class="px-4 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-200/0 group-open:border-gray-200/50 pt-2 transition-all">
-                            <p>Sí, ofrecemos un <strong>Plan de Tranquilidad Técnica</strong> mensual opcional. Nos encargamos de actualizaciones de seguridad, copias de seguridad y monitoreo para que tú solo te preocupes de vender.</p>
+                            <p>Sí, ofrecemos un <strong>Plan de Tranquilidad Técnica</strong> mensual opcional.
+                            Nos encargamos de actualizaciones de seguridad, copias de seguridad y monitoreo para que tú solo te preocupes de vender.</p>
                         </div>
                     </details>
                 </div>
@@ -598,7 +616,7 @@ const serviceSchema = JSON.stringify({
 
     <section class="py-16 md:py-20 bg-hikevo-gray-light">
         <Container>
-            <div class="text-center max-w-2xl mx-auto px-4 md:px-0">
+            <div class="text-center max-w-2xl mx-auto px-4 md:px-0 reveal-smooth">
                 <h2 class="text-3xl font-bold mb-4">¿Dudas sobre cuál plan elegir?</h2>
                 <p class="text-gray-600 mb-8">Solicita tu auditoría gratuita y te diremos exactamente qué necesita tu negocio en este momento.</p>
                 <Button href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio." variant="primary" isExternal={true} class="w-full md:w-auto justify-center">
