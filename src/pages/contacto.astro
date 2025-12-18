@@ -47,7 +47,7 @@ const faqs = [
                     Sin formularios largos ni complicaciones. Elige la vía más rápida para ti.
                 </p>
                 <!-- SEO Internacional -->
-                <p class="mt-4 text-sm text-gray-400 font-medium bg-gray-50 inline-block px-4 py-1 rounded-full border border-gray-100">
+                <p class="mt-4 text-sm text-gray-500 font-medium bg-gray-50 inline-block px-4 py-1 rounded-full border border-gray-100">
                     🌍 Trabajamos con clientes internacionales (100% Remoto)
                 </p>
             </div>
@@ -83,7 +83,7 @@ const faqs = [
                         <Button href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio." variant="ws" class="w-full hover:bg-green-800 text-white shadow-green-200" isExternal={true}>
                             Abrir WhatsApp
                         </Button>
-                        <p class="text-center text-xs text-gray-400 mt-4">Hola, me interesa saber más sobre...</p>
+                        <p class="text-center text-xs text-gray-500 mt-4">Hola, me interesa saber más sobre...</p>
                     </div>
                 </div>
 
@@ -238,55 +238,65 @@ const faqs = [
           // logica del accordion
 const accordionItems = document.querySelectorAll('.accordion-item');
 
-    accordionItems.forEach(item => {
-        const header = item.querySelector('.accordion-header') as HTMLButtonElement;
-        const content = item.querySelector('.accordion-content') as HTMLElement;
-        const icon = item.querySelector('.accordion-icon') as HTMLElement;
-        const iconWrapper = item.querySelector('.accordion-icon-wrapper') as HTMLElement;
+accordionItems.forEach(item => {
+    const header = item.querySelector('.accordion-header') as HTMLButtonElement;
+    const content = item.querySelector('.accordion-content') as HTMLElement;
+    const icon = item.querySelector('.accordion-icon') as HTMLElement;
+    const iconWrapper = item.querySelector('.accordion-icon-wrapper') as HTMLElement;
+    
+    // Generación correcta de IDs únicos para vincular botón con contenido
+    const uniqueId = `faq-${Math.random().toString(36).substr(2, 9)}`;
+    header.setAttribute('aria-controls', uniqueId);
+    content.setAttribute('id', uniqueId);
 
-        header.addEventListener('click', () => {
-            // 1. Cerrar otros (Comportamiento exclusivo)
-            accordionItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    const otherContent = otherItem.querySelector('.accordion-content') as HTMLElement;
-                    const otherIcon = otherItem.querySelector('.accordion-icon') as HTMLElement;
-                    const otherWrapper = otherItem.querySelector('.accordion-icon-wrapper') as HTMLElement;
-                    
-                    otherContent.style.maxHeight = '0px';
-                    otherContent.classList.remove('opacity-100'); // Fade out
-                    otherIcon.classList.remove('rotate-180');
-                    // Resetear colores
-                    otherItem.classList.remove('border-green-200'); // Opcional: Borde de color activo
-                    otherWrapper.classList.remove('bg-green-100', 'text-green-600');
-                    otherWrapper.classList.add('bg-gray-50');
-                }
-            });
-
-            // 2. Alternar actual
-            const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
-
-            if (isOpen) {
-                // CERRAR
-                content.style.maxHeight = '0px';
-                content.classList.remove('opacity-100');
-                icon.classList.remove('rotate-180');
+    header.addEventListener('click', () => {
+        // 1. Cerrar otros (Comportamiento exclusivo)
+        accordionItems.forEach(otherItem => {
+            if (otherItem !== item) {
+                const otherHeader = otherItem.querySelector('.accordion-header') as HTMLButtonElement; // [!code ++] Necesitamos el header
+                const otherContent = otherItem.querySelector('.accordion-content') as HTMLElement;
+                const otherIcon = otherItem.querySelector('.accordion-icon') as HTMLElement;
+                const otherWrapper = otherItem.querySelector('.accordion-icon-wrapper') as HTMLElement;
                 
-                // Estilos inactivos
-                iconWrapper.classList.remove('bg-green-100', 'text-green-600');
-                iconWrapper.classList.add('bg-gray-50');
-            } else {
-                // ABRIR
-                content.style.maxHeight = content.scrollHeight + "px";
-                content.classList.add('opacity-100'); // Fade in
-                icon.classList.add('rotate-180');
+                // ACCESIBILIDAD: Importante marcar como cerrado para lectores de pantalla
+                otherHeader.setAttribute('aria-expanded', 'false'); // [!code ++] ¡Esta línea faltaba!
+
+                otherContent.style.maxHeight = '0px';
+                otherContent.classList.remove('opacity-100');
+                otherIcon.classList.remove('rotate-180');
                 
-                // Estilos activos (UX: Color verde sutil para indicar éxito/apertura)
-                // Nota: Si no tienes el verde configurado, usa colores de tu marca (hikevo-yellow)
-                iconWrapper.classList.remove('bg-gray-50');
-                iconWrapper.classList.add('bg-green-100', 'text-green-600'); 
+                // Resetear estilos visuales
+                otherItem.classList.remove('border-green-200');
+                otherWrapper.classList.remove('bg-green-100', 'text-green-600');
+                otherWrapper.classList.add('bg-gray-50');
             }
         });
+
+        // 2. Alternar actual
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+        
+        // Actualizamos el estado ARIA del ítem actual
+        header.setAttribute('aria-expanded', (!isOpen).toString());
+
+        if (isOpen) {
+            // CERRAR
+            content.style.maxHeight = '0px';
+            content.classList.remove('opacity-100');
+            icon.classList.remove('rotate-180');
+            
+            iconWrapper.classList.remove('bg-green-100', 'text-green-600');
+            iconWrapper.classList.add('bg-gray-50');
+        } else {
+            // ABRIR
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add('opacity-100');
+            icon.classList.add('rotate-180');
+            
+            iconWrapper.classList.remove('bg-gray-50');
+            iconWrapper.classList.add('bg-green-100', 'text-green-600'); 
+        }
     });
+});
     
     
 </script>

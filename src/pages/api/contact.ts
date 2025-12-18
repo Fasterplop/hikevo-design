@@ -34,16 +34,15 @@ export const POST: APIRoute = async ({ request }) => {
     const submissionTime = Date.now();
     const loadTime = result.data.startTime ? parseInt(result.data.startTime) : submissionTime;
     
-    if (submissionTime - loadTime < 2000) {
-        console.warn(`Spam detectado: Envío en ${submissionTime - loadTime}ms`);
-        // Retornamos éxito falso para no alertar al bot
-        return new Response(JSON.stringify({ message: "Received" }), { status: 200 }); 
+   if (submissionTime - loadTime < 1000 && submissionTime - loadTime > 0) {
+        console.warn(`Posible Spam (muy rápido): ${submissionTime - loadTime}ms`);
     }
 
     // 2. Enviar Email vía Resend
+    const contactEmail = import.meta.env.CONTACT_EMAIL || 'hikevodesign@gmail.com';
     const { data, error } = await resend.emails.send({
-      from: 'Hikevo Design<contacto@hikevodesign.com>', // CAMBIAR por: contacto@hikevodesign.com una vez verificado
-      to: ['hikevodesign@gmail.com'], // Tu correo real donde quieres recibir el lead
+      from: 'Hikevo Design <contacto@hikevodesign.com>', 
+      to: [contactEmail], // Corrección aquí
       subject: 'Nuevo Lead: Auditoría Web',
       html: `
         <h1>Nuevo Lead Capturado</h1>

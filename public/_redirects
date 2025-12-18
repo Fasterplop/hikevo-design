@@ -1,0 +1,15 @@
+# --- Páginas Estáticas Principales ---
+/index.html                       / 301
+/sobre-nosotros.html              /nosotros 301
+
+# --- Servicios (Consolidación) ---
+# Todo lo relacionado con servicios va a /soluciones
+/servicios.html                   /soluciones 301
+/servicios-paginas-web.html       /soluciones 301
+/servicios-redes-sociales.html    /soluciones 301
+/servicios-creacion-de-contenido.html /soluciones 301
+
+# --- Portafolio (Limpieza Masiva) ---
+# Esta única línea captura 'portafolio-general.html' Y cualquier 'portafolio-[slug].html'
+# y los manda a la raíz del portafolio nuevo.
+/portafolio-*.html                /portafolio 301

@@ -3,6 +3,10 @@ import MainLayout from '../layouts/MainLayout.astro';
 import Header from '../components/common/Header.astro';
 import Container from '../components/ui/Container.astro';
 import Button from '../components/common/Button.astro';
+import { Image } from 'astro:assets';
+import luis from '../assets/images/luis.png';
+import paulina from '../assets/images/paulina.png';
+import hikevo from '../assets/images/hikevo.jpg';
 
 const title = "Sobre Hikevo | Agencia Digital Honesta y Técnica";
 const description = "Conoce al equipo detrás de Hikevo. Desarrollo web y contenido estratégico con un trato personal y transparente.";
@@ -36,8 +40,14 @@ const description = "Conoce al equipo detrás de Hikevo. Desarrollo web y conten
                 <div>
                      <!-- Placeholder Imagen Lifestyle -->
                     <div class="aspect-[4/5] bg-gray-200 rounded-3xl relative overflow-hidden">
-                        <div class="absolute inset-0 flex items-center justify-center text-gray-400 font-medium">Foto Lifestyle Oficina</div>
-                    </div>
+    <Image 
+        src={hikevo} 
+        alt="Espacio de trabajo de Hikevo Design" 
+        class="w-full h-full object-cover"
+        width={800} 
+        quality="high"
+    />
+</div>
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold mb-6">Tu tranquilidad es nuestro proyecto.</h2>
@@ -100,9 +110,14 @@ const description = "Conoce al equipo detrás de Hikevo. Desarrollo web y conten
             <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
                 <!-- Miembro 1 -->
                 <div class="group text-center">
-                    <div class="aspect-square bg-gray-200 rounded-full mx-auto mb-6 max-w-[250px] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <div class="absolute inset-0 flex items-center justify-center text-gray-400 font-medium">Foto Dev</div>
-                    </div>
+                    <div class="aspect-square bg-gray-200 rounded-full mx-auto mb-6 max-w-[250px] overflow-hidden relative ">
+    <Image 
+        src={luis} 
+        alt="Luis Lozada - Fundador" 
+        class="w-full h-full object-cover"
+        width={400}
+    />
+</div>
                     <h3 class="text-xl font-bold">Luis Lozada</h3>
                     <p class="text-hikevo-yellow font-medium text-sm mb-4">Fundador & Web Developer</p>
                     <p class="text-gray-600 text-sm italic">"Me encargo de que tu web sea rápida, segura y esté construida sobre cimientos sólidos."</p>
@@ -110,9 +125,14 @@ const description = "Conoce al equipo detrás de Hikevo. Desarrollo web y conten
 
                 <!-- Miembro 2 -->
                 <div class="group text-center">
-                    <div class="aspect-square bg-gray-200 rounded-full mx-auto mb-6 max-w-[250px] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <div class="absolute inset-0 flex items-center justify-center text-gray-400 font-medium">Foto Content</div>
-                    </div>
+                    <div class="aspect-square bg-gray-200 rounded-full mx-auto mb-6 max-w-[250px] overflow-hidden relative">
+    <Image 
+        src={paulina} 
+        alt="Paulina Lopez - Cofundadora" 
+        class="w-full h-full object-cover"
+        width={400}
+    />
+</div>
                     <h3 class="text-xl font-bold">Paulina Lopez</h3>
                     <p class="text-hikevo-yellow font-medium text-sm mb-4">Cofundadora & Content Manager</p>
                     <p class="text-gray-600 text-sm italic">"Doy voz a tu marca en redes sociales para conectar con tu audiencia real."</p>

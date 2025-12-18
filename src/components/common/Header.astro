@@ -1,4 +1,5 @@
 ---
+// src/components/common/Header.astro
 import Container from '../ui/Container.astro';
 import Button from './Button.astro';
 
@@ -12,17 +13,16 @@ const navItems = [
 <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-100/50" id="main-header">
   <Container>
     <div class="flex items-center justify-between h-20">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 group">
-        <!-- SVG Logo simplificado basado en el PDF -->
+      <a href="/" class="flex items-center gap-2 group relative z-50">
         <img 
-  src="/logo.svg" 
-  alt="Logo Hikevo Design" 
-  class="h-8 w-auto transition-transform duration-300 group-hover:scale-105" 
-/>
+          src="/logo.svg" 
+          alt="Logo Hikevo Design" 
+          width="120" 
+          height="40"
+          class="h-8 w-auto transition-transform duration-300 group-hover:scale-105" 
+        />
       </a>
 
-      <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-8">
         {navItems.map(item => (
           <a href={item.href} class="text-sm font-medium text-hikevo-charcoal hover:text-hikevo-black transition-colors">
@@ -31,25 +31,97 @@ const navItems = [
         ))}
       </nav>
 
-      <!-- CTA & Mobile Toggle -->
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4 relative z-50">
         <div class="hidden md:block">
-            <Button
-  href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio."
-  variant="primary"
-  isExternal={true}
->
-              Hablemos
-            </Button>
+          <Button
+            href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio."
+            variant="primary"
+            isExternal={true}
+          >
+            Hablemos
+          </Button>
         </div>
         
-        <!-- Mobile Menu Button (Simple) -->
-        <button class="md:hidden p-2 text-hikevo-black" aria-label="Menu">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <button 
+          id="menu-toggle"
+          class="md:hidden p-2 text-hikevo-black focus:outline-none focus:ring-2 focus:ring-hikevo-yellow rounded-lg" 
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
     </div>
   </Container>
+
+  <div 
+    id="mobile-menu" 
+    class="fixed inset-0 bg-white z-40 flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-all duration-300 md:hidden"
+  >
+    <nav class="flex flex-col items-center gap-6">
+      {navItems.map(item => (
+        <a 
+          href={item.href} 
+          class="text-2xl font-bold text-hikevo-black hover:text-hikevo-yellow transition-colors mobile-link"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <div class="mt-4">
+       <Button
+            href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar..."
+            variant="primary"
+            isExternal={true}
+            class="mobile-link"
+          >
+            Hablemos
+          </Button>
+    </div>
+  </div>
 </header>
+
+<script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+  let isMenuOpen = false;
+
+  const toggleMenu = () => {
+    isMenuOpen = !isMenuOpen;
+    
+    // Accesibilidad
+    toggleBtn?.setAttribute('aria-expanded', isMenuOpen.toString());
+    toggleBtn?.setAttribute('aria-label', isMenuOpen ? 'Cerrar menú' : 'Abrir menú');
+    
+    // Visibilidad
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = 'hidden'; // Evitar scroll
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+    } else {
+      mobileMenu?.classList.add('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = '';
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    }
+  };
+
+  toggleBtn?.addEventListener('click', toggleMenu);
+
+  // Cerrar menú al hacer click en un enlace
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (isMenuOpen) toggleMenu();
+    });
+  });
+</script>
