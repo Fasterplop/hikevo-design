@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Enlace oficial para que Google encuentre todas tus páginas
+Sitemap: https://hikevodesign.com/sitemap-index.xml
