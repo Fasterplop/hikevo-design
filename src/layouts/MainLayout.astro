@@ -24,6 +24,9 @@ const {
 	image = "/open-graph.png" 
 } = Astro.props;
 
+const siteUrl = Astro.site ?? "https://hikevodesign.com";
+const absoluteImageUrl = new URL(image, siteUrl).toString();
+
 // CORRECCIÓN 1: Fallback para evitar el error "Invalid URL" si Astro.site no está configurado
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://hikevodesign.com");
 
@@ -75,13 +78,13 @@ const organizationSchema = JSON.stringify({
 		<meta property="og:url" content={Astro.url} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={image} />
+		<meta property="og:image" content={absoluteImageUrl} />
 
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={Astro.url} />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={image} />
+		<meta property="twitter:image" content={absoluteImageUrl} />
 
 		<meta name="generator" content={Astro.generator} />
 		
