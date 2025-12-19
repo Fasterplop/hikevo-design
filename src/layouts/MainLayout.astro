@@ -87,12 +87,31 @@ const organizationSchema = JSON.stringify({
 		
 		<title>{title}</title>
 
+		<!-- Meta Pixel Code -->
+<script is:inline>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1895489631086438');
+fbq('track', 'PageView');
+</script>
+
+<!-- End Meta Pixel Code -->
+
 		<script type="application/ld+json" set:html={organizationSchema} />
 		
 		<slot name="head" />
 	</head>
 	<body class="bg-white text-hikevo-black font-sans antialiased selection:bg-hikevo-yellow selection:text-black flex flex-col min-h-screen">
-		
+		<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1895489631086438&ev=PageView&noscript=1"
+/></noscript>
+
 		<div class="flex-grow">
 			<slot />
 		</div>
