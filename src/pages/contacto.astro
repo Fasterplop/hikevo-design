@@ -218,6 +218,10 @@ Viernes
                 form.classList.add('hidden');
                 // Ocultar form
                 successMessage?.classList.remove('hidden');
+
+                if (typeof (window as any).fbq === 'function') {
+    (window as any).fbq('track', 'Lead');
+}
                 // Mostrar mensaje de éxito
                 emailInput.value = '';
                 // Limpiar input
