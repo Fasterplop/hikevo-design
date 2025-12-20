@@ -36,6 +36,7 @@ interface Project {
   testimonialAuthor?: string;
   // 2. Nuevo campo para la imagen (ImageMetadata es el tipo interno de Astro)
   image?: ImageMetadata; 
+  websiteUrl?: string;
   galleryDesktop?: ImageMetadata;
   // Recomendado: 1920 x 1080px, Minimo: 1280 x 720px
   galleryMobile?: ImageMetadata;
@@ -51,7 +52,8 @@ export async function getStaticPaths() {
     {
         slug: 'paulina-lopez-escritora',
         title: 'Paulina Lopez Escritora',
-        image: paulinalopezescritora, // <-- Así asignarás la imagen real
+        image: paulinalopezescritora,
+        websiteUrl: 'https://paulinalopezescritora.com',
         description: 'Desarrollo Web A Medida con Sistema de Marketing y Base de Datos',
         client: 'Paulina L.',
         industry: 'Escritora / Autora',
@@ -74,6 +76,7 @@ export async function getStaticPaths() {
         slug: 'ganesha-stores', 
         title: 'Ganesha Stores', 
         image: ganeshastores,
+        websiteUrl: 'https://ganeshastores.com',
         description: 'Desarrollo Web A Medida E-commerce con CMS y Base de Datos',
         client: 'Gerardo G.',
         industry: 'E-commerce / Retail',
@@ -96,6 +99,7 @@ export async function getStaticPaths() {
         slug: 'mister-mango', 
         title: 'Mister Mango', 
         image: mistermango,
+        websiteUrl: 'https://instagram.com/mistermango',
         description: 'Creación de contenido y gestión de redes sociales',
         client: 'Mateo L.',
         industry: 'Comida y alimentos',
@@ -118,6 +122,7 @@ export async function getStaticPaths() {
         slug: 'anis-barbara', 
         title: 'Anis Barbara',
         image: anisbarbara, 
+        websiteUrl: 'https://instagram.com/anisbarbara_',
         description: 'Creación de contenido y gestión de redes sociales',
         client: 'Barbara S.',
         industry: 'Bebidas Alcohólicas',
@@ -196,7 +201,19 @@ const breadcrumbSchema = JSON.stringify({
                 <div class="relative z-10 max-w-4xl">
                     <span class="text-hikevo-yellow font-bold tracking-wider text-sm uppercase mb-4 block">Caso de Estudio</span>
                     <h1 class="text-4xl md:text-6xl font-bold mb-6">{project.title}</h1>
-                    <p class="text-xl text-gray-300 mb-12 max-w-2xl">{project.description}</p>
+                    <p class="text-xl text-gray-300 mb-6 max-w-2xl">{project.description}</p>
+
+                    {project.websiteUrl && (
+                <div class="mb-6">
+                    <Button 
+                href={project.websiteUrl} 
+                variant="primary" 
+                isExternal={true}
+                >
+                     Ver Proyecto en Vivo
+                    </Button>
+                    </div>
+                    )}
 
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-gray-700 pt-8">
                         <div>
