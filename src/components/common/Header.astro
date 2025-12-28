@@ -1,20 +1,38 @@
 ---
-// src/components/common/Header.astro
 import Container from '../ui/Container.astro';
 import Button from './Button.astro';
+import { useTranslations } from '../../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
+const currentLang = Astro.currentLocale || 'es';
+const t = useTranslations(currentLang as any);
+
+// Definimos las rutas manualmente para que coincidan con las carpetas
+// ES: /soluciones, /portafolio
+// EN: /en/solutions, /en/portfolio
 const navItems = [
-  { label: 'Soluciones', href: '/soluciones' },
-  { label: 'Portafolio', href: '/portafolio' },
-  { label: 'Nosotros', href: '/nosotros' },
+  { 
+    label: t('nav.solutions'), 
+    href: currentLang === 'es' ? '/soluciones' : '/en/solutions' 
+  },
+  { 
+    label: t('nav.portfolio'), 
+    href: currentLang === 'es' ? '/portafolio' : '/en/portfolio'
+  },
+  { 
+    label: t('nav.about'), 
+    href: currentLang === 'es' ? '/nosotros' : '/en/about'
+  },
 ];
+
+const homeUrl = currentLang === 'es' ? '/' : '/en';
 ---
 
 <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-white border-b border-gray-100" id="main-header">
   <Container>
     <div class="flex items-center justify-between h-20">
       
-      <a href="/" class="flex items-center gap-2 group relative z-50">
+      <a href={homeUrl} class="flex items-center gap-2 group relative z-50">
         <img 
           src="/logo.svg" 
           alt="Logo Hikevo Design" 
@@ -33,21 +51,25 @@ const navItems = [
       </nav>
 
       <div class="flex items-center gap-4 relative z-50">
+        <div class="hidden md:flex gap-2 text-xs font-bold mr-2">
+            <a href="/" class={currentLang === 'es' ? 'text-hikevo-black' : 'text-gray-400 hover:text-hikevo-black'}>ES</a>
+            <span class="text-gray-300">|</span>
+            <a href="/en" class={currentLang === 'en' ? 'text-hikevo-black' : 'text-gray-400 hover:text-hikevo-black'}>EN</a>
+        </div>
+
         <div class="hidden md:block">
           <Button
-            href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio."
+            href={currentLang === 'es' 
+                ? "https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio."
+                : "https://wa.me/17866692775?text=Hello!%20I%20would%20like%20to%20talk%20about%20improving%20my%20business."}
             variant="primary"
             isExternal={true}
           >
-            Hablemos
+            {t('btn.talk')}
           </Button>
         </div>
         
-        <button 
-          id="menu-toggle"
-          class="md:hidden p-2 text-hikevo-black focus:outline-none focus:ring-2 focus:ring-hikevo-yellow rounded-lg transition-colors" 
-          aria-label="Abrir menú"
-        >
+        <button id="menu-toggle" class="md:hidden p-2 text-hikevo-black focus:outline-none focus:ring-2 focus:ring-hikevo-yellow rounded-lg transition-colors" aria-label="Abrir menú">
           <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -59,49 +81,43 @@ const navItems = [
     </div>
   </Container>
 
-  <div 
-    id="mobile-menu" 
-    class="fixed inset-0 z-40 bg-white flex flex-col justify-start pt-32 items-center gap-8 translate-x-full transition-transform duration-300 ease-in-out md:hidden"
-  >
-  
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-white flex flex-col justify-start pt-32 items-center gap-8 translate-x-full transition-transform duration-300 ease-in-out md:hidden">
     <nav class="flex flex-col items-center gap-8 w-full">
       {navItems.map(item => (
-        <a 
-          href={item.href} 
-          class="text-2xl font-bold text-hikevo-black hover:text-hikevo-yellow transition-colors mobile-link w-full text-center py-2"
-        >
+        <a href={item.href} class="text-2xl font-bold text-hikevo-black hover:text-hikevo-yellow transition-colors mobile-link w-full text-center py-2">
           {item.label}
         </a>
       ))}
+      <div class="flex gap-4 text-xl font-bold mt-4">
+            <a href="/" class={currentLang === 'es' ? 'text-hikevo-black' : 'text-gray-400'}>ES</a>
+            <span class="text-gray-300">|</span>
+            <a href="/en" class={currentLang === 'en' ? 'text-hikevo-black' : 'text-gray-400'}>EN</a>
+      </div>
     </nav>
     
     <div class="mt-4">
        <Button
-            href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio."
+            href="https://wa.me/17866692775"
             variant="primary"
             isExternal={true}
             class="mobile-link text-lg px-8 py-3"
           >
-            Hablemos
+            {t('btn.talk')}
           </Button>
     </div>
   </div>
 </header>
 
-
 <script is:inline>
   function initMenu() {
     const toggleBtn = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
     
     if (!toggleBtn || !mobileMenu) return;
 
-    // 1. Clonamos el botón PRIMERO para limpiar eventos anteriores
+    // Clonamos para limpiar eventos anteriores
     const newBtn = toggleBtn.cloneNode(true);
     toggleBtn.parentNode.replaceChild(newBtn, toggleBtn);
-
-    // 2. AHORA seleccionamos los íconos DENTRO del nuevo botón
     const iconOpen = newBtn.querySelector('#icon-open');
     const iconClose = newBtn.querySelector('#icon-close');
 
@@ -109,21 +125,15 @@ const navItems = [
 
     const toggleMenu = () => {
       isMenuOpen = !isMenuOpen;
-      
-      // Lógica visual del menú
       if (isMenuOpen) {
         mobileMenu.classList.remove('translate-x-full');
         document.body.style.overflow = 'hidden'; 
-        
-        // Cambio de íconos
         iconOpen?.classList.add('hidden');
         iconClose?.classList.remove('hidden');
-        iconClose?.classList.remove('rotate-90'); 
+        iconClose?.classList.remove('rotate-90');
       } else {
         mobileMenu.classList.add('translate-x-full');
         document.body.style.overflow = '';
-        
-        // Cambio de íconos
         iconOpen?.classList.remove('hidden');
         iconClose?.classList.add('hidden');
         iconClose?.classList.add('rotate-90');
@@ -131,71 +141,17 @@ const navItems = [
       newBtn.setAttribute('aria-expanded', isMenuOpen.toString());
     };
 
-    // 3. Agregamos el evento al nuevo botón
     newBtn.addEventListener('click', toggleMenu);
-
+    
+    // Cerrar al hacer click en links
+    const mobileLinks = document.querySelectorAll('.mobile-link');
     mobileLinks.forEach(link => {
-      // Importante: clonar los links también si quieres limpiar sus eventos, 
-      // o asegurarte de que no se dupliquen. Para este caso simple, esto funciona:
       link.addEventListener('click', () => {
         if (isMenuOpen) toggleMenu();
       });
     });
   }
 
-  // Ejecutar inmediatamente
   initMenu();
-  // Ejecutar si hay navegación entre páginas (View Transitions)
   document.addEventListener('astro:after-swap', initMenu);
 </script>
-
-<!-- <script is:inline>
-  function initMenu() {
-    const toggleBtn = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const iconOpen = document.getElementById('icon-open');
-    const iconClose = document.getElementById('icon-close');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    
-    if (!toggleBtn || !mobileMenu) return;
-
-    let isMenuOpen = false;
-
-    const toggleMenu = () => {
-      isMenuOpen = !isMenuOpen;
-      
-      if (isMenuOpen) {
-        mobileMenu.classList.remove('translate-x-full');
-        document.body.style.overflow = 'hidden'; 
-        
-        iconOpen?.classList.add('hidden');
-        iconClose?.classList.remove('hidden');
-        iconClose?.classList.remove('rotate-90'); 
-      } else {
-        mobileMenu.classList.add('translate-x-full');
-        document.body.style.overflow = '';
-        
-        iconOpen?.classList.remove('hidden');
-        iconClose?.classList.add('hidden');
-        iconClose?.classList.add('rotate-90');
-      }
-      toggleBtn.setAttribute('aria-expanded', isMenuOpen.toString());
-    };
-
-    // Clonar para limpiar eventos viejos
-    const newBtn = toggleBtn.cloneNode(true);
-    toggleBtn.parentNode.replaceChild(newBtn, toggleBtn);
-    newBtn.addEventListener('click', toggleMenu);
-
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (isMenuOpen) toggleMenu();
-      });
-    });
-  }
-
-  // Ejecutar inmediatamente
-  initMenu();
-  // Ejecutar si hay navegación entre páginas (View Transitions)
-  document.addEventListener('astro:after-swap', initMenu);
-</script> -->

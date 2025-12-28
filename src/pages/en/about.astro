@@ -1,0 +1,166 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/common/Header.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/common/Button.astro';
+import { Image } from 'astro:assets';
+import luis from '../../assets/images/luis.jpg';
+import paulina from '../../assets/images/paulina.jpg';
+import logo from '/public/logo.svg';
+
+const title = "About Hikevo | Honest & Technical Digital Agency";
+const description = "Meet the team behind Hikevo. Web development and strategic content with a personal and transparent approach.";
+---
+
+<MainLayout title={title} description={description}>
+  <Header />
+
+  <main class="pt-32 pb-20">
+    
+    <section class="mb-24">
+        <Container>
+            <div class="max-w-4xl mx-auto text-center animate-fade-in">
+                 <span class="text-hikevo-yellow font-bold tracking-wider text-sm uppercase mb-4 block">About Us</span>
+                <h1 class="text-4xl md:text-6xl font-bold text-hikevo-black mb-6 tracking-tight leading-tight">
+                    Your trusted team<br />
+                    <span class="text-hikevo-gray">in the digital world.</span>
+                </h1>
+                <p class="text-lg text-hikevo-charcoal/80 leading-relaxed max-w-2xl mx-auto">
+                    Web Development and Content Creation.
+                    We take care of the technology so you can just enjoy the results.
+                </p>
+            </div>
+        </Container>
+    </section>
+
+    <section class="mb-24 py-20 bg-hikevo-gray-light">
+        <Container>
+            <div class="grid md:grid-cols-2 gap-16 items-center reveal-smooth">
+                <div>
+                    <div class="aspect-[4/5] rounded-3xl relative overflow-hidden bg-white p-8 flex items-center justify-center">
+                        <Image 
+                            src={logo} 
+                            alt="Hikevo Design Workspace" 
+                            class="w-full h-full object-contain"
+                            width={800} 
+                            quality="high"
+                        />
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Your peace of mind is our project.</h2>
+                    <div class="space-y-6 text-hikevo-charcoal/80 text-lg leading-relaxed">
+                        <p>
+                            We know the digital world can be overwhelming.
+                            Our mission is simple: <strong>take that weight off your shoulders.</strong>
+                        </p>
+                        <p>
+                            You don't need to be a tech expert or have the perfect idea defined.
+                            We guide you step by step with total transparency, building a digital presence for you that you can be deeply proud of.
+                        </p>
+                        <p>
+                            We transform your "I don't know where to start" into a superior quality website and content.
+                            No wasted time. No stress.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    <section class="mb-24">
+        <Container>
+            <div class="max-w-3xl mx-auto text-center mb-16 reveal-smooth">
+                <h2 class="text-3xl font-bold mb-4">A new standard of collaboration.</h2>
+                <p class="text-gray-600 text-lg">
+                    We seek to redefine the experience in this sector.
+                    We believe that hiring services shouldn't be an uncertainty.
+                    Our mission is to build a standard based on <strong>transparency, technical commitment, and tangible results.</strong>
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-0 border-t border-b border-gray-200 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                
+                <div class="p-10 flex flex-col items-start hover:bg-gray-50 transition-colors reveal-smooth">
+                    <div class="text-4xl font-bold mb-6 text-black border-b-2 border-black pb-2">01</div>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-wide">Total Transparency</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">We will never leave you in the dark.
+                    We explain every decision, every cost, and every step. If you don't need it, we won't sell it to you.</p>
+                </div>
+
+                <div class="p-10 flex flex-col items-start hover:bg-gray-50 transition-colors reveal-smooth delay-150">
+                    <div class="text-4xl font-bold mb-6 text-black border-b-2 border-yellow-400 pb-2">02</div>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-wide">Surprising Quality</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">We don't do "fast websites just to get by".
+                    We create premium digital assets with a superior level of detail.</p>
+                </div>
+
+                <div class="p-10 flex flex-col items-start hover:bg-gray-50 transition-colors reveal-smooth delay-300">
+                    <div class="text-4xl font-bold mb-6 text-black border-b-2 border-gray-300 pb-2">03</div>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-wide">Step-by-Step Guide</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Don't have a clear idea?
+                    Better. We love shaping chaos. We provide the structure and strategy.</p>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    <section class="mb-24">
+        <Container>
+             <div class="text-center mb-12 reveal-smooth">
+                <h2 class="text-3xl font-bold mb-2">Your partners in digital growth</h2>
+                <p class="text-gray-500">We work hand in hand with you to ensure your digital presence grows along with your business.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                <div class="group text-center reveal-smooth">
+                    <div class="aspect-square bg-gray-200 rounded-full mx-auto mb-6 max-w-[250px] overflow-hidden relative ">
+                        <Image 
+                            src={luis} 
+                            alt="Luis Lozada - Founder" 
+                            class="w-full h-full object-cover"
+                            width={400}
+                        />
+                    </div>
+                    <h3 class="text-xl font-bold">Luis Lozada</h3>
+                    <p class="text-hikevo-yellow font-medium text-sm mb-4">Founder & Web Developer</p>
+                    <p class="text-gray-600 text-sm italic">"I make sure your website is fast, secure, and built on solid foundations."</p>
+                </div>
+
+                <div class="group text-center reveal-smooth delay-150">
+                    <div class="aspect-square bg-gray-200 rounded-full mx-auto mb-6 max-w-[250px] overflow-hidden relative">
+                        <Image 
+                            src={paulina} 
+                            alt="Paulina Lopez - Co-founder" 
+                            class="w-full h-full object-cover"
+                            width={400}
+                        />
+                    </div>
+                    <h3 class="text-xl font-bold">Paulina Lopez</h3>
+                    <p class="text-hikevo-yellow font-medium text-sm mb-4">Co-founder & Content Manager</p>
+                    <p class="text-gray-600 text-sm italic">"I give voice to your brand on social media to connect with your real audience."</p>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    <section class="py-20 bg-hikevo-black text-white">
+        <Container>
+            <div class="text-center max-w-2xl mx-auto reveal-smooth">
+                <h2 class="text-3xl font-bold mb-4">Ready to feel proud of your brand?</h2>
+                <p class="text-gray-400 mb-8">Leave the technology in our hands and focus on running your business.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                     <Button href="https://wa.me/17866692775?text=Hello!%20I%20would%20like%20to%20talk%20about%20improving%20my%20business."
+                        variant="primary" isExternal={true}>
+                        Talk to us
+                    </Button>
+                    <Button href="/en/portfolio" variant="outline" class="text-white border-white hover:bg-white hover:text-black">
+                        See our results
+                    </Button>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+  </main>
+</MainLayout>

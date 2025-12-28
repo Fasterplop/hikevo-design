@@ -1,0 +1,86 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/common/Header.astro';
+import Container from '../../components/ui/Container.astro';
+const title = "Privacy Policy | Hikevo Design";
+const description = "How we collect, use, and protect your personal data at Hikevo Design. Total transparency.";
+const lastUpdate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+---
+
+<MainLayout title={title} description={description}>
+  <Header />
+
+  <main class="pt-32 pb-20">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl font-bold text-hikevo-black mb-4">Privacy Policy</h1>
+        <p class="text-gray-500 mb-12 border-b border-gray-100 pb-8">Last update: {lastUpdate}</p>
+
+        <div class="space-y-12 text-hikevo-charcoal leading-relaxed">
+          
+          <section>
+            <p class="mb-4">
+              At <strong>Hikevo Design</strong> ("we", "our"), transparency is one of our pillars.
+              This Privacy Policy explains how we treat your personal information when you visit our website or use our services.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">1. Data Controller</h2>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+              <li><strong>Owner:</strong> Hikevo Design</li>
+              <li><strong>Location:</strong> Maturín, Monagas, Venezuela (Global Service)</li>
+              <li><strong>Contact:</strong> contacto@hikevodesign.com</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">2. What Information We Collect</h2>
+            <p class="mb-4 text-gray-600">Currently, we collect the minimum information necessary to operate:</p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+              <li><strong>Contact Data:</strong> Your email address (when you enter it in our registration or contact form).</li>
+              <li><strong>Navigation Data:</strong> Technical information such as your IP address, browser type, and behavior on the site (via technical or analytical cookies) to improve performance.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">3. Purpose of Processing</h2>
+            <p class="mb-4 text-gray-600">We use your data to:</p>
+            <ol class="list-decimal pl-5 space-y-2 text-gray-600">
+              <li><strong>Respond to your requests:</strong> Send you the service information you requested by leaving your email.</li>
+              <li><strong>Service delivery:</strong> Manage the contracted web development or content creation.</li>
+              <li><strong>Technical improvement:</strong> Monitor site speed and security.</li>
+            </ol>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">4. Third Parties and Tech Stack</h2>
+            <p class="mb-4 text-gray-600">To provide our services, we use trusted technology providers who may process data on our behalf:</p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+              <li><strong>Hosting and Infrastructure:</strong> Cloudflare Inc. (Security and content delivery).</li>
+              <li><strong>Transactional Email:</strong> Resend (For sending automatic emails).</li>
+              <li><strong>Analytics:</strong> Cloudflare Web Analytics (Private and without invasive cookies).</li>
+            </ul>
+            <p class="mt-4 text-gray-600 italic">We do not sell or rent your data to third parties for commercial purposes. Never.</p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">5. Your Rights</h2>
+            <p class="text-gray-600">
+              As a user, you have the right to access, rectify, or request the deletion of your data ("Right to be forgotten") at any time.
+              Just write to us at <strong>contacto@hikevodesign.com</strong> and we will handle your request in less than 48 hours.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">6. Security</h2>
+            <p class="text-gray-600">
+              We implement standard security measures (HTTPS/SSL) to protect your data during transmission.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </Container>
+  </main>
+</MainLayout>

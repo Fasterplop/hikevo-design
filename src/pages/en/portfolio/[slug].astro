@@ -1,0 +1,342 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Header from '../../../components/common/Header.astro';
+import Container from '../../../components/ui/Container.astro';
+import Button from '../../../components/common/Button.astro';
+import { Image } from 'astro:assets'; 
+
+// Las imágenes son las mismas
+import anisbarbara from '../../../assets/images/projects/anis-barbara/anisbarbara-desktop.png';
+import anisbarbaramobile from '../../../assets/images/projects/anis-barbara/anisbarbara-mobile.png';   
+import anisbarbarafeatured from '../../../assets/images/projects/anis-barbara/anisbarbara-featured.png';
+import paulinalopezescritora from '../../../assets/images/projects/paulinalopezescritora/paulinalopezescritora.com.png';
+import paulinalopezescritoramobile from '../../../assets/images/projects/paulinalopezescritora/paulina-mobile.png';
+import paulinalopezescritorafeatured from '../../../assets/images/projects/paulinalopezescritora/paulina-featured.png';
+import ganeshastores from '../../../assets/images/projects/ganeshastores/ganeshastores.com.png';
+import ganeshastoresmobile from '../../../assets/images/projects/ganeshastores/ganesha-mobile.png';
+import ganeshastoresfeatured from '../../../assets/images/projects/ganeshastores/ganesha-featured.png';  
+import mistermango from '../../../assets/images/projects/mistermango/mistermango-desktop.png';
+import mistermangomobile from '../../../assets/images/projects/mistermango/mistermango-mobile.png';    
+import mistermangofeatured from '../../../assets/images/projects/mistermango/mistermango-featured.png';
+
+interface Project {
+  slug: string;
+  title: string;
+  description: string;
+  client: string;
+  industry: string;
+  services: string;
+  year: string;
+  challenge: string;
+  solution: string;
+  results: { label: string; value: string }[];
+  testimonial?: string;
+  testimonialAuthor?: string;
+  image?: ImageMetadata; 
+  websiteUrl?: string;
+  galleryDesktop?: ImageMetadata;
+  galleryMobile?: ImageMetadata;
+  galleryFeatured?: ImageMetadata;
+}
+
+export async function getStaticPaths() {
+  const projects: Project[] = [
+    {
+        slug: 'paulina-lopez-escritora',
+        title: 'Paulina Lopez Author',
+        image: paulinalopezescritora,
+        websiteUrl: 'https://paulinalopezescritora.com',
+        description: 'Custom Web Development with Marketing System',
+        client: 'Paulina L.',
+        industry: 'Writer / Author',
+        services: 'Custom Web Dev + Social Media + Ads',
+        year: '2025',
+        challenge: 'The goal was to centralize the author\'s digital presence into a professional hub that converted followers into subscribers.\nThe main challenge was implementing a rich visual aesthetic (particles, parallax effects, and textures) without sacrificing the load speed needed to retain mobile traffic from social media.',
+        solution: 'We implemented a custom web architecture that prioritizes lightweight static content, loading interactivity only when necessary.\nThe experience was optimized through progressive appearance animations and asynchronous subscription forms, guaranteeing smooth navigation for the reader.',
+        results: [
+            { label: 'Newsletter Subscribers', value: '+1000' },
+            { label: 'Rating on Amazon', value: '5.0' },
+            { label: 'Visit to Lead', value: 'Conversion' },
+        ],
+        testimonial: 'The page speed is incredible, but what I value most is the ease with which I now handle my marketing.\nThe integrated system allows me to control all my campaigns and automations with total autonomy, greatly simplifying my daily work.',
+        testimonialAuthor: 'Paulina L., Author',
+        galleryDesktop: paulinalopezescritora,
+        galleryMobile: paulinalopezescritoramobile,
+        galleryFeatured: paulinalopezescritorafeatured,
+    },
+     { 
+        slug: 'ganesha-stores', 
+        title: 'Ganesha Stores', 
+        image: ganeshastores,
+        websiteUrl: 'https://ganeshastores.com',
+        description: 'Custom E-commerce Web Dev with Database',
+        client: 'Gerardo G.',
+        industry: 'E-commerce / Retail',
+        services: 'Web Development + Social Media + Ads',
+        year: '2025',
+        challenge: 'The brand faced an operational bottleneck: it lacked a centralized platform to showcase its products.\nRelying on informal channels to send photos and prices limited the shopping experience, preventing customers from exploring the full catalog autonomously and visually.',
+        solution: 'We developed a custom E-commerce with a structured database acting as a 24/7 digital catalog.\nWe designed an interface centered on product photography to facilitate visual exploration, allowing users to filter and discover inventory frictionlessly, thus professionalizing the brand\'s digital presence.',
+        results: [
+            { label: 'Online Sales', value: '+70%' },
+            { label: 'Happy Customers', value: '100%' },
+            { label: 'Catalog Visits', value: '+5,000' }
+        ],
+        testimonial: 'Before, I spent the day answering messages.\nNow the website sells for me and customers love being able to see photos in detail.',
+        testimonialAuthor: 'Gerardo G., Founder',
+        galleryDesktop: ganeshastores,
+        galleryMobile: ganeshastoresmobile,
+        galleryFeatured: ganeshastoresfeatured,
+    },
+    { 
+        slug: 'mister-mango', 
+        title: 'Mister Mango', 
+        image: mistermango,
+        websiteUrl: 'https://instagram.com/mistermango',
+        description: 'Content creation and social media management',
+        client: 'Mateo L.',
+        industry: 'Food & Beverage',
+        services: 'Organic Presence',
+        year: '2024',
+        challenge: 'The challenge was double: first, to make a photo convey the acidity and freshness of the product (mouth-watering).\nSecond, to capture that craving customer who, although loved the product, didn\'t always have time to physically travel to the kiosk.',
+        solution: 'We designed a "Food Porn" visual strategy to trigger immediate desire.\nWe channeled that craving by facilitating action: if you can\'t come to the kiosk, a click in the bio converts "that looks delicious" into a direct order via DoorDash.',
+        results: [
+            { label: 'Cravings Triggered', value: 'Thousands' },
+            { label: 'Orders via DoorDash', value: '+100' },
+            { label: 'Followers', value: '+1000' }
+        ],
+        testimonial: 'People arrive at the kiosk showing me TikTok videos and asking for "that same mango I saw on Instagram".\nSocial media really brought us new people.',
+        testimonialAuthor: 'Mateo L., Founder',
+        galleryDesktop: mistermango,
+        galleryMobile: mistermangomobile,
+        galleryFeatured: mistermangofeatured,
+    },
+    { 
+        slug: 'anis-barbara', 
+        title: 'Anis Barbara', 
+        image: anisbarbara, 
+        websiteUrl: 'https://instagram.com/anisbarbara_',
+        description: 'Content creation and social media management',
+        client: 'Barbara S.',
+        industry: 'Alcoholic Beverages',
+        services: 'Organic Presence',
+        year: '2025',
+        challenge: 'The challenge was to sell a proprietary alcoholic beverage exclusively through Instagram.\nWe needed the visual content alone to generate the trust and desire necessary for a follower to decide to order their bottle and close the purchase via Direct Message (DM).',
+        solution: 'We transformed their profile into a complete brand experience.\nWe created "lifestyle" content associating the drink with moments of celebration and status, and managed the community to maintain an active presence.\nWe made the Instagram feed do the selling job, acting as catalog, showcase, and customer service channel all in one.',
+        results: [
+            { label: 'Sales via DM', value: 'Constant' },
+            { label: 'Community', value: 'Loyal' },
+            { label: 'Shared Toasts', value: 'Thousands' }
+        ],
+        testimonial: 'My Instagram now looks incredible and professional.\nYou managed to capture the essence of my brand and thanks to that I\'ve had many orders via DM.',
+        testimonialAuthor: 'Barbara S., Founder',
+        galleryDesktop: anisbarbara,
+        galleryMobile: anisbarbaramobile,
+        galleryFeatured: anisbarbarafeatured,
+    }
+  ];
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+
+// Schema BreadcrumbList
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "https://hikevodesign.com/en"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Portfolio",
+    "item": "https://hikevodesign.com/en/portfolio"
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "name": project.title
+  }]
+});
+---
+
+<MainLayout title={`${project.title} | Case Study Hikevo`} description={project.description}>
+  <script type="application/ld+json" set:html={breadcrumbSchema} slot="head" />
+
+  <Header />
+
+  <main class="pt-32 pb-20">
+    <section class="mb-20">
+        <Container>
+            <div class="bg-gray-900 text-white rounded-3xl p-8 md:p-16 relative overflow-hidden animate-fade-in">
+                
+                {project.image ? (
+                   <div class="absolute inset-0 z-0">
+                      <Image 
+                        src={project.image} 
+                        alt={`Success case ${project.title}`}
+                        class="w-full h-full object-cover opacity-20"
+                        width={1200}
+                        height={600}
+                      />
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent"></div>
+                   </div>
+                ) : (
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-hikevo-yellow opacity-10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+                )}
+                
+                <div class="relative z-10 max-w-4xl">
+                    <span class="text-hikevo-yellow font-bold tracking-wider text-sm uppercase mb-4 block">Case Study</span>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">{project.title}</h1>
+                    <p class="text-xl text-gray-300 mb-6 max-w-2xl">{project.description}</p>
+
+                    {project.websiteUrl && (
+                    <div class="mb-6">
+                        <Button href={project.websiteUrl} variant="primary" isExternal={true}>
+                            View Live Project
+                        </Button>
+                    </div>
+                    )}
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-gray-700 pt-8">
+                        <div>
+                            <span class="block text-gray-500 text-sm mb-1">Client</span>
+                            <span class="font-semibold">{project.client}</span>
+                        </div>
+                        <div>
+                            <span class="block text-gray-500 text-sm mb-1">Industry</span>
+                            <span class="font-semibold">{project.industry}</span>
+                        </div>
+                        <div>
+                            <span class="block text-gray-500 text-sm mb-1">Services</span>
+                            <span class="font-semibold">{project.services}</span>
+                         </div>
+                        <div>
+                            <span class="block text-gray-500 text-sm mb-1">Year</span>
+                            <span class="font-semibold">{project.year}</span>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    <section class="mb-24">
+        <Container>
+            <div class="grid md:grid-cols-2 gap-16 items-start reveal-smooth">
+                <div>
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-sm">1</span> 
+                        The Challenge
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed whitespace-pre-line text-lg">
+                        {project.challenge}
+                    </p>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-hikevo-yellow text-sm text-black">2</span> 
+                         The Solution
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed whitespace-pre-line mb-8 text-lg">
+                        {project.solution}
+                  </p>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    <section class="mb-24 bg-hikevo-black text-white py-20 rounded-none md:rounded-3xl mx-0 md:mx-4">
+        <Container>
+            <div class="text-center mb-8 reveal-smooth">
+                <h2 class="text-3xl font-bold">The Results</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 text-center reveal-smooth delay-150">
+                {project.results.map((kpi) => (
+                    <div class="p-6">
+                       <div class="text-5xl font-bold text-hikevo-yellow mb-2">{kpi.value}</div>
+                        <div class="text-gray-400 font-medium">{kpi.label}</div>
+                    </div>
+                ))}
+            </div>
+
+            {project.testimonial && (
+                 <div class="mt-12 max-w-3xl mx-auto text-center border-t border-gray-800 pt-10 reveal-smooth delay-300">
+                    <p class="text-xl italic text-gray-300 mb-6">"{project.testimonial}"</p>
+                    <div class="text-sm font-bold text-hikevo-yellow">— {project.testimonialAuthor}</div>
+                </div>
+            )}
+        </Container>
+    </section>
+
+    <section class="mb-24 overflow-hidden py-10">
+        <div class="w-full px-4">
+            <div class="hidden lg:flex gap-6 items-center justify-center [perspective:1200px] max-w-7xl mx-auto reveal-smooth">
+                {project.galleryMobile && (
+                    <div class="w-[240px] shrink-0 transition-transform duration-500 ease-out hover:[transform:rotateY(0deg)_scale(1.05)_translateZ(20px)] [transform:rotateY(15deg)] shadow-xl shadow-gray-200/50 rounded-3xl bg-white border border-gray-100 overflow-hidden z-10">
+                         <Image src={project.galleryMobile} alt="Mobile Perspective" class="w-full h-auto object-cover"/>
+                    </div>
+                )}
+                {project.galleryDesktop && (
+                     <div class="w-[600px] xl:w-[700px] shrink-0 transition-transform duration-500 ease-out hover:scale-[1.02] shadow-2xl shadow-gray-200/50 rounded-2xl bg-white border border-gray-100 overflow-hidden z-20 relative">
+                        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-50 z-30"></div>
+                        <Image src={project.galleryDesktop} alt="Desktop Focus" class="w-full h-auto object-cover"/>
+                    </div>
+                )}
+                {project.galleryFeatured && (
+                    <div class="w-[240px] shrink-0 transition-transform duration-500 ease-out hover:[transform:rotateY(0deg)_scale(1.05)_translateZ(20px)] [transform:rotateY(-15deg)] shadow-xl shadow-gray-200/50 rounded-3xl bg-white border border-gray-100 overflow-hidden z-10">
+                        <Image src={project.galleryFeatured} alt="Featured Perspective" class="w-full h-auto object-cover" />
+                    </div>
+                )}
+             </div>
+
+            <div class="lg:hidden flex flex-col gap-8 max-w-2xl mx-auto reveal-smooth">
+                 {project.galleryDesktop && (
+                    <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-white">
+                        <Image src={project.galleryDesktop} alt="D" class="w-full h-auto" />
+                    </div>
+                 )}
+                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                     {project.galleryMobile && (
+                        <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-white flex flex-col">
+                            <div class="flex-1 bg-[#F5F5F7] p-6 flex items-center justify-center">
+                                 <Image src={project.galleryMobile} alt="M" class="w-full h-auto shadow-sm rounded-xl" />
+                            </div>
+                        </div>
+                     )}
+                     {project.galleryFeatured && (
+                        <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-white flex flex-col">
+                            <div class="flex-1 relative">
+                                 <Image src={project.galleryFeatured} alt="F" class="w-full h-full object-cover min-h-[200px]" />
+                            </div>
+                        </div>
+                      )}
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 border-t border-gray-100 bg-gray-50/50">
+         <Container>
+            <div class="text-center max-w-2xl mx-auto reveal-smooth">
+                <h2 class="text-3xl font-bold mb-4">Looking for similar results?</h2>
+                <p class="text-gray-600 mb-8">We don't promise magic, we promise engineering and strategy. Let's talk about your project.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <Button href="https://wa.me/17866692775?text=Hello!%20I%20would%20like%20to%20talk%20about%20my%20business." variant="primary" isExternal={true}>
+                        I want a site like this
+                    </Button>
+                    <Button href="/en/portfolio" variant="outline">
+                        View another project
+                    </Button>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+  </main>
+</MainLayout>

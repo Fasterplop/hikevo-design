@@ -1,0 +1,296 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/common/Header.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/common/Button.astro';
+const title = "Contacto | Solicita tu Auditoría Web Gratuita";
+const description = "Contáctanos para desarrollar tu web o gestionar tus redes. Déjanos tu email o escríbenos por WhatsApp. Respuesta en 24h.";
+const faqs = [
+  {
+    question: "¿Necesito un presupuesto gigante para empezar a anunciarme?",
+    answer: "No, necesitas un presupuesto inteligente. Empezamos con campañas optimizadas para tu nivel de inversión actual, nos enfocamos en captar leads de calidad y escalamos solo cuando los resultados lo justifiquen."
+},
+  {
+    question: "No sé qué publicar para vender, ¿ustedes me dicen qué hacer?",
+    answer: "Sí. No publicamos por publicar. Diseñamos una estrategia de contenido basada en lo que tu cliente necesita escuchar para confiar en ti, mezclando educación, autoridad y venta directa."
+},
+  {
+    question: "Mis redes están abandonadas porque no tengo tiempo para grabar o publicar.",
+    answer: "Déjalo en nuestras manos. Creamos tu calendario de contenidos, diseñamos los posts y gestionamos la publicación. Tu marca se mantendrá activa y profesional mientras tú te ocupas de operar tu negocio."
+},
+  {
+    question: "¿Por qué invertir en una web a medida y no usar una plantilla barata?",
+    answer: "Porque las plantillas son lentas y genéricas. Nosotros construimos activos digitales optimizados (con Astro y Tailwind) que cargan al instante y enamoran a Google. No gastes en una web, invierte en una herramienta de ventas."
+},
+  {
+    question: "¿Necesito tener los textos y fotos listos ya?",
+    answer: "No te preocupes. Si no tienes contenido, nosotros te ayudamos a estructurarlo o te guiamos con plantillas simples para que no pierdas tiempo frente a una hoja en blanco."
+},
+];
+---
+
+<MainLayout title={title} description={description}>
+  <Header />
+
+  <main class="pt-32 pb-20">
+    
+    <section class="mb-16">
+        <Container>
+            <div class="max-w-3xl mx-auto text-center animate-fade-in">
+                <h1 class="text-4xl md:text-6xl font-bold text-hikevo-black mb-6 tracking-tight">
+                    Estás a un mensaje de <br />
+                    <span class="text-hikevo-gray">digitalizar tu negocio.</span>
+                </h1>
+                <p class="text-lg text-hikevo-charcoal/80 leading-relaxed max-w-xl mx-auto">
+                    Sin formularios largos ni complicaciones.
+                    Elige la vía más rápida para ti.
+                </p>
+                <p class="mt-4 text-sm text-gray-500 font-medium bg-gray-50 inline-block px-4 py-1 rounded-full border border-gray-100">
+                    🌍 Trabajamos con clientes internacionales (100% Remoto)
+                </p>
+            </div>
+        </Container>
+    </section>
+
+    <section class="mb-24">
+        <Container>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                
+                <div class="bg-white p-8 md:p-10 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group reveal-smooth">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-green-50 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 group-hover:bg-green-100 transition-colors"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mb-6 text-2xl">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">WhatsApp</h3>
+                        <p class="text-gray-500 mb-6">Habla directamente con nosotros.
+                        Sin intermediarios.</p>
+                        
+                        <ul class="text-sm text-gray-500 mb-8 space-y-2">
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-green-500"></span> Tiempo de respuesta: &lt;
+24 horas
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-gray-300"></span> Horario: Lunes a 
+Viernes
+                            </li>
+                        </ul>
+
+                        <Button href="https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio." variant="ws" class="w-full hover:bg-green-800 text-white shadow-green-200" isExternal={true}>
+                            Abrir WhatsApp
+                        </Button>
+                        <p class="text-center text-xs text-gray-500 mt-4">Hola, me interesa saber más sobre...</p>
+                    </div>
+                </div>
+
+                <div class="bg-hikevo-black text-white p-8 md:p-10 rounded-3xl shadow-xl relative overflow-hidden reveal-smooth delay-150">
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-hikevo-yellow opacity-10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-white/10 text-white rounded-2xl flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Déjanos tu correo</h3>
+                        <p class="text-gray-400 mb-8">Escribe tu email y recibirás automáticamente nuestra información y pasos para iniciar.</p>
+
+                        <form id="contact-form" class="space-y-4">
+                            <input type="text" name="hp_check" class="hidden" tabindex="-1" autocomplete="off" />
+                            <div>
+                                <label for="email" class="sr-only">Tu Email</label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="tu@empresa.com" 
+                                    required
+                                    class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-hikevo-yellow transition-all"
+                                />
+                            </div>
+                            <button 
+                                type="submit" 
+                                id="submit-btn"
+                                class="w-full bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-hikevo-yellow transition-colors duration-300 flex items-center justify-center gap-2"
+                            >
+                                <span>Enviar</span>
+                                <svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                                <svg id="loading-icon" class="hidden animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                            </button>
+                        </form>
+                        
+                        <div id="success-message" class="hidden mt-6 bg-green-500/20 border border-green-500/50 rounded-xl p-4 text-center">
+                            <p class="text-green-300 font-bold mb-1">¡Recibido!</p>
+                            <p class="text-sm text-green-100">Revisa tu bandeja de entrada en unos minutos.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    <section class="mb-24">
+        <Container>
+            <div class="max-w-4xl mx-auto"> 
+                <h3 class="text-3xl font-bold mb-12 text-center tracking-tight text-hikevo-black reveal-smooth">
+                    Antes de escribirnos...
+                </h3>
+                
+                <div class="space-y-5 reveal-smooth delay-150"> 
+                    {faqs.map((faq, index) => (
+                        <div class="accordion-item group bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
+                            <button 
+                                class="accordion-header w-full flex justify-between items-center p-4 text-left focus:outline-none"
+                                aria-expanded="false"
+                            >
+                                <span class="font-bold text-lg md:text-xl text-hikevo-black group-hover:text-hikevo-gray transition-colors pr-6">
+                                    {faq.question}
+                               </span>
+                                
+                                <div class="accordion-icon-wrapper flex-shrink-0 w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center transition-colors duration-300 group-hover:bg-gray-100">
+                                     <svg class="accordion-icon w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                                     </svg>
+                                </div>
+                            </button>
+                            
+                            <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out opacity-0">
+                                <div class="px-6 md:px-8 pb-8 pt-0">
+                                    <p class="text-base text-gray-600 leading-relaxed">
+                                        {faq.answer}
+                                    </p>
+                                 </div>
+                            </div>
+                        </div>
+                   ))}
+                </div>
+            </div>
+        </Container>
+    </section>
+
+  </main>
+</MainLayout>
+
+<script>
+    const loadTime = Date.now();
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const arrowIcon = document.getElementById('arrow-icon');
+    const loadingIcon = document.getElementById('loading-icon');
+    const successMessage = document.getElementById('success-message');
+    const emailInput = document.getElementById('email') as HTMLInputElement;
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Anti-spam de tiempo: Si han pasado menos de 2.5 seg, es sospechoso
+            const timeElapsed = Date.now() - loadTime;
+            if (timeElapsed < 2500) {
+                // Bloqueo silencioso (Frontend) o dejamos que el backend decida
+                console.warn("Envío demasiado rápido (Bot?)");
+                // Opcional: return; para bloquear aquí mismo
+            }
+
+            // ... resto de tu código de UI (submitBtn.disabled = true...)
+            submitBtn.disabled = true; // [!code ++]
+            arrowIcon?.classList.add('hidden'); // [!code ++]
+            loadingIcon?.classList.remove('hidden'); // [!code ++]
+
+            try {
+                const formData = new FormData(form);
+                // Agregamos el tiempo de inicio al envío para que el backend verifique
+                formData.append("startTime", loadTime.toString());
+
+                const response = await fetch('/api/contact', {
+                        method: 'POST',
+                        body: formData
+                });
+
+                // Leemos la respuesta del servidor
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.error || 'Error en el servidor');
+                }
+
+                // 3. Estado de éxito
+                form.classList.add('hidden');
+                // Ocultar form
+                successMessage?.classList.remove('hidden');
+
+                if (typeof (window as any).fbq === 'function') {
+    (window as any).fbq('track', 'Lead');
+}
+                // Mostrar mensaje de éxito
+                emailInput.value = '';
+                // Limpiar input
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un problema al enviar tu correo. Por favor intenta de nuevo.');
+                // Si falla, restauramos el botón para que puedan intentar otra vez
+                submitBtn.disabled = false;
+                arrowIcon?.classList.remove('hidden');
+                loadingIcon?.classList.add('hidden');
+            }
+        });
+    }
+
+    // logica del accordion
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header') as HTMLButtonElement;
+        const content = item.querySelector('.accordion-content') as HTMLElement;
+        const icon = item.querySelector('.accordion-icon') as HTMLElement;
+        const iconWrapper = item.querySelector('.accordion-icon-wrapper') as HTMLElement;
+        
+        // Generación correcta de IDs únicos para vincular botón con contenido
+        const uniqueId = `faq-${Math.random().toString(36).substr(2, 9)}`;
+        header.setAttribute('aria-controls', uniqueId);
+        content.setAttribute('id', uniqueId);
+
+        header.addEventListener('click', () => {
+            // 1. Cerrar otros (Comportamiento exclusivo)
+            accordionItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    const otherHeader = otherItem.querySelector('.accordion-header') as HTMLButtonElement;
+                    const otherContent = otherItem.querySelector('.accordion-content') as HTMLElement;
+                    const otherIcon = otherItem.querySelector('.accordion-icon') as HTMLElement;
+                    const otherWrapper = otherItem.querySelector('.accordion-icon-wrapper') as HTMLElement;
+                    // ACCESIBILIDAD: Importante marcar como cerrado para lectores de pantalla
+                    otherHeader.setAttribute('aria-expanded', 'false');
+
+                    otherContent.style.maxHeight = '0px';
+                    otherContent.classList.remove('opacity-100');
+                    otherIcon.classList.remove('rotate-180');
+                    // Resetear estilos visuales
+                    otherItem.classList.remove('border-green-200');
+                    otherWrapper.classList.remove('bg-green-100', 'text-green-600');
+                    otherWrapper.classList.add('bg-gray-50');
+                }
+            });
+            // 2. Alternar actual
+            const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+            // Actualizamos el estado ARIA del ítem actual
+            header.setAttribute('aria-expanded', (!isOpen).toString());
+            if (isOpen) {
+                // CERRAR
+                content.style.maxHeight = '0px';
+                content.classList.remove('opacity-100');
+                icon.classList.remove('rotate-180');
+                
+                iconWrapper.classList.remove('bg-green-100', 'text-green-600');
+                iconWrapper.classList.add('bg-gray-50');
+            } else {
+                // ABRIR
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add('opacity-100');
+                icon.classList.add('rotate-180');
+                
+                iconWrapper.classList.remove('bg-gray-50');
+                iconWrapper.classList.add('bg-green-100', 'text-green-600'); 
+            }
+        });
+    });
+</script>

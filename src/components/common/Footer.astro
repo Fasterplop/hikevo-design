@@ -1,76 +1,117 @@
 ---
 import Container from '../ui/Container.astro';
 
+const currentLang = Astro.currentLocale || 'es';
 const year = new Date().getFullYear();
+
+// Definimos las rutas dinámicas
+const homeUrl = currentLang === 'es' ? '/' : '/en';
+const solutionsUrl = currentLang === 'es' ? '/soluciones' : '/en/solutions';
+const portfolioUrl = currentLang === 'es' ? '/portafolio' : '/en/portfolio';
+const aboutUrl = currentLang === 'es' ? '/nosotros' : '/en/about';
+const contactUrl = currentLang === 'es' ? '/contacto' : '/en/contact';
+const privacyUrl = currentLang === 'es' ? '/privacidad' : '/en/privacy';
+const termsUrl = currentLang === 'es' ? '/terminos' : '/en/terms';
+
+// Diccionario de textos (para mantener este archivo independiente)
+const t = {
+  es: {
+    desc: 'Tu departamento digital, externo y sin complicaciones. Diseñamos para convertir.',
+    explore: 'Explorar',
+    sol: 'Soluciones y Precios',
+    port: 'Portafolio',
+    about: 'Nosotros',
+    cont: 'Contacto',
+    serv: 'Servicios',
+    s1: 'Desarrollo Web',
+    s2: 'Diseño UI/UX',
+    s3: 'Social Media Growth',
+    s4: 'Campañas publicitarias',
+    legal: 'Legal',
+    priv: 'Política de Privacidad',
+    term: 'Términos y Condiciones',
+    rights: 'Todos los derechos reservados.'
+  },
+  en: {
+    desc: 'Your digital department, external and hassle-free. Designed to convert.',
+    explore: 'Explore',
+    sol: 'Solutions & Pricing',
+    port: 'Portfolio',
+    about: 'About Us',
+    cont: 'Contact',
+    serv: 'Services',
+    s1: 'Web Development',
+    s2: 'UI/UX Design',
+    s3: 'Social Media Growth',
+    s4: 'Ad Campaigns',
+    legal: 'Legal',
+    priv: 'Privacy Policy',
+    term: 'Terms & Conditions',
+    rights: 'All rights reserved.'
+  }
+};
+
+const txt = t[currentLang as keyof typeof t];
 ---
 
 <footer class="bg-white border-t border-gray-100 pt-16 pb-8 text-sm">
   <Container>
     <div class="grid md:grid-cols-4 gap-12 mb-12">
       
-      <!-- Columna 1: Marca -->
       <div class="col-span-1 md:col-span-1">
-        <a href="/" class="flex items-center gap-2 mb-4">
+        <a href={homeUrl} class="flex items-center gap-2 mb-4">
             <img 
-  src="/logo.svg" 
-  alt="Logo Hikevo Design" 
-  width="120"
-  height="40" 
-  class="h-8 w-auto transition-transform duration-300 group-hover:scale-105" 
-
-  />
+              src="/logo.svg" 
+              alt="Logo Hikevo Design" 
+              width="120"
+              height="40" 
+              class="h-8 w-auto transition-transform duration-300 group-hover:scale-105" 
+            />
         </a>
         <p class="text-gray-500 leading-relaxed mb-6">
-          Tu departamento digital, externo y sin complicaciones. Diseñamos para convertir.
+          {txt.desc}
         </p>
         <div class="flex gap-4">
-          <!-- Social Icons (Placeholders) -->
           <a href="https://www.instagram.com/hikevodesign/" target="_blank" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-hikevo-black hover:text-white transition-colors" aria-label="Instagram">
              <i class="fa-brands fa-instagram"></i>
           </a>
-          
         </div>
       </div>
 
-      <!-- Columna 2: Explorar -->
       <div>
-        <h3 class="font-bold text-hikevo-black mb-4">Explorar</h3>
+        <h3 class="font-bold text-hikevo-black mb-4">{txt.explore}</h3>
         <ul class="space-y-3">
-          <li><a href="/soluciones" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Soluciones y Precios</a></li>
-          <li><a href="/portafolio" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Portafolio</a></li>
-          <li><a href="/nosotros" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Nosotros</a></li>
-          <li><a href="/contacto" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Contacto</a></li>
+          <li><a href={solutionsUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors">{txt.sol}</a></li>
+          <li><a href={portfolioUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors">{txt.port}</a></li>
+          <li><a href={aboutUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors">{txt.about}</a></li>
+          <li><a href={contactUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors">{txt.cont}</a></li>
         </ul>
       </div>
 
-      <!-- Columna 3: Servicios -->
       <div>
-        <h3 class="font-bold text-hikevo-black mb-4">Servicios</h3>
+        <h3 class="font-bold text-hikevo-black mb-4">{txt.serv}</h3>
         <ul class="space-y-3">
-          <li><span class="text-gray-500">Desarrollo Web</span></li>
-          <li><span class="text-gray-500">Diseño UI/UX</span></li>
-          <li><span class="text-gray-500">Social Media Growth</span></li>
-          <li><span class="text-gray-500">Campañas publicitarias</span></li>
+          <li><span class="text-gray-500">{txt.s1}</span></li>
+          <li><span class="text-gray-500">{txt.s2}</span></li>
+          <li><span class="text-gray-500">{txt.s3}</span></li>
+          <li><span class="text-gray-500">{txt.s4}</span></li>
         </ul>
       </div>
 
-      <!-- Columna 4: Legales y Ubicación -->
       <div>
-        <h3 class="font-bold text-hikevo-black mb-4">Legal</h3>
+        <h3 class="font-bold text-hikevo-black mb-4">{txt.legal}</h3>
         <ul class="space-y-3 mb-6">
-          <li><a href="/privacidad" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Política de Privacidad</a></li>
-          <li><a href="/terminos" class="text-gray-500 hover:text-hikevo-yellow transition-colors">Términos y Condiciones</a></li>
+          <li><a href={privacyUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors">{txt.priv}</a></li>
+          <li><a href={termsUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors">{txt.term}</a></li>
         </ul>
-        
       </div>
 
     </div>
 
     <div class="border-t border-gray-500 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-gray-500 text-xs">
-        &copy; {year} Hikevo Design. Todos los derechos reservados.
+        &copy; {year} Hikevo Design. {txt.rights}
       </p>
-      
     </div>
   </Container>
 </footer>

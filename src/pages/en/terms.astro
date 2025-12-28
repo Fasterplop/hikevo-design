@@ -1,0 +1,76 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/common/Header.astro';
+import Container from '../../components/ui/Container.astro';
+const title = "Terms and Conditions | Hikevo Design";
+const description = "Terms of use and service agreement for web development and content at Hikevo Design.";
+---
+
+<MainLayout title={title} description={description}>
+  <Header />
+
+  <main class="pt-32 pb-20">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl font-bold text-hikevo-black mb-4">Terms and Conditions of Use</h1>
+        <p class="text-gray-500 mb-12 border-b border-gray-100 pb-8">Please read carefully before hiring.</p>
+
+        <div class="space-y-12 text-hikevo-charcoal leading-relaxed">
+          
+          <section>
+            <p class="mb-4">
+              Welcome to <strong>Hikevo Design</strong>.
+              By browsing this website and hiring our services, you accept the following terms and conditions.
+              If you do not agree with any part, we recommend not using our services.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">1. Service Description</h2>
+            <p class="mb-2 text-gray-600">Hikevo Design is a digital studio offering:</p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+              <li><strong>Web Development:</strong> Creation of corporate websites, landing pages, and web applications.</li>
+              <li><strong>Content Creation:</strong> Social media management, graphic design, and digital growth strategies.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">2. Intellectual Property</h2>
+            <ul class="list-disc pl-5 space-y-4 text-gray-600">
+              <li><strong>Your Property:</strong> All content (texts, images, logos) you provide for the development of your website or social media remains 100% yours.</li>
+              <li><strong>Our Property:</strong> The base source code, methodologies, and unselected preliminary designs are the intellectual property of Hikevo Design until the total service payment is completed.</li>
+              <li><strong>Deliverables:</strong> Once the project is finished and paid for, the rights of use and exploitation of the final product (the website or creatives) are transferred to you.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">3. Payments and Cancellations</h2>
+            <ul class="list-disc pl-5 space-y-4 text-gray-600">
+              <li><strong>Web Projects:</strong> Generally require an advance (e.g., 30%) to start and the rest upon delivery. Deposits are non-refundable once technical work has begun.</li>
+              <li><strong>Recurring Services (Growth/Social):</strong> Billed monthly. You can cancel your subscription by notifying us at least 15 days before the next billing cycle.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">4. Limitation of Liability</h2>
+            <p class="mb-4 text-gray-600">We strive to offer impeccable code and solid strategies. However:</p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+              <li>We do not guarantee specific sales results (the market is variable).</li>
+              <li>We are not responsible for service outages beyond our control (e.g., global outages of Cloudflare, Meta, or your domain provider).</li>
+              <li>We are not responsible for the legal content of your website (legal texts, GDPR, etc.); that is the final responsibility of the client.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-hikevo-black mb-4">5. Modifications</h2>
+            <p class="text-gray-600">
+              We reserve the right to modify these terms at any time.
+              Changes will take effect immediately upon their publication on this page.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </Container>
+  </main>
+</MainLayout>

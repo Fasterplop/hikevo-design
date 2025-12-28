@@ -24,12 +24,22 @@ const {
 	image = "/open-graph.png" 
 } = Astro.props;
 
+// Obtener el idioma actual
+const currentLang = Astro.currentLocale || 'es';
+
 const siteUrl = Astro.site ?? "https://hikevodesign.com";
 const absoluteImageUrl = new URL(image, siteUrl).toString();
 
 // CORRECCIÓN 1: Fallback para evitar el error "Invalid URL" si Astro.site no está configurado
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://hikevodesign.com");
 
+
+// LÓGICA DE SCHEMA DINÁMICA
+const schemaDescription = currentLang === 'es' 
+  ? "Agencia de desarrollo web y marketing digital internacional. 100% Remoto."
+  : "International web development and digital marketing agency. 100% Remote.";
+
+  
 const organizationSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -39,12 +49,12 @@ const organizationSchema = JSON.stringify({
   "priceRange": "$$$",
   "address": { "@type": "PostalAddress", "addressCountry": "VE" },
   "areaServed": ["US", "ES", "MX", "Latin America"],
-  "description": "Agencia de desarrollo web y marketing digital internacional. 100% Remoto."
+  "description": schemaDescription
 });
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang={currentLang} class="scroll-smooth">
 	<head>
 		<ClientRouter />
 		
