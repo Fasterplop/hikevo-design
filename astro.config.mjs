@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://hikevodesign.com',
+  output: 'static',
   // Configuración de i18n
   i18n: {
     defaultLocale: "es", // Idioma principal

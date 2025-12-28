@@ -1,14 +1,14 @@
 ---
 // Import levels fixed (../../)
-import MainLayout from '../../layouts/MainLayout.astro';
-import Header from '../../components/common/Header.astro';
-import Container from '../../components/ui/Container.astro';
-import Button from '../../components/common/Button.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/common/Header.astro';
+import Container from '../components/ui/Container.astro';
+import Button from '../components/common/Button.astro';
 import { Image } from 'astro:assets';
 
 // Image paths fixed (../../)
-import luis from '../../assets/images/luis.jpg';
-import paulina from '../../assets/images/paulina.jpg';
+import luis from '../assets/images/luis.jpg';
+import paulina from '../assets/images/paulina.jpg';
 // Nota: Importar SVG directamente desde public no funciona con Image de Astro si usas ruta relativa extraña.
 // Lo mejor es usar ruta absoluta para SVGs en public:
 const logo = '/logo.svg'; 

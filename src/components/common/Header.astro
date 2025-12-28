@@ -2,14 +2,45 @@
 import Container from '../ui/Container.astro';
 import Button from './Button.astro';
 import { useTranslations } from '../../i18n/ui';
-import { getRelativeLocaleUrl } from 'astro:i18n';
 
 const currentLang = Astro.currentLocale || 'es';
 const t = useTranslations(currentLang as any);
 
-// Definimos las rutas manualmente para que coincidan con las carpetas
-// ES: /soluciones, /portafolio
-// EN: /en/solutions, /en/portfolio
+// 1. DEFINICIÓN DE RUTAS (Mejora de UX)
+// Mapeamos las páginas de Español a sus equivalentes en Inglés
+const routeMap = [
+  { es: '/', en: '/en' },
+  { es: '/soluciones', en: '/en/solutions' },
+  { es: '/portafolio', en: '/en/portfolio' },
+  { es: '/nosotros', en: '/en/about' },
+  { es: '/contacto', en: '/en/contact' } // Asumiendo que crearás contacto
+];
+
+// 2. LÓGICA PARA CALCULAR LA RUTA TRADUCIDA
+// Obtenemos la ruta actual limpia (sin slash final para facilitar la comparación)
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+let targetEs = '/';
+let targetEn = '/en';
+
+// Buscamos si la página actual está en nuestro mapa
+const match = routeMap.find(r => 
+    (currentLang === 'es' && r.es === currentPath) || 
+    (currentLang === 'en' && r.en === currentPath)
+);
+
+if (match) {
+    targetEs = match.es;
+    targetEn = match.en;
+} else {
+    // FALLBACK INTELIGENTE PARA RUTAS DINÁMICAS (Ej: Proyectos de portafolio)
+    // Si estamos en un proyecto, intentamos redirigir al portafolio principal del otro idioma
+    // porque no sabemos la traducción exacta del slug del proyecto.
+    if (currentPath.includes('/portafolio/')) targetEn = '/en/portfolio';
+    if (currentPath.includes('/portfolio/')) targetEs = '/portafolio';
+}
+
+// 3. ITEMS DEL MENÚ DE NAVEGACIÓN
 const navItems = [
   { 
     label: t('nav.solutions'), 
@@ -51,10 +82,15 @@ const homeUrl = currentLang === 'es' ? '/' : '/en';
       </nav>
 
       <div class="flex items-center gap-4 relative z-50">
+        
         <div class="hidden md:flex gap-2 text-xs font-bold mr-2">
-            <a href="/" class={currentLang === 'es' ? 'text-hikevo-black' : 'text-gray-400 hover:text-hikevo-black'}>ES</a>
+            <a href={targetEs} class={currentLang === 'es' ? 'text-hikevo-black pointer-events-none' : 'text-gray-400 hover:text-hikevo-black transition-colors'}>
+                ES
+            </a>
             <span class="text-gray-300">|</span>
-            <a href="/en" class={currentLang === 'en' ? 'text-hikevo-black' : 'text-gray-400 hover:text-hikevo-black'}>EN</a>
+            <a href={targetEn} class={currentLang === 'en' ? 'text-hikevo-black pointer-events-none' : 'text-gray-400 hover:text-hikevo-black transition-colors'}>
+                EN
+            </a>
         </div>
 
         <div class="hidden md:block">
@@ -69,7 +105,7 @@ const homeUrl = currentLang === 'es' ? '/' : '/en';
           </Button>
         </div>
         
-        <button id="menu-toggle" class="md:hidden p-2 text-hikevo-black focus:outline-none focus:ring-2 focus:ring-hikevo-yellow rounded-lg transition-colors" aria-label="Abrir menú">
+        <button id="menu-toggle" class="md:hidden p-2 text-hikevo-black focus:outline-none focus:ring-2 focus:ring-hikevo-yellow rounded-lg transition-colors" aria-label="Alternar menú">
           <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -88,10 +124,11 @@ const homeUrl = currentLang === 'es' ? '/' : '/en';
           {item.label}
         </a>
       ))}
+      
       <div class="flex gap-4 text-xl font-bold mt-4">
-            <a href="/" class={currentLang === 'es' ? 'text-hikevo-black' : 'text-gray-400'}>ES</a>
+            <a href={targetEs} class={currentLang === 'es' ? 'text-hikevo-black pointer-events-none' : 'text-gray-400'}>ES</a>
             <span class="text-gray-300">|</span>
-            <a href="/en" class={currentLang === 'en' ? 'text-hikevo-black' : 'text-gray-400'}>EN</a>
+            <a href={targetEn} class={currentLang === 'en' ? 'text-hikevo-black pointer-events-none' : 'text-gray-400'}>EN</a>
       </div>
     </nav>
     
@@ -112,12 +149,14 @@ const homeUrl = currentLang === 'es' ? '/' : '/en';
   function initMenu() {
     const toggleBtn = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
+    const header = document.getElementById('main-header');
     
     if (!toggleBtn || !mobileMenu) return;
 
-    // Clonamos para limpiar eventos anteriores
+    // Clonamos para limpiar eventos anteriores y evitar duplicados al navegar
     const newBtn = toggleBtn.cloneNode(true);
     toggleBtn.parentNode.replaceChild(newBtn, toggleBtn);
+    
     const iconOpen = newBtn.querySelector('#icon-open');
     const iconClose = newBtn.querySelector('#icon-close');
 
@@ -142,7 +181,7 @@ const homeUrl = currentLang === 'es' ? '/' : '/en';
     };
 
     newBtn.addEventListener('click', toggleMenu);
-    
+
     // Cerrar al hacer click en links
     const mobileLinks = document.querySelectorAll('.mobile-link');
     mobileLinks.forEach(link => {
@@ -150,8 +189,18 @@ const homeUrl = currentLang === 'es' ? '/' : '/en';
         if (isMenuOpen) toggleMenu();
       });
     });
+
+    // Efecto de sombra en scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header?.classList.add('shadow-md');
+      } else {
+        header?.classList.remove('shadow-md');
+      }
+    });
   }
 
+  // Inicializar en carga y en navegación de Astro (ViewTransitions)
   initMenu();
   document.addEventListener('astro:after-swap', initMenu);
 </script>
