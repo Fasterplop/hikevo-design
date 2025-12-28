@@ -157,31 +157,55 @@ const projects: Project[] = [
 </MainLayout>
 
 <script>
-  const filters = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.project-card');
+  // Función para inicializar los filtros
+  function initPortfolioFilters() {
+    const filters = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.project-card');
 
-  filters.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filters.forEach(b => {
-        b.classList.remove('bg-hikevo-black', 'text-white');
-        b.classList.add('bg-gray-100', 'text-gray-600');
-      });
-      btn.classList.remove('bg-gray-100', 'text-gray-600');
-      btn.classList.add('bg-hikevo-black', 'text-white');
+    // Si no hay filtros en la página actual (ej: cambiamos de ruta), no hacemos nada
+    if (filters.length === 0) return;
 
-      const filterValue = btn.getAttribute('data-filter');
+    filters.forEach(btn => {
+      // Importante: Clonamos el botón para eliminar eventos previos y evitar duplicados al navegar
+      // (Opcional pero recomendado en ViewTransitions si el elemento persiste, 
+      // aunque aquí se reconstruye el DOM, es seguro re-asignar el evento directamente 
+      // porque el DOM es nuevo).
+      
+      btn.addEventListener('click', () => {
+        // 1. Estilos visuales de los botones
+        filters.forEach(b => {
+          b.classList.remove('bg-hikevo-black', 'text-white');
+          b.classList.add('bg-gray-100', 'text-gray-600');
+        });
+        btn.classList.remove('bg-gray-100', 'text-gray-600');
+        btn.classList.add('bg-hikevo-black', 'text-white');
 
-      cards.forEach(card => {
-        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-          card.classList.remove('hidden');
-          card.animate([
-            { opacity: 0, transform: 'translateY(10px)' },
-            { opacity: 1, transform: 'translateY(0)' }
-          ], { duration: 300, easing: 'ease-out' });
-        } else {
-          card.classList.add('hidden');
-        }
+        // 2. Lógica de filtrado
+        const filterValue = btn.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          // Casteamos a HTMLElement para evitar errores de TS en el editor, aunque en script tag no afecta
+          const cardElement = card as HTMLElement; 
+          
+          if (filterValue === 'all' || cardElement.getAttribute('data-category') === filterValue) {
+            cardElement.classList.remove('hidden');
+            // Animación suave de entrada
+            cardElement.animate([
+              { opacity: 0, transform: 'translateY(10px)' },
+              { opacity: 1, transform: 'translateY(0)' }
+            ], { duration: 300, easing: 'ease-out' });
+          } else {
+            cardElement.classList.add('hidden');
+          }
+        });
       });
     });
-  });
+  }
+
+  // EJECUCIÓN COMPATIBLE CON VIEW TRANSITIONS
+  // 1. Se ejecuta en la carga inicial
+  initPortfolioFilters();
+
+  // 2. Se ejecuta en cada navegación subsiguiente
+  document.addEventListener('astro:page-load', initPortfolioFilters);
 </script>

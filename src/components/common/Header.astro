@@ -77,9 +77,13 @@ const homeUrl = currentLang === 'es' ? '/' : '/en';
 
       <nav class="hidden md:flex items-center gap-8">
         {navItems.map(item => (
-          <a href={item.href} class="text-sm font-medium text-hikevo-charcoal hover:text-hikevo-black transition-colors">
-            {item.label}
-          </a>
+          <a 
+      href={item.href} 
+      class="relative group text-sm font-medium text-hikevo-charcoal hover:text-hikevo-black transition-colors duration-300"
+    >
+      {item.label}
+      <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-hikevo-yellow transition-all duration-300 ease-out group-hover:w-full"></span>
+    </a>
         ))}
       </nav>
 
