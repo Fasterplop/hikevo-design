@@ -68,6 +68,8 @@ if (match) {
 const esUrl = new URL(esPath, siteUrl).toString();
 const enUrl = new URL(enPath, siteUrl).toString();
 // ---------------------------------------------
+const ogLocale = currentLang === 'es' ? 'es_US' : 'en_US';
+const ogLocaleAlternate = currentLang === 'es' ? 'en_US' : 'es_US';
 
 // LÓGICA DE SCHEMA DINÁMICA
 const schemaDescription = currentLang === 'es' 
@@ -128,6 +130,9 @@ const organizationSchema = JSON.stringify({
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={absoluteImageUrl} />
 
+		<meta property="og:site_name" content="Hikevo Design" />
+        <meta property="og:locale" content={ogLocale} />
+        <meta property="og:locale:alternate" content={ogLocaleAlternate} />
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={Astro.url} />
 		<meta property="twitter:title" content={title} />

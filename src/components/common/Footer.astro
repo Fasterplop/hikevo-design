@@ -81,10 +81,10 @@ const txt = t[currentLang as keyof typeof t];
       <div>
         <h3 class="font-bold text-hikevo-black mb-4">{txt.explore}</h3>
         <ul class="space-y-3">
-          <li><a href={solutionsUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors">{txt.sol}</a></li>
-          <li><a href={portfolioUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors">{txt.port}</a></li>
-          <li><a href={aboutUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors">{txt.about}</a></li>
-          <li><a href={contactUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors">{txt.cont}</a></li>
+          <li><a href={solutionsUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors" aria-label={currentLang === 'es' ? 'Soluciones' : 'Solutions'}>{txt.sol}</a></li>
+          <li><a href={portfolioUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors" aria-label={currentLang === 'es' ? 'Portafolio' : 'Portfolio'}>{txt.port}</a></li>
+          <li><a href={aboutUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors" aria-label={currentLang === 'es' ? 'Nosotros' : 'About Us'}>{txt.about}</a></li>
+          <li><a href={contactUrl} class="text-gray-500 hover:text-hikevo-yellow transition-colors" aria-label={currentLang === 'es' ? 'Contacto' : 'Contact'}>{txt.cont}</a></li>
         </ul>
       </div>
 
