@@ -6,10 +6,18 @@ import Button from '../components/common/Button.astro';
 import heroBg from '../assets/images/snow-mountain.jpg';
 import { Image } from 'astro:assets';
 
-import paulinalopezescritora from '../assets/images/projects/paulinalopezescritora/paulinalopezescritora.com.png';
-import ganeshastores from '../assets/images/projects/ganeshastores/ganeshastores.com.png';
-import anisbarbara from '../assets/images/projects/anis-barbara/anisbarbara-mobile.png';
-import mistermango from '../assets/images/projects/mistermango/mistermango-mobile.png';
+import { getCaseStudy } from '../data/case-studies';
+
+// Casos destacados del home: título, servicios e imagen salen del registro
+// central (ADR-0001) — la portada es la misma card del portafolio.
+const featured = [
+  'fortitude-insurance',
+  'apl-dynamics',
+  'mister-mango',
+  'ganesha-pos',
+  'globo-care-remodeling',
+  'paulina-lopez-escritora',
+].map(getCaseStudy);
 
 // Metadatos
 const title = "Hikevo Design | Desarrollo Web y Estrategia Digital";
@@ -109,74 +117,43 @@ const description = "Agencia digital especializada en diseño web de alto rendim
           <p class="text-lg text-hikevo-charcoal/70">Menos ruido, más claridad. Así ayudamos a nuestros clientes.</p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <article class="group cursor-pointer reveal-smooth">
-            <a href="/portafolio/paulina-lopez-escritora" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <Image 
-                 src={paulinalopezescritora} 
-                 alt="Diseño Web para Paulina Lopez Escritora" 
-                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                 width={800} 
-               />
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
-            </a>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Paulina Lopez Escritora</h3>
-            <p class="text-sm text-hikevo-gray font-medium mb-3">Desarrollo Web + SEO</p>
-            <a href="/portafolio/paulina-lopez-escritora" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
-                Ver Caso
-            </a>
-          </article>
-
-          <article class="group cursor-pointer reveal-smooth delay-150">
-            <a href="/portafolio/ganesha-stores" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <Image 
-                 src={ganeshastores} 
-                 alt="Diseño Web para Ganesha Stores" 
-                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                 width={800}
-               />
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
-            </a>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Ganeshastores</h3>
-            <p class="text-sm text-hikevo-gray font-medium mb-3">Desarrollo Web E-commerce</p>
-            <a href="/portafolio/ganesha-stores" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
-                Ver Caso
-            </a>
-          </article>
-
-          <article class="group cursor-pointer reveal-smooth">
-            <a href="/portafolio/mister-mango" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <Image 
-                 src={mistermango} 
-                 alt="Estrategia Social Media para Mister Mango" 
-                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                 width={800}
-               />
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
-            </a>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Mister Mango</h3>
-            <p class="text-sm text-hikevo-gray font-medium mb-3">Creación de contenido y gestión de redes sociales</p>
-            <a href="/portafolio/mister-mango" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
-                Ver Caso
-            </a>
-          </article>
-
-          <article class="group cursor-pointer reveal-smooth delay-150">
-            <a href="/portafolio/anis-barbara" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <Image 
-                 src={anisbarbara} 
-                 alt="Estrategia Social Media para Anis Barbara" 
-                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                 width={800}
-               />
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
-            </a>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Anis Barbara</h3>
-            <p class="text-sm text-hikevo-gray font-medium mb-3">Creación de contenido y gestión de redes sociales</p>
-            <a href="/portafolio/anis-barbara" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
-                Ver Caso
-            </a>
-          </article>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {
+            featured.map((cs, i) => (
+              <article
+                class:list={[
+                  'group cursor-pointer reveal-smooth',
+                  i % 3 === 1 && 'delay-150',
+                  i % 3 === 2 && 'delay-300',
+                ]}
+              >
+                <a
+                  href={`/portafolio/${cs.slug}`}
+                  class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100"
+                  transition:name={`pf-${cs.slug}`}
+                >
+                  <Image
+                    src={cs.cardImage}
+                    alt={`${cs.title} — ${cs.services.es}`}
+                    class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                    widths={[480, 800, 1200]}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 420px"
+                  />
+                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+                </a>
+                <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">
+                  {cs.title}
+                </h3>
+                <p class="text-sm text-hikevo-gray font-medium mb-3">{cs.services.es}</p>
+                <a
+                  href={`/portafolio/${cs.slug}`}
+                  class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300"
+                >
+                  Ver Caso
+                </a>
+              </article>
+            ))
+          }
         </div>
 
         <div class="text-center reveal-smooth">

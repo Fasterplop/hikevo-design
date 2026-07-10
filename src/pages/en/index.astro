@@ -6,10 +6,18 @@ import Button from '../../components/common/Button.astro';
 import heroBg from '../../assets/images/snow-mountain.jpg';
 import { Image } from 'astro:assets';
 
-import paulinalopezescritora from '../../assets/images/projects/paulinalopezescritora/paulinalopezescritora.com.png';
-import ganeshastores from '../../assets/images/projects/ganeshastores/ganeshastores.com.png';
-import anisbarbara from '../../assets/images/projects/anis-barbara/anisbarbara-mobile.png';
-import mistermango from '../../assets/images/projects/mistermango/mistermango-mobile.png';
+import { getCaseStudy } from '../../data/case-studies';
+
+// Home featured cases: title, services and image come from the central
+// registry (ADR-0001) — the cover is the same portfolio card.
+const featured = [
+  'fortitude-insurance',
+  'apl-dynamics',
+  'mister-mango',
+  'ganesha-pos',
+  'globo-care-remodeling',
+  'paulina-lopez-escritora',
+].map(getCaseStudy);
 
 // Metadatos traducidos
 const title = "Hikevo Design | Web Development & Digital Strategy";
@@ -111,74 +119,43 @@ const description = "Digital agency specialized in high-performance web design a
           <p class="text-lg text-hikevo-charcoal/70">Less noise, more clarity. This is how we help our clients.</p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <article class="group cursor-pointer reveal-smooth">
-            <a href="/en/portfolio/paulina-lopez-escritora" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <Image 
-                 src={paulinalopezescritora} 
-                 alt="Web Design for Paulina Lopez Author" 
-                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                 width={800} 
-               />
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
-            </a>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Paulina Lopez Author</h3>
-            <p class="text-sm text-hikevo-gray font-medium mb-3">Web Development + SEO</p>
-            <a href="/en/portfolio/paulina-lopez-escritora" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
-                View Case
-            </a>
-          </article>
-
-          <article class="group cursor-pointer reveal-smooth delay-150">
-            <a href="/en/portfolio/ganesha-stores" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <Image 
-                 src={ganeshastores} 
-                 alt="Web Design for Ganesha Stores" 
-                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                 width={800}
-               />
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
-            </a>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Ganeshastores</h3>
-            <p class="text-sm text-hikevo-gray font-medium mb-3">E-commerce Web Development</p>
-            <a href="/en/portfolio/ganesha-stores" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
-                View Case
-            </a>
-          </article>
-
-          <article class="group cursor-pointer reveal-smooth">
-            <a href="/en/portfolio/mister-mango" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <Image 
-                 src={mistermango} 
-                 alt="Social Media Strategy for Mister Mango" 
-                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                 width={800}
-               />
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
-            </a>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Mister Mango</h3>
-            <p class="text-sm text-hikevo-gray font-medium mb-3">Content creation and social media management</p>
-            <a href="/en/portfolio/mister-mango" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
-                View Case
-            </a>
-          </article>
-
-          <article class="group cursor-pointer reveal-smooth delay-150">
-            <a href="/en/portfolio/anis-barbara" class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100">
-               <Image 
-                 src={anisbarbara} 
-                 alt="Social Media Strategy for Anis Barbara" 
-                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                 width={800}
-               />
-               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
-            </a>
-            <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">Anis Barbara</h3>
-            <p class="text-sm text-hikevo-gray font-medium mb-3">Content creation and social media management</p>
-            <a href="/en/portfolio/anis-barbara" class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300">
-                View Case
-            </a>
-          </article>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {
+            featured.map((cs, i) => (
+              <article
+                class:list={[
+                  'group cursor-pointer reveal-smooth',
+                  i % 3 === 1 && 'delay-150',
+                  i % 3 === 2 && 'delay-300',
+                ]}
+              >
+                <a
+                  href={`/en/portfolio/${cs.slug}`}
+                  class="block bg-gray-100 rounded-2xl aspect-[16/10] mb-6 overflow-hidden relative border border-gray-100"
+                  transition:name={`pf-${cs.slug}`}
+                >
+                  <Image
+                    src={cs.cardImage}
+                    alt={`${cs.title} — ${cs.services.en}`}
+                    class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                    widths={[480, 800, 1200]}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 420px"
+                  />
+                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+                </a>
+                <h3 class="text-xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors duration-300">
+                  {cs.title}
+                </h3>
+                <p class="text-sm text-hikevo-gray font-medium mb-3">{cs.services.en}</p>
+                <a
+                  href={`/en/portfolio/${cs.slug}`}
+                  class="text-sm font-semibold underline decoration-2 decoration-hikevo-yellow underline-offset-4 group-hover:text-hikevo-yellow transition-colors duration-300"
+                >
+                  View Case
+                </a>
+              </article>
+            ))
+          }
         </div>
 
         <div class="text-center reveal-smooth">
