@@ -1,0 +1,37 @@
+---
+// CTA final estándar (BRAND.md, receta §7). Microcopy desde i18n/ui.ts.
+import Button from '../common/Button.astro';
+import { useTranslations } from '../../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const WHATSAPP =
+  'https://wa.me/17866692775?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20mejorar%20mi%20negocio.';
+const portfolioHref = lang === 'es' ? '/portafolio' : '/en/portfolio';
+---
+
+<section class="border-t border-pf-line bg-pf-surface-2/60 py-20">
+  <div class="mx-auto max-w-2xl px-6 text-center reveal-smooth">
+    <h2 class="font-display text-3xl font-bold tracking-tight md:text-4xl">
+      {t('pf.cta.title')}
+    </h2>
+    <p class="mt-4 text-pf-ink-soft">{t('pf.cta.body')}</p>
+    <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <Button href={WHATSAPP} variant="primary" isExternal={true}>
+        {t('pf.cta.primary')}
+      </Button>
+      <Button
+        href={portfolioHref}
+        variant="outline"
+        class="border-pf-line text-pf-ink hover:bg-pf-surface-2"
+      >
+        {t('pf.cta.secondary')}
+      </Button>
+    </div>
+  </div>
+</section>

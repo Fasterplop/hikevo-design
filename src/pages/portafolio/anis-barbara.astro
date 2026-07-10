@@ -1,0 +1,113 @@
+---
+// Case study: Anis Barbara (ES) — social media, atmósfera oscura de marca.
+// Página libre (ADR-0001): hechos del registro, prosa y arte aquí.
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/common/Header.astro';
+import CaseTheme from '../../components/portfolio/CaseTheme.astro';
+import CaseHero from '../../components/portfolio/CaseHero.astro';
+import FactBar from '../../components/portfolio/FactBar.astro';
+import TestimonialQuote from '../../components/portfolio/TestimonialQuote.astro';
+import Lightbox from '../../components/portfolio/Lightbox.astro';
+import CaseCta from '../../components/portfolio/CaseCta.astro';
+import { Image } from 'astro:assets';
+import { getCaseStudy } from '../../data/case-studies';
+import { buildCaseSeo } from '../../data/case-seo';
+
+import mobile from '../../assets/images/projects/anis-barbara/anisbarbara-mobile.png';
+import featured from '../../assets/images/projects/anis-barbara/anisbarbara-featured.png';
+
+const cs = getCaseStudy('anis-barbara');
+const seo = await buildCaseSeo(cs, 'es');
+
+// El feed desktop completo es el hero (cardImage); aquí van las dos piezas
+// cuadradas — mismo ratio, fila alineada sin recorte.
+const feed = [
+  { src: mobile, alt: 'Contenido lifestyle de Anis Barbara en Instagram' },
+  { src: featured, alt: 'Pieza destacada de la marca' },
+];
+---
+
+<MainLayout title={seo.title} description={seo.description} image={seo.image}>
+  <script type="application/ld+json" set:html={seo.breadcrumbSchema} slot="head" />
+
+  <Header />
+
+  <CaseTheme theme={cs.theme}>
+    <main>
+      <CaseHero cs={cs} lang="es" />
+      <FactBar cs={cs} lang="es" />
+
+      <section class="py-20 md:py-28">
+        <div class="mx-auto max-w-3xl px-6 md:px-12">
+          <div class="reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">El Desafío</p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              Vender una bebida propia solo con un feed.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              El reto era vender una bebida alcohólica propia exclusivamente por
+              Instagram. Necesitábamos que el contenido visual generara por sí solo la
+              confianza y el deseo necesarios para que un seguidor decidiera pedir su
+              botella y concretar la compra a través de un mensaje directo.
+            </p>
+          </div>
+          <div class="mt-14 reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">La Solución</p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              El feed como catálogo, vitrina y canal de venta.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              Transformamos su perfil en una experiencia de marca completa: contenido
+              lifestyle que asocia la bebida con momentos de celebración y estatus, y
+              gestión de comunidad para mantener una presencia activa. El feed hace el
+              trabajo de venta — catálogo, vitrina y atención al cliente en uno.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- El contenido: piezas sobre fondo oscuro, la botella brilla -->
+      <section class="pb-20 md:pb-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {
+              feed.map((f, i) => (
+                <button
+                  type="button"
+                  data-lightbox
+                  aria-label="Ampliar imagen"
+                  class:list={[
+                    'group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-xl transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth',
+                    i === 1 && 'delay-150',
+                  ]}
+                >
+                  <Image
+                    src={f.src}
+                    alt={f.alt}
+                    widths={[720, 1600]}
+                    sizes="(max-width: 640px) 100vw, 550px"
+                    class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <TestimonialQuote
+        quote={'Mi Instagram ahora se ve increíble y profesional.\nUstedes lograron captar la esencia de mi marca y gracias a eso he tenido muchos pedidos al DM.'}
+        author="Barbara S., Fundadora"
+      />
+
+      <CaseCta lang="es" />
+      <Lightbox lang="es" />
+    </main>
+  </CaseTheme>
+</MainLayout>

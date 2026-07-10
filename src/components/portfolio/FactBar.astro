@@ -1,0 +1,75 @@
+---
+// Fact bar (BRAND.md, receta §2): hechos del registro en voz mono — cliente,
+// industria, servicios, año, stack y superficies privadas ("Sistema interno").
+import type { CaseStudy } from '../../data/case-studies';
+import { useTranslations } from '../../i18n/ui';
+
+interface Props {
+  cs: CaseStudy;
+  lang: 'es' | 'en';
+}
+
+const { cs, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const facts: { label: string; value: string }[] = [
+  { label: t('pf.fact.client'), value: cs.client },
+  { label: t('pf.fact.industry'), value: cs.industry[lang] },
+  { label: t('pf.fact.services'), value: cs.services[lang] },
+  { label: t('pf.fact.year'), value: cs.year },
+];
+
+const privateSurfaces = cs.surfaces?.filter((s) => s.access === 'private') ?? [];
+---
+
+<section class="border-y border-pf-line bg-pf-surface-2/60">
+  <div class="mx-auto max-w-6xl px-6 py-10 md:px-12">
+    <dl class="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4">
+      {
+        facts.map((f) => (
+          <div class="reveal-smooth">
+            <dt class="mb-1 font-mono text-[11px] uppercase tracking-widest text-pf-ink-soft">
+              {f.label}
+            </dt>
+            <dd class="text-sm font-semibold leading-snug">{f.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    {
+      (cs.stack?.length || privateSurfaces.length > 0) && (
+        <div class="mt-8 flex flex-wrap items-center gap-2 border-t border-pf-line pt-6 reveal-smooth">
+          {cs.stack?.length && (
+            <span class="mr-1 font-mono text-[11px] uppercase tracking-widest text-pf-ink-soft">
+              {t('pf.fact.stack')}
+            </span>
+          )}
+          {cs.stack?.map((tech) => (
+            <span class="rounded-full border border-pf-line px-3 py-1 font-mono text-xs text-pf-ink">
+              {tech}
+            </span>
+          ))}
+          {privateSurfaces.map((s) => (
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-pf-line px-3 py-1 font-mono text-xs text-pf-ink-soft">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="h-3 w-3"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              {s.name[lang]} — {t('pf.access.private')}
+            </span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>

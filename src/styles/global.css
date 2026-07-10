@@ -75,6 +75,21 @@ html, body {
   animation: gradient 6s ease infinite;
 }
 
+/* --- MOTION DEL PORTAFOLIO (BRAND.md) ---
+ * Dentro de .pf-scope las entradas son secas: translate + opacity, ~450ms,
+ * sin blur (jank móvil sobre imágenes grandes). Reutiliza el observer global
+ * de .reveal-smooth: solo cambia la física, no el JS.
+ */
+.pf-scope .reveal-smooth {
+  transform: translateY(24px);
+  filter: none;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pf-scope .reveal-smooth.is-visible {
+  transform: translateY(0);
+}
+
 /* Accesibilidad: Desactivar si el usuario lo pide */
 @media (prefers-reduced-motion: reduce) {
   .reveal-smooth, .transition-all, .transition-transform {
@@ -82,6 +97,13 @@ html, body {
     filter: none;
     transform: none;
     transition: none !important;
+    animation: none !important;
+  }
+
+  /* Sin morph card→hero: anula las animaciones de View Transitions */
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
     animation: none !important;
   }
 }

@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# material de referencia local (propuestas, capturas crudas) — no se publica
+references/

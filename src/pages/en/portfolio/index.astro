@@ -1,211 +1,52 @@
 ---
+// Portfolio index (EN) — dark showroom (BRAND.md / ADR-0002).
+// Cards and filters derive from the central registry (ADR-0001): no case study
+// facts live here.
 import MainLayout from '../../../layouts/MainLayout.astro';
 import Header from '../../../components/common/Header.astro';
-import Container from '../../../components/ui/Container.astro';
-import Button from '../../../components/common/Button.astro';
-import { Image } from 'astro:assets';
+import CaseTheme from '../../../components/portfolio/CaseTheme.astro';
+import CaseCard from '../../../components/portfolio/CaseCard.astro';
+import FilterBar from '../../../components/portfolio/FilterBar.astro';
+import CaseCta from '../../../components/portfolio/CaseCta.astro';
+import { caseStudies } from '../../../data/case-studies';
 
-import paulinalopezescritora from '../../../assets/images/projects/paulinalopezescritora/paulinalopezescritora.com.png';
-import ganeshastores from '../../../assets/images/projects/ganeshastores/ganeshastores.com.png';
-import mistermango from '../../../assets/images/projects/mistermango/mistermango-mobile.png';
-import anisbarbara from '../../../assets/images/projects/anis-barbara/anisbarbara-mobile.png';
-
-const title = "Portfolio | Hikevo Design";
-const description = "Selection of web development projects and digital strategies. Real results for real businesses.";
-
-interface Project {
-  id: number;
-  slug: string;
-  title: string;
-  category: string;
-  categoryLabel: string;
-  service: string;
-  result: string;
-  image: ImageMetadata;
-}
-
-// DATOS EN INGLÉS
-const projects: Project[] = [
-  {
-    id: 1,
-    slug: 'paulina-lopez-escritora',
-    title: 'Paulina Lopez Author',
-    category: 'web',
-    categoryLabel: 'Web Development',
-    service: 'Custom Web Development with Marketing System',
-    result: 'Organic community growth and recurring sales',
-    image: paulinalopezescritora,
-  },
-  {
-    id: 2,
-    slug: 'ganesha-stores',
-    title: 'Ganesha Stores',
-    category: 'web',
-    categoryLabel: 'Web Development',
-    service: 'Custom E-commerce Dev without payment gateway',
-    result: '70% increase in online sales',
-    image: ganeshastores
-  },
-  {
-    id: 3,
-    slug: 'mister-mango',
-    title: 'Mister Mango',
-    category: 'social',
-    categoryLabel: 'Social Media',
-    service: 'Content creation and social media management',
-    result: 'Organic community growth and recurring sales',
-    image: mistermango
-  },
-  {
-    id: 4,
-    slug: 'anis-barbara',
-    title: 'Anis Barbara',
-    category: 'social',
-    categoryLabel: 'Social Media',
-    service: 'Content creation and social media management',
-    result: 'Organic community growth and recurring sales',
-    image: anisbarbara
-  },
-];
+const title = 'Portfolio | Hikevo Design';
+const description =
+  'A selection of web development, custom systems and digital strategy projects. Real results for real businesses.';
 ---
+
 <MainLayout title={title} description={description}>
   <Header />
 
-  <main class="pt-32 pb-20">
-    <section class="mb-16">
-      <Container>
-        <div class="max-w-3xl mx-auto text-center animate-fade-in">
-          <h1 class="text-4xl md:text-6xl font-bold text-hikevo-black mb-6 tracking-tight">
-            Less noise, <br />
-            <span class="text-hikevo-gray">more impact.</span>
-          </h1>
-          <p class="text-lg text-hikevo-charcoal/80 leading-relaxed mb-10">
-            A selection of our favorite projects.
-            Designed to convert and built to last.
-          </p>
-
-          <div class="flex flex-wrap justify-center gap-2 md:gap-4 reveal-smooth delay-150" id="portfolio-filters">
-            <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-all bg-hikevo-black text-white" data-filter="all">
-              All
-            </button>
-            <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" data-filter="web">
-              Web Development
-            </button>
-            <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" data-filter="social">
-              Social Media
-            </button>
+  <CaseTheme theme={{ mode: 'dark', accent: '#FFB919' }}>
+    <main class="pt-32 pb-0">
+      <section class="mb-14">
+        <div class="mx-auto max-w-3xl px-6 text-center">
+          <div class="animate-fade-in">
+            <h1 class="font-display text-5xl font-bold tracking-tight md:text-7xl">
+              Less noise, <br />
+              <span class="text-pf-ink-soft">more impact.</span>
+            </h1>
+            <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-pf-ink-soft">
+              A selection of our favorite projects. Designed to convert and built to last.
+            </p>
+          </div>
+          <div class="mt-10 reveal-smooth delay-150">
+            <FilterBar lang="en" />
           </div>
         </div>
-      </Container>
-    </section>
+      </section>
 
-    <section class="mb-24">
-      <Container>
-        <div class="grid md:grid-cols-2 gap-8 reveal-smooth delay-300" id="projects-grid">
-          {projects.map((project) => (
-            <article class="group project-card" data-category={project.category}>
-              <a href={`/en/portfolio/${project.slug}`} class="block">
-                <div class="rounded-2xl aspect-[4/3] mb-6 overflow-hidden relative bg-gray-200 group-hover:shadow-lg transition-all duration-500">
-                  <Image 
-                    src={project.image} 
-                    alt={`Project ${project.title}`}
-                    width={800} 
-                    height={600}
-                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 z-0"
-                  />
-                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 z-10"></div>
-                </div>
-                
-                <div class="flex items-start justify-between">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-1 group-hover:text-hikevo-yellow transition-colors">{project.title}</h3>
-                        <p class="text-sm text-hikevo-gray font-medium mb-2">{project.service}</p>
-                        <div class="inline-block bg-green-50 text-green-700 text-xs px-2 py-1 rounded-md font-medium border border-green-100">
-                          Result: {project.result}
-                        </div>
-                    </div>
-                    <div class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-hikevo-black group-hover:border-hikevo-black transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-black group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </div>
-                </div>
-              </a>
-            </article>
-          ))}
+      <section class="pb-24">
+        <div
+          class="mx-auto grid max-w-7xl gap-x-6 gap-y-14 px-6 sm:grid-cols-2 md:px-12 lg:grid-cols-3 reveal-smooth delay-300"
+          id="pf-grid"
+        >
+          {caseStudies.map((cs) => <CaseCard cs={cs} lang="en" />)}
         </div>
-      </Container>
-    </section>
+      </section>
 
-    <section class="py-20 bg-hikevo-gray-light">
-        <Container>
-            <div class="text-center max-w-2xl mx-auto reveal-smooth">
-                <h2 class="text-3xl font-bold mb-4">Like what you see?</h2>
-                <p class="text-gray-600 mb-8">We can build something just as effective for your business.</p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Button href="https://wa.me/17866692775?text=Hello!%20I%20would%20like%20to%20talk%20about%20my%20business." variant="primary" isExternal={true}>
-                        Start my Project
-                    </Button>
-                    <Button href="/en/solutions" variant="outline">
-                        See Pricing
-                    </Button>
-                </div>
-            </div>
-        </Container>
-    </section>
-  </main>
+      <CaseCta lang="en" />
+    </main>
+  </CaseTheme>
 </MainLayout>
-
-<script>
-  // Función para inicializar los filtros
-  function initPortfolioFilters() {
-    const filters = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.project-card');
-
-    // Si no hay filtros en la página actual (ej: cambiamos de ruta), no hacemos nada
-    if (filters.length === 0) return;
-
-    filters.forEach(btn => {
-      // Importante: Clonamos el botón para eliminar eventos previos y evitar duplicados al navegar
-      // (Opcional pero recomendado en ViewTransitions si el elemento persiste, 
-      // aunque aquí se reconstruye el DOM, es seguro re-asignar el evento directamente 
-      // porque el DOM es nuevo).
-      
-      btn.addEventListener('click', () => {
-        // 1. Estilos visuales de los botones
-        filters.forEach(b => {
-          b.classList.remove('bg-hikevo-black', 'text-white');
-          b.classList.add('bg-gray-100', 'text-gray-600');
-        });
-        btn.classList.remove('bg-gray-100', 'text-gray-600');
-        btn.classList.add('bg-hikevo-black', 'text-white');
-
-        // 2. Lógica de filtrado
-        const filterValue = btn.getAttribute('data-filter');
-
-        cards.forEach(card => {
-          // Casteamos a HTMLElement para evitar errores de TS en el editor, aunque en script tag no afecta
-          const cardElement = card as HTMLElement; 
-          
-          if (filterValue === 'all' || cardElement.getAttribute('data-category') === filterValue) {
-            cardElement.classList.remove('hidden');
-            // Animación suave de entrada
-            cardElement.animate([
-              { opacity: 0, transform: 'translateY(10px)' },
-              { opacity: 1, transform: 'translateY(0)' }
-            ], { duration: 300, easing: 'ease-out' });
-          } else {
-            cardElement.classList.add('hidden');
-          }
-        });
-      });
-    });
-  }
-
-  // EJECUCIÓN COMPATIBLE CON VIEW TRANSITIONS
-  // 1. Se ejecuta en la carga inicial
-  initPortfolioFilters();
-
-  // 2. Se ejecuta en cada navegación subsiguiente
-  document.addEventListener('astro:page-load', initPortfolioFilters);
-</script>

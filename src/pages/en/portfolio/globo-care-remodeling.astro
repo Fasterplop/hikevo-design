@@ -1,0 +1,116 @@
+---
+// Case study: Globo Care Remodeling (EN) — bilingual services website.
+// Free page (ADR-0001): facts from the registry, prose and art live here.
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Header from '../../../components/common/Header.astro';
+import CaseTheme from '../../../components/portfolio/CaseTheme.astro';
+import CaseHero from '../../../components/portfolio/CaseHero.astro';
+import FactBar from '../../../components/portfolio/FactBar.astro';
+import OutcomeTiles from '../../../components/portfolio/OutcomeTiles.astro';
+import Lightbox from '../../../components/portfolio/Lightbox.astro';
+import CaseCta from '../../../components/portfolio/CaseCta.astro';
+import { Image } from 'astro:assets';
+import { getCaseStudy } from '../../../data/case-studies';
+import { buildCaseSeo } from '../../../data/case-seo';
+
+// Captures of each subpage cropped FROM BELOW the hero (4:3 window):
+// real page content is visible, not four repeated banners.
+import services from '../../../assets/images/projects/globo-care-remodeling/services-below.png';
+import galleryShot from '../../../assets/images/projects/globo-care-remodeling/gallery-below.png';
+import about from '../../../assets/images/projects/globo-care-remodeling/about-below.png';
+import contact from '../../../assets/images/projects/globo-care-remodeling/contact-below.png';
+
+const cs = getCaseStudy('globo-care-remodeling');
+const seo = await buildCaseSeo(cs, 'en');
+
+const work = [
+  { src: services, alt: 'Google-optimized individual service pages' },
+  { src: galleryShot, alt: 'Work gallery filterable by job type' },
+  { src: about, alt: 'About page with a Sarasota local focus' },
+  { src: contact, alt: 'Lead-qualifying contact form' },
+];
+---
+
+<MainLayout title={seo.title} description={seo.description} image={seo.image}>
+  <script type="application/ld+json" set:html={seo.breadcrumbSchema} slot="head" />
+
+  <Header />
+
+  <CaseTheme theme={cs.theme}>
+    <main>
+      <CaseHero cs={cs} lang="en" />
+      <FactBar cs={cs} lang="en" />
+
+      <!-- Wide-column narrative, local-business tone -->
+      <section class="py-20 md:py-28">
+        <div class="mx-auto max-w-3xl px-6 md:px-12">
+          <div class="reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Challenge</p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              Competing in Sarasota means speaking two languages and loading fast.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              Globo Care needed to position itself as a remodeling leader in a market
+              where clients search on Google, compare within minutes and speak English or
+              Spanish. Without a site of their own, every lead depended on word of mouth
+              — and the value of their transformations was visible nowhere.
+            </p>
+          </div>
+          <div class="mt-14 reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Solution</p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              A site that shows the before/after — and qualifies the lead.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              A bilingual multi-page site with Sarasota local SEO: individual pages per
+              service, a gallery filterable by job type, a "Before & After" slider so the
+              value is visible, and a smart form that classifies each client by what they
+              need. Served through Cloudflare on top of the hosting the client already
+              paid for.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- The work -->
+      <section class="pb-20 md:pb-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="grid gap-6 md:grid-cols-2">
+            {
+              work.map((w, i) => (
+                <button
+                  type="button"
+                  data-lightbox
+                  aria-label="View image larger"
+                  class:list={[
+                    'group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth',
+                    i % 2 === 1 && 'delay-150',
+                  ]}
+                >
+                  <Image
+                    src={w.src}
+                    alt={w.alt}
+                    widths={[720, 1600]}
+                    sizes="(max-width: 768px) 100vw, 550px"
+                    class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <OutcomeTiles outcomes={cs.outcomes} lang="en" />
+
+      <CaseCta lang="en" />
+      <Lightbox lang="en" />
+    </main>
+  </CaseTheme>
+</MainLayout>

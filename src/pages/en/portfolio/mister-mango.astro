@@ -1,0 +1,114 @@
+---
+// Case study: Mister Mango (EN) — social media, vertical content.
+// Free page (ADR-0001): facts from the registry, prose and art live here.
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Header from '../../../components/common/Header.astro';
+import CaseTheme from '../../../components/portfolio/CaseTheme.astro';
+import CaseHero from '../../../components/portfolio/CaseHero.astro';
+import FactBar from '../../../components/portfolio/FactBar.astro';
+import OutcomeTiles from '../../../components/portfolio/OutcomeTiles.astro';
+import Lightbox from '../../../components/portfolio/Lightbox.astro';
+import TestimonialQuote from '../../../components/portfolio/TestimonialQuote.astro';
+import CaseCta from '../../../components/portfolio/CaseCta.astro';
+import { Image } from 'astro:assets';
+import { getCaseStudy } from '../../../data/case-studies';
+import { buildCaseSeo } from '../../../data/case-seo';
+
+import mobile from '../../../assets/images/projects/mistermango/mistermango-mobile.png';
+import featured from '../../../assets/images/projects/mistermango/mistermango-featured.png';
+
+const cs = getCaseStudy('mister-mango');
+const seo = await buildCaseSeo(cs, 'en');
+
+// The full desktop feed is the hero (cardImage); here go the two square
+// pieces — same ratio, aligned row with no cropping.
+const feed = [
+  { src: mobile, alt: 'Mister Mango vertical content' },
+  { src: featured, alt: 'Featured piece of the visual strategy' },
+];
+---
+
+<MainLayout title={seo.title} description={seo.description} image={seo.image}>
+  <script type="application/ld+json" set:html={seo.breadcrumbSchema} slot="head" />
+
+  <Header />
+
+  <CaseTheme theme={cs.theme}>
+    <main>
+      <CaseHero cs={cs} lang="en" />
+      <FactBar cs={cs} lang="en" />
+
+      <section class="py-20 md:py-28">
+        <div class="mx-auto max-w-3xl px-6 md:px-12">
+          <div class="reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Challenge</p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              Make the photo mouth-watering — and give the craving a button.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              The challenge was double: first, make a single photo convey the acidity and
+              freshness of the product. Second, capture the craving customer who loved
+              the product but didn't always have time to physically get to the kiosk.
+            </p>
+          </div>
+          <div class="mt-14 reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Solution</p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              From "that looks delicious" to a DoorDash order.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              We designed a "food porn" visual strategy to trigger immediate desire, and
+              channeled that craving by making action easy: if you can't come to the
+              kiosk, one click in the bio turns the impulse into a direct DoorDash order.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- The content: two square feed pieces -->
+      <section class="pb-20 md:pb-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {
+              feed.map((f, i) => (
+                <button
+                  type="button"
+                  data-lightbox
+                  aria-label="View image larger"
+                  class:list={[
+                    'group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth',
+                    i === 1 && 'delay-150',
+                  ]}
+                >
+                  <Image
+                    src={f.src}
+                    alt={f.alt}
+                    widths={[720, 1600]}
+                    sizes="(max-width: 640px) 100vw, 550px"
+                    class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <OutcomeTiles outcomes={cs.outcomes} lang="en" />
+
+      <TestimonialQuote
+        quote={'People arrive at the kiosk showing me TikTok videos and asking for "that same mango I saw on Instagram".\nSocial media really brought us new people.'}
+        author="Mateo L., Founder"
+      />
+
+      <CaseCta lang="en" />
+      <Lightbox lang="en" />
+    </main>
+  </CaseTheme>
+</MainLayout>

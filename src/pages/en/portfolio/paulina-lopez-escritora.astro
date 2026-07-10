@@ -1,0 +1,120 @@
+---
+// Case study: Paulina López (EN) — custom web with marketing system.
+// Free page (ADR-0001): facts from the registry, prose and art live here.
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Header from '../../../components/common/Header.astro';
+import CaseTheme from '../../../components/portfolio/CaseTheme.astro';
+import CaseHero from '../../../components/portfolio/CaseHero.astro';
+import FactBar from '../../../components/portfolio/FactBar.astro';
+import OutcomeTiles from '../../../components/portfolio/OutcomeTiles.astro';
+import Lightbox from '../../../components/portfolio/Lightbox.astro';
+import TestimonialQuote from '../../../components/portfolio/TestimonialQuote.astro';
+import CaseCta from '../../../components/portfolio/CaseCta.astro';
+import { Image } from 'astro:assets';
+import { getCaseStudy } from '../../../data/case-studies';
+import { buildCaseSeo } from '../../../data/case-seo';
+
+import mobile from '../../../assets/images/projects/paulinalopezescritora/paulina-mobile.png';
+import featured from '../../../assets/images/projects/paulinalopezescritora/paulina-featured.png';
+
+const cs = getCaseStudy('paulina-lopez-escritora');
+const seo = await buildCaseSeo(cs, 'en');
+---
+
+<MainLayout title={seo.title} description={seo.description} image={seo.image}>
+  <script type="application/ld+json" set:html={seo.breadcrumbSchema} slot="head" />
+
+  <Header />
+
+  <CaseTheme theme={cs.theme}>
+    <main>
+      <CaseHero cs={cs} lang="en" />
+      <FactBar cs={cs} lang="en" />
+
+      <!-- Editorial narrative: single column, reading rhythm -->
+      <section class="py-20 md:py-28">
+        <div class="mx-auto max-w-3xl px-6 md:px-12">
+          <div class="reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Challenge</p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              Turning followers into subscribers without sacrificing aesthetics.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              The goal was to centralize the author's digital presence into a
+              professional hub that converted followers into subscribers. The main
+              challenge: implementing a rich visual aesthetic — particles, parallax
+              effects, textures — without sacrificing the load speed needed to retain
+              mobile traffic coming from social media.
+            </p>
+          </div>
+          <div class="mt-14 reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Solution</p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              Static beauty, interactivity only where it counts.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              We implemented a custom web architecture that prioritizes lightweight
+              static content, loading interactivity only when necessary. The experience
+              was optimized with progressive reveal animations and asynchronous
+              subscription forms, guaranteeing smooth, uninterrupted navigation for the
+              reader — with the marketing system and database fully under the author's
+              control.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- The work: mobile first (traffic comes from social) -->
+      <section class="pb-20 md:pb-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="grid gap-6 md:grid-cols-2">
+            <button
+              type="button"
+              data-lightbox
+              aria-label="View image larger"
+              class="group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth"
+            >
+              <Image
+                src={mobile}
+                alt="paulinalopezescritora.com on mobile"
+                widths={[720, 1600]}
+                sizes="(max-width: 768px) 100vw, 550px"
+                class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </button>
+            <button
+              type="button"
+              data-lightbox
+              aria-label="View image larger"
+              class="group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth delay-150"
+            >
+              <Image
+                src={featured}
+                alt="Featured section of Paulina López's site"
+                widths={[720, 1600]}
+                sizes="(max-width: 768px) 100vw, 550px"
+                class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <OutcomeTiles outcomes={cs.outcomes} lang="en" />
+
+      <TestimonialQuote
+        quote={'The page speed is incredible, but what I value most is how easily I now handle my marketing.\nThe integrated system lets me control all my campaigns and automations with total autonomy, greatly simplifying my daily work.'}
+        author="Paulina L., Author"
+      />
+
+      <CaseCta lang="en" />
+      <Lightbox lang="en" />
+    </main>
+  </CaseTheme>
+</MainLayout>

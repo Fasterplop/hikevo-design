@@ -1,0 +1,22 @@
+---
+// Testimonio (BRAND.md, receta §6): la voz humana cierra la argumentación.
+// La prosa es de la página (localizada allí); la forma es idéntica en todos los casos.
+interface Props {
+  quote: string;
+  author: string;
+}
+
+const { quote, author } = Astro.props;
+---
+
+<section class="border-t border-pf-line py-20 md:py-28">
+  <div class="mx-auto max-w-3xl px-6 text-center md:px-12 reveal-smooth">
+    <div class="mb-6 font-display text-6xl leading-none text-pf-accent" aria-hidden="true">"</div>
+    <blockquote class="whitespace-pre-line text-xl italic leading-relaxed text-pf-ink md:text-2xl">
+      {quote}
+    </blockquote>
+    <figcaption class="mt-8 font-mono text-sm uppercase tracking-widest text-pf-accent">
+      — {author}
+    </figcaption>
+  </div>
+</section>

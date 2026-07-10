@@ -55,14 +55,14 @@ const match = routeMap.find(r => r.es === currentPath || r.en === currentPath);
 if (match) {
     esPath = match.es;
     enPath = match.en;
-} else {
-    // Fallback para rutas dinámicas (como proyectos de portafolio)
-    // Si estamos dentro de portafolio, apuntamos a la página principal del portafolio en el otro idioma
-    // para evitar errores 404 en las etiquetas meta.
-    if (currentPath.includes('/portafolio/') || currentPath.includes('/portfolio/')) {
-        esPath = '/portafolio';
-        enPath = '/en/portfolio';
-    }
+} else if (currentPath.startsWith('/en/portfolio/')) {
+    // Los slugs de case studies son idénticos en ambos idiomas (registro central):
+    // hreflang apunta al caso homólogo exacto.
+    enPath = currentPath;
+    esPath = currentPath.replace('/en/portfolio/', '/portafolio/');
+} else if (currentPath.startsWith('/portafolio/')) {
+    esPath = currentPath;
+    enPath = currentPath.replace('/portafolio/', '/en/portfolio/');
 }
 
 const esUrl = new URL(esPath, siteUrl).toString();

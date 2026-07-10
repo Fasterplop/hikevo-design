@@ -1,0 +1,118 @@
+---
+// Comparador antes/después (BRAND.md): construido sobre <input type="range"> —
+// teclado, touch y mouse nativos; labels siempre visibles; fallback sin JS con
+// las dos imágenes apiladas. Compara pares homólogos (misma página).
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { useTranslations } from '../../i18n/ui';
+
+interface Props {
+  before: ImageMetadata;
+  after: ImageMetadata;
+  altBefore: string;
+  altAfter: string;
+  lang: 'es' | 'en';
+}
+
+const { before, after, altBefore, altAfter, lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<figure
+  data-ba
+  class="group relative overflow-hidden rounded-3xl border border-pf-line bg-pf-surface-2 shadow-xl"
+  style="--pos: 50%"
+>
+  <div class="relative aspect-[16/10] w-full">
+    <Image
+      src={before}
+      alt={altBefore}
+      widths={[720, 1200]}
+      sizes="(max-width: 768px) 100vw, 1100px"
+      class="absolute inset-0 h-full w-full object-cover object-top"
+    />
+    <div
+      class="absolute inset-0"
+      style="clip-path: inset(0 0 0 var(--pos))"
+      aria-hidden="true"
+    >
+      <Image
+        src={after}
+        alt=""
+        widths={[720, 1200]}
+        sizes="(max-width: 768px) 100vw, 1100px"
+        class="absolute inset-0 h-full w-full object-cover object-top"
+      />
+    </div>
+
+    <!-- Línea divisoria + asa, posicionadas por la misma var -->
+    <div
+      class="pointer-events-none absolute inset-y-0 w-0.5 bg-hikevo-yellow"
+      style="left: var(--pos)"
+      aria-hidden="true"
+    >
+      <span
+        class="absolute top-1/2 left-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-hikevo-yellow text-hikevo-black shadow-md"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+          <path d="M7.72 12.53a.75.75 0 0 1 0-1.06L5.31 9.06a.75.75 0 0 1 0-1.06l2.41-2.41a.75.75 0 1 1 1.06 1.06L6.87 8.56h6.26l-1.91-1.91a.75.75 0 1 1 1.06-1.06l2.41 2.41a.75.75 0 0 1 0 1.06l-2.41 2.41a.75.75 0 1 1-1.06-1.06l1.91-1.91H6.87l1.91 1.91a.75.75 0 0 1-1.06 1.06Z" />
+        </svg>
+      </span>
+    </div>
+
+    <!-- Labels siempre visibles (no dependen de hover) -->
+    <span
+      class="absolute top-4 left-4 rounded-full bg-black/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-white"
+    >
+      {t('pf.ba.before')}
+    </span>
+    <span
+      class="absolute top-4 right-4 rounded-full bg-hikevo-yellow px-3 py-1 font-mono text-xs uppercase tracking-widest text-hikevo-black"
+    >
+      {t('pf.ba.after')}
+    </span>
+
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      step="1"
+      aria-label={t('pf.ba.label')}
+      class="ba-range absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
+    />
+  </div>
+
+  <!-- Fallback accesible sin JS: par apilado con sus labels -->
+  <noscript>
+    <div class="grid gap-4 p-4 md:grid-cols-2">
+      <figure>
+        <figcaption class="mb-2 font-mono text-xs uppercase tracking-widest text-pf-ink-soft">
+          {t('pf.ba.before')}
+        </figcaption>
+        <Image src={before} alt={altBefore} class="w-full rounded-xl" />
+      </figure>
+      <figure>
+        <figcaption class="mb-2 font-mono text-xs uppercase tracking-widest text-pf-ink-soft">
+          {t('pf.ba.after')}
+        </figcaption>
+        <Image src={after} alt={altAfter} class="w-full rounded-xl" />
+      </figure>
+    </div>
+  </noscript>
+</figure>
+
+<script>
+  function initBeforeAfter() {
+    document.querySelectorAll<HTMLElement>('[data-ba]').forEach((root) => {
+      const range = root.querySelector<HTMLInputElement>('input.ba-range');
+      if (!range || range.dataset.init === '1') return;
+      range.dataset.init = '1';
+      const apply = () => root.style.setProperty('--pos', `${range.value}%`);
+      range.addEventListener('input', apply);
+      apply();
+    });
+  }
+  initBeforeAfter();
+  document.addEventListener('astro:page-load', initBeforeAfter);
+</script>

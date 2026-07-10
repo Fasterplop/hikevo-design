@@ -1,0 +1,151 @@
+---
+// Case study: APL Dynamics (EN) — e-commerce with two surfaces.
+// Free page (ADR-0001): facts from the registry, prose and art live here.
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Header from '../../../components/common/Header.astro';
+import CaseTheme from '../../../components/portfolio/CaseTheme.astro';
+import CaseHero from '../../../components/portfolio/CaseHero.astro';
+import FactBar from '../../../components/portfolio/FactBar.astro';
+import SurfaceChapter from '../../../components/portfolio/SurfaceChapter.astro';
+import OutcomeTiles from '../../../components/portfolio/OutcomeTiles.astro';
+import Lightbox from '../../../components/portfolio/Lightbox.astro';
+import CaseCta from '../../../components/portfolio/CaseCta.astro';
+import { Image } from 'astro:assets';
+import { getCaseStudy } from '../../../data/case-studies';
+import { buildCaseSeo } from '../../../data/case-seo';
+
+// "Below the hero" crop of the full-page capture: the hero itself lives in CaseHero.
+import storefront2 from '../../../assets/images/projects/apl-dynamics/storefront-2-below.png';
+import product from '../../../assets/images/projects/apl-dynamics/product.png';
+import admin from '../../../assets/images/projects/apl-dynamics/admin.png';
+
+const cs = getCaseStudy('apl-dynamics');
+const seo = await buildCaseSeo(cs, 'en');
+---
+
+<MainLayout title={seo.title} description={seo.description} image={seo.image}>
+  <script type="application/ld+json" set:html={seo.breadcrumbSchema} slot="head" />
+
+  <Header />
+
+  <CaseTheme theme={cs.theme}>
+    <main>
+      <CaseHero cs={cs} lang="en" />
+      <FactBar cs={cs} lang="en" />
+
+      <!-- Challenge / Solution in two columns: technical, industrial tone -->
+      <section class="py-20 md:py-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="grid gap-16 md:grid-cols-2">
+            <div class="reveal-smooth">
+              <div class="mb-4 flex items-center gap-3">
+                <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+                <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Challenge</p>
+              </div>
+              <h2 class="font-display text-3xl font-bold tracking-tight md:text-4xl">
+                Selling 200-pound hardware like it's one click.
+              </h2>
+              <p class="mt-6 leading-relaxed text-pf-ink-soft">
+                APL Dynamics builds seats and structural hardware for flight simulators:
+                rare, heavy, high-value products that used to sell through email and
+                manual quoting. Every sale meant calculating freight, state taxes and
+                made-to-order lead times by hand.
+              </p>
+              <p class="mt-4 leading-relaxed text-pf-ink-soft">
+                The challenge: let a customer anywhere in the US explore the catalog,
+                study every piece in detail and pay online — no account, no phone call.
+              </p>
+            </div>
+            <div class="reveal-smooth delay-150">
+              <div class="mb-4 flex items-center gap-3">
+                <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+                <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Solution</p>
+              </div>
+              <h2 class="font-display text-3xl font-bold tracking-tight md:text-4xl">
+                Guest checkout with real-time freight quoting.
+              </h2>
+              <p class="mt-6 leading-relaxed text-pf-ink-soft">
+                We built a custom e-commerce where freight is quoted live against the
+                Estes Express preferred rate — commercial dock or residential liftgate
+                delivery — and taxes compute themselves by destination state. Payments
+                run on Stripe.
+              </p>
+              <p class="mt-4 leading-relaxed text-pf-ink-soft">
+                Fully custom products never reach the cart: the system routes the
+                customer to a quote form that lands straight in the manufacturer's inbox.
+                Everything else sells itself.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Surface 1: Storefront -->
+      <SurfaceChapter surface={cs.surfaces![0]} index={1} lang="en">
+        <div class="grid gap-6 md:grid-cols-2">
+          <button
+            type="button"
+            data-lightbox
+            aria-label="View image larger"
+            class="group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth"
+          >
+            <Image
+              src={storefront2}
+              alt="Studio story section on the APL Dynamics storefront"
+              widths={[720, 1600]}
+              sizes="(max-width: 768px) 100vw, 550px"
+              class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </button>
+          <button
+            type="button"
+            data-lightbox
+            aria-label="View image larger"
+            class="group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth delay-150"
+          >
+            <Image
+              src={product}
+              alt="Product page with gallery, specs and availability"
+              widths={[720, 1600]}
+              sizes="(max-width: 768px) 100vw, 550px"
+              class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </button>
+        </div>
+        <p class="mt-6 max-w-2xl text-pf-ink-soft reveal-smooth">
+          High-resolution gallery with zoom, embedded video, physical specs and estimated
+          manufacturing time per product — with the "Not for real flight operations"
+          legal notice always visible.
+        </p>
+      </SurfaceChapter>
+
+      <!-- Surface 2: Admin panel -->
+      <SurfaceChapter surface={cs.surfaces![1]} index={2} lang="en">
+        <button
+          type="button"
+          data-lightbox
+          aria-label="View image larger"
+          class="group block w-full cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth"
+        >
+          <Image
+            src={admin}
+            alt="Admin panel: products, orders and customers"
+            widths={[720, 1600]}
+            sizes="(max-width: 768px) 100vw, 1100px"
+            class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+        </button>
+        <p class="mt-6 max-w-2xl text-pf-ink-soft reveal-smooth">
+          The manufacturer manages catalog, categories, orders and refunds with zero
+          technical help. Registering a tracking number automatically fires the shipping
+          update email to the customer.
+        </p>
+      </SurfaceChapter>
+
+      <OutcomeTiles outcomes={cs.outcomes} lang="en" />
+
+      <CaseCta lang="en" />
+      <Lightbox lang="en" />
+    </main>
+  </CaseTheme>
+</MainLayout>

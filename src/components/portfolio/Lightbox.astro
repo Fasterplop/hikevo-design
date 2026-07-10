@@ -1,0 +1,187 @@
+---
+// Lightbox del kit (BRAND.md): cualquier <button data-lightbox> que contenga
+// una <img> la abre ampliada en un <dialog> nativo — foco atrapado y Esc
+// gratis — con flechas (botones y teclado), contador y botón de cierre.
+// El modal muestra la variante más grande del srcset del tile, así el tile
+// puede ir recortado (marco uniforme) y la imagen completa vive aquí.
+// Mejora progresiva: sin JS los botones no hacen nada y todo sigue visible.
+// Se incluye una vez por página, con el idioma de la página.
+import { useTranslations } from '../../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<dialog
+  data-pf-lightbox
+  aria-label={t('pf.lb.label')}
+  class="fixed inset-0 m-0 h-full max-h-none w-full max-w-none bg-black/95 p-0"
+>
+  <div class="relative flex h-full w-full items-center justify-center p-4 md:p-14" data-lb-stage>
+    <img
+      data-lb-img
+      src=""
+      alt=""
+      class="max-h-full max-w-full rounded-xl object-contain shadow-2xl"
+    />
+
+    <span
+      data-lb-count
+      class="absolute top-5 left-1/2 -translate-x-1/2 font-mono text-xs tracking-widest text-white/70"
+    ></span>
+
+    <button
+      type="button"
+      data-lb-close
+      aria-label={t('pf.lb.close')}
+      class="absolute top-4 right-4 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-hikevo-yellow hover:text-hikevo-black focus-visible:outline-2 focus-visible:outline-hikevo-yellow"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      data-lb-prev
+      aria-label={t('pf.lb.prev')}
+      class="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-hikevo-yellow hover:text-hikevo-black focus-visible:outline-2 focus-visible:outline-hikevo-yellow md:left-5"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+        <path fill-rule="evenodd" d="M12.78 4.22a.75.75 0 0 1 0 1.06L8.06 10l4.72 4.72a.75.75 0 1 1-1.06 1.06l-5.25-5.25a.75.75 0 0 1 0-1.06l5.25-5.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      data-lb-next
+      aria-label={t('pf.lb.next')}
+      class="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-hikevo-yellow hover:text-hikevo-black focus-visible:outline-2 focus-visible:outline-hikevo-yellow md:right-5"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+        <path fill-rule="evenodd" d="M7.22 15.78a.75.75 0 0 1 0-1.06L11.94 10 7.22 5.28a.75.75 0 1 1 1.06-1.06l5.25 5.25a.75.75 0 0 1 0 1.06l-5.25 5.25a.75.75 0 0 1-1.06 0Z" clip-rule="evenodd" />
+      </svg>
+    </button>
+
+    <p
+      data-lb-caption
+      class="absolute bottom-4 left-1/2 max-w-[85vw] -translate-x-1/2 truncate text-center font-mono text-xs text-white/70"
+    ></p>
+  </div>
+</dialog>
+
+<script>
+  // Del srcset del tile, la variante más ancha: el modal siempre muestra la
+  // mejor resolución disponible sin pedir nada nuevo al build.
+  function largestFromSrcset(img: HTMLImageElement): string {
+    const srcset = img.getAttribute('srcset');
+    if (!srcset) return img.currentSrc || img.src;
+    let bestUrl = img.src;
+    let bestW = 0;
+    for (const part of srcset.split(',')) {
+      const [url, descriptor] = part.trim().split(/\s+/);
+      const w = descriptor && descriptor.endsWith('w') ? parseInt(descriptor, 10) : 0;
+      if (url && w > bestW) {
+        bestW = w;
+        bestUrl = url;
+      }
+    }
+    return bestUrl;
+  }
+
+  let items: { src: string; alt: string }[] = [];
+  let index = 0;
+
+  // Bloqueo de scroll que preserva la posición: overflow-hidden en <html>
+  // clampa el scroll a 0 en Chromium (al cerrar aparecías al inicio de la
+  // página). Se fija el <body> compensado y se restaura al cerrar.
+  let lockY = 0;
+  function lockScroll() {
+    lockY = window.scrollY;
+    const b = document.body.style;
+    b.position = 'fixed';
+    b.top = `-${lockY}px`;
+    b.left = '0';
+    b.right = '0';
+    b.width = '100%';
+  }
+  function unlockScroll() {
+    const b = document.body.style;
+    b.position = '';
+    b.top = '';
+    b.left = '';
+    b.right = '';
+    b.width = '';
+    window.scrollTo(0, lockY);
+  }
+
+  function show(dialog: HTMLDialogElement) {
+    const img = dialog.querySelector<HTMLImageElement>('[data-lb-img]');
+    const caption = dialog.querySelector<HTMLElement>('[data-lb-caption]');
+    const count = dialog.querySelector<HTMLElement>('[data-lb-count]');
+    const many = items.length > 1;
+    const item = items[index];
+    if (!img || !item) return;
+    img.src = item.src;
+    img.alt = item.alt;
+    if (caption) caption.textContent = item.alt;
+    if (count) count.textContent = many ? `${index + 1} / ${items.length}` : '';
+    dialog.querySelectorAll<HTMLElement>('[data-lb-prev], [data-lb-next]').forEach((b) => {
+      b.classList.toggle('hidden', !many);
+    });
+  }
+
+  function step(dialog: HTMLDialogElement, delta: number) {
+    if (items.length < 2) return;
+    index = (index + delta + items.length) % items.length;
+    show(dialog);
+  }
+
+  function setupDialog(dialog: HTMLDialogElement) {
+    if (dialog.dataset.init === '1') return;
+    dialog.dataset.init = '1';
+    dialog.querySelector('[data-lb-close]')?.addEventListener('click', () => dialog.close());
+    dialog.querySelector('[data-lb-prev]')?.addEventListener('click', () => step(dialog, -1));
+    dialog.querySelector('[data-lb-next]')?.addEventListener('click', () => step(dialog, 1));
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') step(dialog, -1);
+      if (e.key === 'ArrowRight') step(dialog, 1);
+    });
+    // Clic fuera de la imagen (el escenario oscuro) cierra.
+    dialog.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target === dialog || target.hasAttribute('data-lb-stage')) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      unlockScroll();
+    });
+  }
+
+  // Delegación a nivel de documento: sobrevive a las View Transitions (los
+  // triggers y el dialog se resuelven frescos en cada clic).
+  if (!(window as any).__pfLightbox) {
+    (window as any).__pfLightbox = true;
+    document.addEventListener('click', (e) => {
+      const trigger = (e.target as HTMLElement).closest<HTMLElement>('[data-lightbox]');
+      if (!trigger) return;
+      const dialog = document.querySelector<HTMLDialogElement>('dialog[data-pf-lightbox]');
+      if (!dialog) return;
+      const triggers = Array.from(document.querySelectorAll<HTMLElement>('[data-lightbox]')).filter(
+        (el) => el.querySelector('img')
+      );
+      items = triggers.map((el) => {
+        const img = el.querySelector('img')!;
+        return { src: largestFromSrcset(img), alt: img.alt };
+      });
+      index = Math.max(0, triggers.indexOf(trigger));
+      setupDialog(dialog);
+      show(dialog);
+      lockScroll();
+      dialog.showModal();
+    });
+  }
+</script>

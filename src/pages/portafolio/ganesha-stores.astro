@@ -1,0 +1,176 @@
+---
+// Case study: Ganesha Stores (ES) — e-commerce + extensión programa de puntos.
+// Página libre (ADR-0001): hechos del registro, prosa y arte aquí.
+// La propuesta de fidelidad EXTIENDE este caso, no crea otro (CONTEXT.md).
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/common/Header.astro';
+import CaseTheme from '../../components/portfolio/CaseTheme.astro';
+import CaseHero from '../../components/portfolio/CaseHero.astro';
+import FactBar from '../../components/portfolio/FactBar.astro';
+import OutcomeTiles from '../../components/portfolio/OutcomeTiles.astro';
+import TestimonialQuote from '../../components/portfolio/TestimonialQuote.astro';
+import Lightbox from '../../components/portfolio/Lightbox.astro';
+import CaseCta from '../../components/portfolio/CaseCta.astro';
+import { Image } from 'astro:assets';
+import { getCaseStudy } from '../../data/case-studies';
+import { buildCaseSeo } from '../../data/case-seo';
+
+import mobile from '../../assets/images/projects/ganeshastores/ganesha-mobile.png';
+import featured from '../../assets/images/projects/ganeshastores/ganesha-featured.png';
+import fidelity1 from '../../assets/images/projects/ganeshastores/fidelity-1.png';
+import fidelity2 from '../../assets/images/projects/ganeshastores/fidelity-2.png';
+import fidelity3 from '../../assets/images/projects/ganeshastores/fidelity-3.png';
+
+const cs = getCaseStudy('ganesha-stores');
+const seo = await buildCaseSeo(cs, 'es');
+---
+
+<MainLayout title={seo.title} description={seo.description} image={seo.image}>
+  <script type="application/ld+json" set:html={seo.breadcrumbSchema} slot="head" />
+
+  <Header />
+
+  <CaseTheme theme={cs.theme}>
+    <main>
+      <CaseHero cs={cs} lang="es" />
+      <FactBar cs={cs} lang="es" />
+
+      <section class="py-20 md:py-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="grid gap-16 md:grid-cols-2">
+            <div class="reveal-smooth">
+              <div class="mb-4 flex items-center gap-3">
+                <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+                <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">El Desafío</p>
+              </div>
+              <h2 class="font-display text-3xl font-bold tracking-tight md:text-4xl">
+                Un catálogo que vivía en el chat.
+              </h2>
+              <p class="mt-6 leading-relaxed text-pf-ink-soft">
+                La marca enfrentaba un cuello de botella operativo: carecía de una
+                plataforma centralizada para mostrar sus productos. La dependencia de
+                canales informales para enviar fotos y precios limitaba la experiencia de
+                compra, impidiendo que los clientes pudieran explorar el catálogo
+                completo de forma autónoma y visual.
+              </p>
+            </div>
+            <div class="reveal-smooth delay-150">
+              <div class="mb-4 flex items-center gap-3">
+                <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+                <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">La Solución</p>
+              </div>
+              <h2 class="font-display text-3xl font-bold tracking-tight md:text-4xl">
+                Un catálogo digital que vende 24/7.
+              </h2>
+              <p class="mt-6 leading-relaxed text-pf-ink-soft">
+                Desarrollamos un e-commerce a medida con una base de datos estructurada
+                que funciona como un catálogo digital 24/7. Diseñamos una interfaz
+                centrada en la fotografía de producto para facilitar la exploración
+                visual, permitiendo a los usuarios filtrar y descubrir el inventario sin
+                fricción, profesionalizando así la presencia digital de la marca.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- La obra: dúo cuadrado (el desktop completo ya es el hero) -->
+      <section class="pb-20 md:pb-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="grid gap-6 md:grid-cols-2">
+            <button
+              type="button"
+              data-lightbox
+              aria-label="Ampliar imagen"
+              class="group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth"
+            >
+              <Image
+                src={mobile}
+                alt="Versión móvil del catálogo"
+                widths={[720, 1600]}
+                sizes="(max-width: 768px) 100vw, 550px"
+                class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </button>
+            <button
+              type="button"
+              data-lightbox
+              aria-label="Ampliar imagen"
+              class="group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth delay-150"
+            >
+              <Image
+                src={featured}
+                alt="Detalle de producto de Ganesha Stores"
+                widths={[720, 1600]}
+                sizes="(max-width: 768px) 100vw, 550px"
+                class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Extensión: Programa de Puntos y Recompensas -->
+      <section class="border-t border-pf-line py-20 md:py-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="max-w-3xl reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">
+                La Evolución — Programa de Puntos
+              </p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              El mismo sitio ahora también fideliza.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              Sobre la infraestructura ya construida — la tienda online y el POS de las
+              tiendas físicas — añadimos un programa de puntos sin plataformas externas
+              ni costos mensuales: el cliente consulta sus puntos en la web con su
+              cédula, reclama su descuento y lo canjea en tienda, donde el sistema lo
+              valida y ajusta los puntos automáticamente al cerrar la venta.
+            </p>
+          </div>
+          <!-- Tiles uniformes 3:4 (las capturas full-page tienen alturas muy
+               distintas); la página completa se ve en el Lightbox. -->
+          <div class="mt-12 grid gap-6 md:grid-cols-3">
+            {
+              [fidelity1, fidelity2, fidelity3].map((shot, i) => (
+                <button
+                  type="button"
+                  data-lightbox
+                  aria-label="Ampliar imagen"
+                  class:list={[
+                    'group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth',
+                    i === 1 && 'delay-150',
+                    i === 2 && 'delay-300',
+                  ]}
+                >
+                  <span class="block aspect-[3/4] overflow-hidden">
+                    <Image
+                      src={shot}
+                      alt={`Programa de puntos de Ganesha (${i + 1})`}
+                      widths={[720, 1600]}
+                      sizes="(max-width: 768px) 100vw, 360px"
+                      class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    />
+                  </span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <OutcomeTiles outcomes={cs.outcomes} lang="es" />
+
+      <TestimonialQuote
+        quote={'Antes me pasaba el día respondiendo mensajes.\nAhora la web vende por mí y los clientes aman poder ver las fotos con detalle.'}
+        author="Gerardo G., Fundador"
+      />
+
+      <CaseCta lang="es" />
+      <Lightbox lang="es" />
+    </main>
+  </CaseTheme>
+</MainLayout>

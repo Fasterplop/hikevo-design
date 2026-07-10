@@ -1,0 +1,175 @@
+---
+// Case study: Fortitude Insurance (EN) — redesign type.
+// Free page (ADR-0001): facts come from the registry; prose and art live here.
+// "Work first" recipe (BRAND.md).
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Header from '../../../components/common/Header.astro';
+import CaseTheme from '../../../components/portfolio/CaseTheme.astro';
+import CaseHero from '../../../components/portfolio/CaseHero.astro';
+import FactBar from '../../../components/portfolio/FactBar.astro';
+import BeforeAfterSlider from '../../../components/portfolio/BeforeAfterSlider.astro';
+import OutcomeTiles from '../../../components/portfolio/OutcomeTiles.astro';
+import CaseCta from '../../../components/portfolio/CaseCta.astro';
+import Lightbox from '../../../components/portfolio/Lightbox.astro';
+import { Image } from 'astro:assets';
+import { getCaseStudy } from '../../../data/case-studies';
+import { buildCaseSeo } from '../../../data/case-seo';
+
+import after2 from '../../../assets/images/projects/fortitude-insurance/desktop-2.png';
+import after3 from '../../../assets/images/projects/fortitude-insurance/desktop-3.png';
+import after4 from '../../../assets/images/projects/fortitude-insurance/desktop-4-hero.png';
+import after5 from '../../../assets/images/projects/fortitude-insurance/desktop-5.png';
+
+const cs = getCaseStudy('fortitude-insurance');
+if (cs.type !== 'redesign') throw new Error('fortitude-insurance must be type redesign');
+const seo = await buildCaseSeo(cs, 'en');
+
+// The page hero uses the hero-only capture (registry); the gallery shows the rest
+// without repeating it: dark mode as the wide lead + inner views.
+const gallery = [after4, after3, after5, after2];
+---
+
+<MainLayout title={seo.title} description={seo.description} image={seo.image}>
+  <script type="application/ld+json" set:html={seo.breadcrumbSchema} slot="head" />
+
+  <Header />
+
+  <CaseTheme theme={cs.theme}>
+    <main>
+      <CaseHero cs={cs} lang="en" />
+      <FactBar cs={cs} lang="en" />
+
+      <!-- The Challenge -->
+      <section class="py-20 md:py-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="max-w-3xl reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Challenge</p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              A modern agency trapped in a 2010 website.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              {cs.before.summary.en}
+            </p>
+            <p class="mt-4 text-lg leading-relaxed text-pf-ink-soft">
+              Fortitude's market is largely Hispanic, yet their website only spoke
+              English. Quoting a policy, downloading a document or filing a claim meant a
+              phone call during office hours — pure friction for a business that lives on
+              lead conversion.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Before and after: the visual proof -->
+      <section class="pb-20 md:pb-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="reveal-smooth">
+            <BeforeAfterSlider
+              before={cs.comparison.before}
+              after={cs.comparison.after}
+              altBefore="Previous fortitudeins.us homepage: static HTML template"
+              altAfter="Redesigned fortitudeins.us homepage: modern bilingual platform"
+              lang="en"
+            />
+            <p class="mt-4 text-center font-mono text-xs text-pf-ink-soft">
+              Drag (or use your keyboard arrows) to compare the homepage.
+            </p>
+          </div>
+
+          <!-- Uniform 3:2 tiles (the legacy pages have very different
+               heights); the complete capture opens in the Lightbox. -->
+          <div class="mt-12 grid gap-6 md:grid-cols-3 reveal-smooth delay-150">
+            {
+              cs.before.screenshots.slice(1).map((shot) => (
+                <button
+                  type="button"
+                  data-lightbox
+                  aria-label="View image larger"
+                  class="group cursor-pointer overflow-hidden rounded-xl border border-pf-line bg-pf-surface-2 text-left transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent"
+                >
+                  <span class="block aspect-[3/2] overflow-hidden">
+                    <Image
+                      src={shot}
+                      alt="Inner page of the previous Fortitude Insurance site"
+                      widths={[720, 1600]}
+                      sizes="(max-width: 768px) 100vw, 360px"
+                      class="h-full w-full object-cover object-top opacity-80 transition-opacity group-hover:opacity-100"
+                    />
+                  </span>
+                  <span class="block border-t border-pf-line px-4 py-2 font-mono text-[11px] uppercase tracking-widest text-pf-ink-soft">
+                    Before — legacy site
+                  </span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- The Solution -->
+      <section class="border-t border-pf-line py-20 md:py-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="max-w-3xl reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Solution</p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              A bilingual platform that works around the clock.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              We rebuilt fortitudeins.us from scratch on a high-performance static
+              architecture: a mirrored English/Spanish experience, light and dark modes,
+              and the business tools built into the site — the real-time quoting system
+              and the account center for claims and documents.
+            </p>
+            <p class="mt-4 text-lg leading-relaxed text-pf-ink-soft">
+              Forms reach the agency instantly via Resend, and Cloudflare handles traffic
+              and security. Clients now quote, check and file claims on their own, at any
+              hour — the agency advises instead of processing paperwork.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- The work: the new site at full size -->
+      <section class="pb-20 md:pb-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="grid gap-6 md:grid-cols-3">
+            {
+              gallery.map((shot, i) => (
+                <button
+                  type="button"
+                  data-lightbox
+                  aria-label="View image larger"
+                  class:list={[
+                    'group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth',
+                    i === 0 && 'md:col-span-3',
+                    i === 2 && 'delay-150',
+                    i === 3 && 'delay-300',
+                  ]}
+                >
+                  <Image
+                    src={shot}
+                    alt={`View of the new Fortitude Insurance site (${i + 1})`}
+                    widths={[720, 1600]}
+                    sizes={i === 0 ? '(max-width: 768px) 100vw, 1100px' : '(max-width: 768px) 100vw, 360px'}
+                    class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <OutcomeTiles outcomes={cs.outcomes} lang="en" />
+
+      <CaseCta lang="en" />
+      <Lightbox lang="en" />
+    </main>
+  </CaseTheme>
+</MainLayout>

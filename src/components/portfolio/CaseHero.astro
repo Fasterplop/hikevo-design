@@ -1,0 +1,82 @@
+---
+// Hero de caso (BRAND.md, receta §1): eyebrow + badge, título display, CTA
+// derivado de status + access (nunca decidido por caso), e imagen protagonista
+// que es el destino del morph card→hero (transition:name).
+import { Image } from 'astro:assets';
+import Button from '../common/Button.astro';
+import { getPublicUrl, type CaseStudy } from '../../data/case-studies';
+import { useTranslations } from '../../i18n/ui';
+
+interface Props {
+  cs: CaseStudy;
+  lang: 'es' | 'en';
+}
+
+const { cs, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const publicUrl = getPublicUrl(cs);
+// Regla dura (BRAND.md): CTA solo si live + URL pública; coming-soon muestra el
+// dominio como texto, jamás como <a> a un dominio que no resuelve.
+const showCta = cs.status === 'live' && !!publicUrl;
+const futureDomain =
+  cs.status === 'coming-soon' && publicUrl ? publicUrl.replace(/^https?:\/\//, '') : null;
+const ctaLabel = cs.ctaLabel?.[lang] ?? t('pf.cta.default');
+---
+
+<header class="pt-32 pb-16 md:pt-40 md:pb-24">
+  <div class="mx-auto max-w-6xl px-6 md:px-12">
+    <div class="animate-fade-in">
+      <div class="mb-6 flex items-center gap-3">
+        <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+        <span class="font-mono text-xs uppercase tracking-widest text-pf-accent">
+          {t('pf.caseStudy')}
+        </span>
+      </div>
+
+      <h1
+        class="font-display text-5xl font-bold leading-[0.95] tracking-tight md:text-8xl"
+      >
+        {cs.title}
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-pf-ink-soft md:text-xl">
+        {cs.description[lang]}
+      </p>
+
+      {
+        showCta && (
+          <div class="mt-8">
+            <Button href={publicUrl!} variant="primary" isExternal={true}>
+              {ctaLabel}
+            </Button>
+          </div>
+        )
+      }
+      {
+        futureDomain && (
+          <p class="mt-8 font-mono text-sm text-pf-ink-soft">
+            {t('pf.cta.launch')} <span class="text-pf-accent">{futureDomain}</span>
+          </p>
+        )
+      }
+    </div>
+  </div>
+
+  <div class="mx-auto mt-14 max-w-7xl px-4 md:px-8">
+    <div
+      class="overflow-hidden rounded-3xl border border-pf-line bg-pf-surface-2 shadow-2xl"
+      transition:name={`pf-${cs.slug}`}
+    >
+      <Image
+        src={cs.cardImage}
+        alt={`${cs.title} — ${cs.services[lang]}`}
+        widths={[720, 1200, 1800]}
+        sizes="(max-width: 768px) 100vw, 1200px"
+        class="h-auto w-full"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+</header>

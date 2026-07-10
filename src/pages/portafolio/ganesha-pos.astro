@@ -1,0 +1,116 @@
+---
+// Case study: Ganesha POS (ES) — sistema interno, superficie privada única.
+// Página libre (ADR-0001): hechos del registro, prosa y arte aquí.
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/common/Header.astro';
+import CaseTheme from '../../components/portfolio/CaseTheme.astro';
+import CaseHero from '../../components/portfolio/CaseHero.astro';
+import FactBar from '../../components/portfolio/FactBar.astro';
+import SurfaceChapter from '../../components/portfolio/SurfaceChapter.astro';
+import OutcomeTiles from '../../components/portfolio/OutcomeTiles.astro';
+import Lightbox from '../../components/portfolio/Lightbox.astro';
+import CaseCta from '../../components/portfolio/CaseCta.astro';
+import { Image } from 'astro:assets';
+import { getCaseStudy } from '../../data/case-studies';
+import { buildCaseSeo } from '../../data/case-seo';
+
+import dash2 from '../../assets/images/projects/ganesha-pos/dashboard-2.png';
+import dash3 from '../../assets/images/projects/ganesha-pos/dashboard-3.png';
+import dash4 from '../../assets/images/projects/ganesha-pos/dashboard-4.png';
+import dash5 from '../../assets/images/projects/ganesha-pos/dashboard-5.png';
+
+const cs = getCaseStudy('ganesha-pos');
+const seo = await buildCaseSeo(cs, 'es');
+
+const bento = [dash2, dash3, dash4, dash5];
+---
+
+<MainLayout title={seo.title} description={seo.description} image={seo.image}>
+  <script type="application/ld+json" set:html={seo.breadcrumbSchema} slot="head" />
+
+  <Header />
+
+  <CaseTheme theme={cs.theme}>
+    <main>
+      <CaseHero cs={cs} lang="es" />
+      <FactBar cs={cs} lang="es" />
+
+      <!-- Narrativa apilada con énfasis en el reemplazo -->
+      <section class="py-20 md:py-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="grid gap-16 md:grid-cols-2">
+            <div class="reveal-smooth">
+              <div class="mb-4 flex items-center gap-3">
+                <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+                <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">El Desafío</p>
+              </div>
+              <h2 class="font-display text-3xl font-bold tracking-tight md:text-4xl">
+                El software genérico les quedaba grande y pequeño a la vez.
+              </h2>
+              <p class="mt-6 leading-relaxed text-pf-ink-soft">
+                La tienda de juguetes y ropa operaba con un POS comercial que no hablaba
+                su idioma: sin métodos de pago manuales como Zelle o Pago Móvil, sin
+                registro de clientes por cédula, y sin la operación que más tiempo les
+                comía — crear descuentos sobre la marcha y etiquetarlos al instante.
+              </p>
+            </div>
+            <div class="reveal-smooth delay-150">
+              <div class="mb-4 flex items-center gap-3">
+                <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+                <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">La Solución</p>
+              </div>
+              <h2 class="font-display text-3xl font-bold tracking-tight md:text-4xl">
+                Un POS que trabaja exactamente como trabaja la tienda.
+              </h2>
+              <p class="mt-6 leading-relaxed text-pf-ink-soft">
+                Sistema web a medida con dos roles: el dueño ve todo el negocio — ventas
+                por día/semana/mes, flujo de caja por método de pago, principales
+                clientes — y los cajeros ven una interfaz limpia enfocada en cobrar.
+                Códigos de descuento en caliente con impresión térmica de etiquetas, y
+                una base de datos API-first lista para el programa de fidelidad y la app
+                móvil del roadmap.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- La superficie: Panel POS en bento -->
+      <SurfaceChapter surface={cs.surfaces![0]} index={1} lang="es">
+        <div class="grid gap-6 md:grid-cols-2">
+          {
+            bento.map((shot, i) => (
+              <button
+                type="button"
+                data-lightbox
+                aria-label="Ampliar imagen"
+                class:list={[
+                  'group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth',
+                  i % 2 === 1 && 'delay-150',
+                ]}
+              >
+                <Image
+                  src={shot}
+                  alt={`Panel POS de Ganesha (${i + 1}): ventas, inventario y estadísticas`}
+                  widths={[720, 1600]}
+                  sizes="(max-width: 768px) 100vw, 550px"
+                  class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+              </button>
+            ))
+          }
+        </div>
+        <p class="mt-6 max-w-2xl text-pf-ink-soft reveal-smooth">
+          Dashboard del dueño, punto de venta del cajero, inventario con categorías y
+          CRM básico por cédula con historial de compras — todo en el navegador, sin
+          instalaciones.
+        </p>
+      </SurfaceChapter>
+
+      <OutcomeTiles outcomes={cs.outcomes} lang="es" />
+
+      <CaseCta lang="es" />
+      <Lightbox lang="es" />
+    </main>
+  </CaseTheme>
+</MainLayout>

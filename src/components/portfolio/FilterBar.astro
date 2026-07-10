@@ -1,0 +1,77 @@
+---
+// Filtros del index (BRAND.md): web | system | social. Mismo patrón de botones
+// JS del index anterior, con labels desde i18n/ui.ts y estilos de tema pf-*.
+import { useTranslations } from '../../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const filters = [
+  { value: 'all', label: t('pf.filter.all') },
+  { value: 'web', label: t('pf.filter.web') },
+  { value: 'system', label: t('pf.filter.system') },
+  { value: 'social', label: t('pf.filter.social') },
+];
+---
+
+<div class="flex flex-wrap justify-center gap-2 md:gap-3" id="pf-filters">
+  {
+    filters.map((f, i) => (
+      <button
+        class:list={[
+          'pf-filter-btn rounded-full px-5 py-2 font-mono text-xs uppercase tracking-widest transition-all',
+          i === 0
+            ? 'bg-hikevo-yellow text-hikevo-black'
+            : 'border border-pf-line text-pf-ink-soft hover:border-pf-accent hover:text-pf-ink',
+        ]}
+        data-filter={f.value}
+        aria-pressed={i === 0 ? 'true' : 'false'}
+      >
+        {f.label}
+      </button>
+    ))
+  }
+</div>
+
+<script>
+  function initPortfolioFilters() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.pf-filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.pf-card');
+    if (buttons.length === 0) return;
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => {
+          b.classList.remove('bg-hikevo-yellow', 'text-hikevo-black');
+          b.classList.add('border', 'border-pf-line', 'text-pf-ink-soft');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('bg-hikevo-yellow', 'text-hikevo-black');
+        btn.classList.remove('border', 'border-pf-line', 'text-pf-ink-soft');
+        btn.setAttribute('aria-pressed', 'true');
+
+        const value = btn.getAttribute('data-filter');
+        cards.forEach((card) => {
+          const show = value === 'all' || card.getAttribute('data-category') === value;
+          card.classList.toggle('hidden', !show);
+          if (show) {
+            card.animate(
+              [
+                { opacity: 0, transform: 'translateY(10px)' },
+                { opacity: 1, transform: 'translateY(0)' },
+              ],
+              { duration: 300, easing: 'ease-out' }
+            );
+          }
+        });
+      });
+    });
+  }
+
+  initPortfolioFilters();
+  document.addEventListener('astro:page-load', initPortfolioFilters);
+</script>

@@ -1,0 +1,43 @@
+---
+// Wrapper de tema por caso (BRAND.md): declara las CSS vars pf-* que consume
+// todo el kit. Cada página elige mode (light/dark) + accent; el kit nunca usa
+// colores absolutos. También carga las fuentes del portafolio (solo aquí, para
+// que el resto del sitio no pague su peso).
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/jetbrains-mono';
+import type { CaseTheme } from '../../data/case-studies';
+
+interface Props {
+  theme: CaseTheme;
+  class?: string;
+}
+
+const { theme, class: className } = Astro.props;
+
+const modes = {
+  light: {
+    '--pf-surface': '#FFFFFF',
+    '--pf-surface-2': '#F5F5F7',
+    '--pf-ink': '#0A0A0A',
+    '--pf-ink-soft': 'rgba(10, 10, 10, 0.62)',
+    '--pf-line': 'rgba(10, 10, 10, 0.12)',
+  },
+  dark: {
+    '--pf-surface': '#0A0A0A',
+    '--pf-surface-2': '#161616',
+    '--pf-ink': '#F5F5F7',
+    '--pf-ink-soft': 'rgba(245, 245, 247, 0.65)',
+    '--pf-line': 'rgba(245, 245, 247, 0.14)',
+  },
+} as const;
+
+const vars = { ...modes[theme.mode], '--pf-accent': theme.accent };
+---
+
+<div
+  class:list={['pf-scope bg-pf-surface text-pf-ink', className]}
+  data-pf-mode={theme.mode}
+  style={vars}
+>
+  <slot />
+</div>

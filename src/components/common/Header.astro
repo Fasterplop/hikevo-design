@@ -34,12 +34,14 @@ const match = routeMap.find(r =>
 if (match) {
     targetEs = match.es;
     targetEn = match.en;
-} else {
-    // FALLBACK INTELIGENTE PARA RUTAS DINÁMICAS (Ej: Proyectos de portafolio)
-    // Si estamos en un proyecto, intentamos redirigir al portafolio principal del otro idioma
-    // porque no sabemos la traducción exacta del slug del proyecto.
-    if (currentPath.includes('/portafolio/')) targetEn = '/en/portfolio';
-    if (currentPath.includes('/portfolio/')) targetEs = '/portafolio';
+} else if (currentPath.startsWith('/en/portfolio/')) {
+    // Los slugs de case studies son idénticos en ambos idiomas (registro central),
+    // así que el switcher lleva al caso homólogo, no al índice.
+    targetEn = currentPath;
+    targetEs = currentPath.replace('/en/portfolio/', '/portafolio/');
+} else if (currentPath.startsWith('/portafolio/')) {
+    targetEs = currentPath;
+    targetEn = currentPath.replace('/portafolio/', '/en/portfolio/');
 }
 
 // 3. ITEMS DEL MENÚ DE NAVEGACIÓN

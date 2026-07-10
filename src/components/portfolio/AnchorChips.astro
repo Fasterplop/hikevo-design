@@ -1,0 +1,32 @@
+---
+// Chips de ancla (BRAND.md): solo con 3+ superficies. Saltan al capítulo,
+// no ocultan nada.
+import type { Surface } from '../../data/case-studies';
+
+interface Props {
+  surfaces?: Surface[];
+  lang: 'es' | 'en';
+}
+
+const { surfaces, lang } = Astro.props;
+const show = (surfaces?.length ?? 0) >= 3;
+---
+
+{
+  show && (
+    <nav class="mx-auto max-w-6xl px-6 pb-4 md:px-12">
+      <ul class="flex flex-wrap gap-2">
+        {surfaces!.map((s, i) => (
+          <li>
+            <a
+              href={`#surface-${i + 1}`}
+              class="inline-block rounded-full border border-pf-line px-4 py-1.5 font-mono text-xs text-pf-ink-soft transition-colors hover:border-pf-accent hover:text-pf-ink"
+            >
+              {s.name[lang]}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}

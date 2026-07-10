@@ -1,0 +1,118 @@
+---
+// Outcomes (BRAND.md, receta §5): números display después de ver la obra, con
+// count-up al entrar en viewport. Solo se anima el valor cuando es un número
+// puro (ej. "+70%", "100%", "6 semanas"); valores como "EN + ES" o "24/7"
+// quedan estáticos. Sin outcomes en el registro, la sección no existe.
+import type { Outcome } from '../../data/case-studies';
+import { useTranslations } from '../../i18n/ui';
+
+interface Props {
+  outcomes?: Outcome[];
+  lang: 'es' | 'en';
+}
+
+const { outcomes, lang } = Astro.props;
+const t = useTranslations(lang);
+
+// prefijo opcional (+/-/$/<) + entero + resto sin dígitos → animable
+const parseCount = (value: string) => value.match(/^([+$<-]?)(\d+)([^\d]*)$/);
+---
+
+{
+  outcomes && outcomes.length > 0 && (
+    <section class="border-t border-pf-line py-20 md:py-28">
+      <div class="mx-auto max-w-6xl px-6 md:px-12">
+        <div class="mb-12 flex items-center gap-3 reveal-smooth">
+          <span class="h-px w-10 bg-pf-accent" aria-hidden="true" />
+          <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">
+            {t('pf.section.outcomes')}
+          </p>
+        </div>
+        <div
+          class:list={[
+            'grid gap-12',
+            outcomes.length === 2 ? 'md:grid-cols-2' : '',
+            outcomes.length >= 3 ? 'md:grid-cols-3' : '',
+          ]}
+        >
+          {outcomes.map((o, i) => {
+            const m = parseCount(o.value);
+            // Consistencia de UI: el número siempre a escala display; las unidades
+            // largas ("semanas", "clic") bajan de tamaño; símbolos cortos ("%", "s")
+            // se quedan junto al número. Valores no numéricos largos ("EN + ES")
+            // bajan un escalón para no romper el ritmo entre tiles.
+            const suffix = m ? m[3] : '';
+            const suffixIsWord = suffix.trim().length > 2;
+            return (
+              <div class:list={['reveal-smooth', i === 1 && 'delay-150', i === 2 && 'delay-300']}>
+                <div class="font-display font-bold tracking-tight text-pf-accent">
+                  {m ? (
+                    <span class="flex flex-wrap items-baseline gap-x-2">
+                      <span class="text-6xl md:text-7xl">
+                        {m[1]}
+                        <span class="pf-count tabular-nums" data-target={m[2]}>
+                          {m[2]}
+                        </span>
+                        {!suffixIsWord && suffix}
+                      </span>
+                      {suffixIsWord && (
+                        <span class="text-2xl text-pf-ink-soft md:text-3xl">{suffix.trim()}</span>
+                      )}
+                    </span>
+                  ) : (
+                    <span
+                      class:list={[
+                        o.value.length > 5 ? 'text-5xl md:text-6xl' : 'text-6xl md:text-7xl',
+                      ]}
+                    >
+                      {o.value}
+                    </span>
+                  )}
+                </div>
+                <div class="mt-3 text-base font-semibold">{o.label[lang]}</div>
+                {o.detail && <div class="mt-1 text-sm text-pf-ink-soft">{o.detail[lang]}</div>}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<script>
+  function initCountUp() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll<HTMLElement>('.pf-count').forEach((el) => {
+      if (el.dataset.done === '1' || reduce) return;
+      const target = parseInt(el.dataset.target ?? '', 10);
+      if (!Number.isFinite(target)) return;
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting || el.dataset.done === '1') return;
+            el.dataset.done = '1';
+            io.disconnect();
+
+            const duration = 1200;
+            const start = performance.now();
+            const tick = (now: number) => {
+              const progress = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              el.textContent = String(Math.round(target * eased));
+              if (progress < 1) requestAnimationFrame(tick);
+            };
+            el.textContent = '0';
+            requestAnimationFrame(tick);
+          });
+        },
+        { threshold: 0.5 }
+      );
+      io.observe(el);
+    });
+  }
+
+  initCountUp();
+  document.addEventListener('astro:page-load', initCountUp);
+</script>

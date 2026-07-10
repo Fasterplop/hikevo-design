@@ -1,0 +1,175 @@
+---
+// Case study: Ganesha Stores (EN) — e-commerce + points program extension.
+// Free page (ADR-0001): facts from the registry, prose and art live here.
+// The loyalty proposal EXTENDS this case, it doesn't create another (CONTEXT.md).
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Header from '../../../components/common/Header.astro';
+import CaseTheme from '../../../components/portfolio/CaseTheme.astro';
+import CaseHero from '../../../components/portfolio/CaseHero.astro';
+import FactBar from '../../../components/portfolio/FactBar.astro';
+import OutcomeTiles from '../../../components/portfolio/OutcomeTiles.astro';
+import TestimonialQuote from '../../../components/portfolio/TestimonialQuote.astro';
+import Lightbox from '../../../components/portfolio/Lightbox.astro';
+import CaseCta from '../../../components/portfolio/CaseCta.astro';
+import { Image } from 'astro:assets';
+import { getCaseStudy } from '../../../data/case-studies';
+import { buildCaseSeo } from '../../../data/case-seo';
+
+import mobile from '../../../assets/images/projects/ganeshastores/ganesha-mobile.png';
+import featured from '../../../assets/images/projects/ganeshastores/ganesha-featured.png';
+import fidelity1 from '../../../assets/images/projects/ganeshastores/fidelity-1.png';
+import fidelity2 from '../../../assets/images/projects/ganeshastores/fidelity-2.png';
+import fidelity3 from '../../../assets/images/projects/ganeshastores/fidelity-3.png';
+
+const cs = getCaseStudy('ganesha-stores');
+const seo = await buildCaseSeo(cs, 'en');
+---
+
+<MainLayout title={seo.title} description={seo.description} image={seo.image}>
+  <script type="application/ld+json" set:html={seo.breadcrumbSchema} slot="head" />
+
+  <Header />
+
+  <CaseTheme theme={cs.theme}>
+    <main>
+      <CaseHero cs={cs} lang="en" />
+      <FactBar cs={cs} lang="en" />
+
+      <section class="py-20 md:py-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="grid gap-16 md:grid-cols-2">
+            <div class="reveal-smooth">
+              <div class="mb-4 flex items-center gap-3">
+                <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+                <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Challenge</p>
+              </div>
+              <h2 class="font-display text-3xl font-bold tracking-tight md:text-4xl">
+                A catalog that lived in the chat.
+              </h2>
+              <p class="mt-6 leading-relaxed text-pf-ink-soft">
+                The brand faced an operational bottleneck: it lacked a centralized
+                platform to showcase its products. Relying on informal channels to send
+                photos and prices limited the shopping experience, preventing customers
+                from exploring the full catalog autonomously and visually.
+              </p>
+            </div>
+            <div class="reveal-smooth delay-150">
+              <div class="mb-4 flex items-center gap-3">
+                <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+                <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">The Solution</p>
+              </div>
+              <h2 class="font-display text-3xl font-bold tracking-tight md:text-4xl">
+                A digital catalog that sells 24/7.
+              </h2>
+              <p class="mt-6 leading-relaxed text-pf-ink-soft">
+                We developed a custom e-commerce with a structured database acting as a
+                24/7 digital catalog. We designed an interface centered on product
+                photography to enable visual exploration, letting users filter and
+                discover inventory frictionlessly — professionalizing the brand's digital
+                presence.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- The work: square duo (the full desktop view is already the hero) -->
+      <section class="pb-20 md:pb-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="grid gap-6 md:grid-cols-2">
+            <button
+              type="button"
+              data-lightbox
+              aria-label="View image larger"
+              class="group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth"
+            >
+              <Image
+                src={mobile}
+                alt="Mobile version of the catalog"
+                widths={[720, 1600]}
+                sizes="(max-width: 768px) 100vw, 550px"
+                class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </button>
+            <button
+              type="button"
+              data-lightbox
+              aria-label="View image larger"
+              class="group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth delay-150"
+            >
+              <Image
+                src={featured}
+                alt="Ganesha Stores product detail"
+                widths={[720, 1600]}
+                sizes="(max-width: 768px) 100vw, 550px"
+                class="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Extension: Points & Rewards program -->
+      <section class="border-t border-pf-line py-20 md:py-28">
+        <div class="mx-auto max-w-6xl px-6 md:px-12">
+          <div class="max-w-3xl reveal-smooth">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-px w-10 bg-pf-accent" aria-hidden="true"></span>
+              <p class="font-mono text-xs uppercase tracking-widest text-pf-accent">
+                The Evolution — Points Program
+              </p>
+            </div>
+            <h2 class="font-display text-3xl font-bold tracking-tight md:text-5xl">
+              The same site now builds loyalty too.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-pf-ink-soft">
+              On top of the infrastructure already built — the online store and the
+              physical stores' POS — we added a points program with no external
+              platforms or monthly fees: customers check their points on the web with
+              their ID, claim their discount and redeem it in store, where the system
+              validates it and adjusts points automatically as the sale closes.
+            </p>
+          </div>
+          <!-- Uniform 3:4 tiles (the full-page captures have very different
+               heights); the complete page opens in the Lightbox. -->
+          <div class="mt-12 grid gap-6 md:grid-cols-3">
+            {
+              [fidelity1, fidelity2, fidelity3].map((shot, i) => (
+                <button
+                  type="button"
+                  data-lightbox
+                  aria-label="View image larger"
+                  class:list={[
+                    'group cursor-pointer overflow-hidden rounded-2xl border border-pf-line bg-pf-surface-2 shadow-lg transition-colors hover:border-pf-accent focus-visible:outline-2 focus-visible:outline-pf-accent reveal-smooth',
+                    i === 1 && 'delay-150',
+                    i === 2 && 'delay-300',
+                  ]}
+                >
+                  <span class="block aspect-[3/4] overflow-hidden">
+                    <Image
+                      src={shot}
+                      alt={`Ganesha points program (${i + 1})`}
+                      widths={[720, 1600]}
+                      sizes="(max-width: 768px) 100vw, 360px"
+                      class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    />
+                  </span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <OutcomeTiles outcomes={cs.outcomes} lang="en" />
+
+      <TestimonialQuote
+        quote={'Before, I spent the whole day answering messages.\nNow the website sells for me and customers love seeing the photos in detail.'}
+        author="Gerardo G., Founder"
+      />
+
+      <CaseCta lang="en" />
+      <Lightbox lang="en" />
+    </main>
+  </CaseTheme>
+</MainLayout>
